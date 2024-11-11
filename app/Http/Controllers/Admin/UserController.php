@@ -1,0 +1,101 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Validator;
+
+class UserController extends Controller
+{
+    public function index(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = User::orderBy('id', 'desc')->get();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('image', function ($item) {
+                    $url = asset('storage/' . $item->image); // Get image URL
+                    return '
+                     <td class="py-1"><img src="' . $url . '" width="50" height="50"/></td>';
+                })
+                ->addColumn('action', function ($data) {
+                    return view('Admin.Button.button', compact('data'));
+                })
+                ->rawColumns(['action', 'image'])
+                ->make(true);
+        }
+
+        return view('Admin.pages.users');
+    }
+
+    public function store(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+
+            $validator = Validator::make($request->all(), [
+                'full_name' => 'required',
+                'email' => 'required|unique:users,email',
+                'position' => 'required',
+                'password' => 'required|min:6',
+                'image' => 'image',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json(['errors' => $validator->errors()], 422);
+            }
+
+            $folder = 'images/users/';
+            $user = new User();
+            if ($request->hasFile('image')) {
+
+                // Delete the previous images
+                // if ($user->profile) {
+                //     Storage::disk('public')->delete($user->profile);
+                // }
+
+                $imagename = time() . '.' . $request->image->extension();
+                $path = $request->image->storeAs($folder, $imagename, 'public');
+                $user->image = $path;
+            }
+            $user->role = "Admin";
+            $user->full_name = $request->full_name;
+            $user->position = $request->position;
+            $user->email = $request->email;
+            $user->password = $request->password;
+            $user->phonenumber = $request->phonenumber;
+            $user->email_link = $request->email_link;
+            $user->facebook_link = $request->facebook_link;
+            $user->instagram_link = $request->instagram_link;
+            $user->twitter_link = $request->twitter_link;
+            $user->notes = $request->notes;
+            $user->save();
+
+            DB::commit();
+            return response()->json(['success' => true], 200);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['success' => false, 'message' => $e->getMessage(), 'line' => $e->getLine(), 'moredata' => $e->getCode()]);
+        }
+    }
+
+
+    public function userDetail($id){
+        try{
+            $data=User::find($id);
+            return response()->json(['success'=>true,'message'=>$data]);
+        }catch(\Exception $e){
+            return response()->json(['success'=>false,'message'=>$e->getMessage()]);
+        }
+    }
+
+    public function update(Request $request,$id){
+
+    }
+}
