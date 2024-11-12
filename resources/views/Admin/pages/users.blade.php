@@ -107,7 +107,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-success">Add User</button>
+                            <button type="submit" class="btn btn-success" id="modalActionButton">Add User</button>
                         </div>
                     </form>
                 </div>
@@ -175,7 +175,7 @@
                                     <label for="" class="form-label">Image (optional)</label>
                                     <input type="file" name="image" id="user_image" class="form-control"
                                         placeholder="" aria-describedby="helpId" />
-                                        <div id="userImage" class="mt-1"></div>
+                                    <div id="userImage" class="mt-1"></div>
                                 </div>
 
                                 <div class="col-md-12 mt-4 mb-2">
@@ -201,42 +201,18 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
 
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">View Detail User</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <h1 class="text-center">User Detail</h1>
-                        </div>
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">View Detail User</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h1 class="text-center">User Detail</h1>
+                    </div>
                 </div>
             </div>
         </div>
         {{-- View Detail Modal --}}
 
-        {{-- Delete Modal --}}
-        <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-centered">
-                <div class="modal-content">
-                    <form id="deleteUserData">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete User</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                           <h3 class="text-danger">Are you sure you want to delete ?</h3>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-danger">Confirm Delete</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        {{-- Delete Modal --}}
     </div>
 
     <script>
@@ -325,54 +301,114 @@
             // Store User Data
 
             // Edit Users
-            $(document).on("click",".editData",function(){
-                let id=$(this).attr("data-id");
-                $.ajax({
-                    type:"get",
-                    url:"/admin/user/detail/"+id,
-                    success:function(response){
-                        console.log(response);
+            // $(document).on("click", ".editData", function() {
+            //     let id = $(this).attr("data-id");
+            //     $.ajax({
+            //         type: "get",
+            //         url: "/admin/user/detail/" + id,
+            //         success: function(response) {
+            //             console.log(response);
 
-                        $("#full_name").val(response.message.full_name);
-                        $("#email").val(response.message.email);
-                        $("#position").val(response.message.position);
-                        $("#phonenumber").val(response.message.phonenumber);
-                        $("#email_link").val(response.message.email_link);
-                        $("#facebook_link").val(response.message.facebook_link);
-                        $("#twitter_link").val(response.message.twitter_link);
-                        $("#instagram_link").val(response.message.instagram_link);
-                        $("#notes_user").val(response.message.notes);
-                        $("#userImage").html(` <img src="/storage/${response.message.image}" alt="" width="100" height="100"> `);
+            //             $("#full_name").val(response.message.full_name);
+            //             $("#email").val(response.message.email);
+            //             $("#position").val(response.message.position);
+            //             $("#phonenumber").val(response.message.phonenumber);
+            //             $("#email_link").val(response.message.email_link);
+            //             $("#facebook_link").val(response.message.facebook_link);
+            //             $("#twitter_link").val(response.message.twitter_link);
+            //             $("#instagram_link").val(response.message.instagram_link);
+            //             $("#notes_user").val(response.message.notes);
+            //             $("#userImage").html(
+            //                 ` <img src="/storage/${response.message.image}" alt="" width="100" height="100"> `
+            //             );
+            //         }
+            //     });
+
+            //     $("#updateUserData").submit(function(event) {
+            //         event.preventDefault();
+            //         let formdata = new FormData(this);
+            //         $.ajax({
+            //             type: "post",
+            //             url: "/admin/user/update/" + id,
+            //             data: formdata,
+            //             processData: false,
+            //             contentType: false,
+            //             success: function(response) {
+            //                 if (response.success == true) {
+            //                     Swal.fire({
+            //                         icon: "success",
+            //                         title: "Success",
+            //                         text: "User Updated Successfully",
+            //                         showConfirmButton: false,
+            //                         timer: 1500
+            //                     });
+            //                 }
+            //             },
+            //             error: function(xhr) {
+
+            //             }
+            //         })
+            //     })
+            // })
+            // Edit Users
+
+            $(document).on("click",".open-modal-btn",function(){
+                var action=$(this).data("action");
+                var userId=$(this).data("id");
+                // $("#modalActionButton").empty();
+                // $("#modalActionButton").removeClass();
+                // console.log(userId);
+                var modalTitle='';
+                var buttonText='';
+                var buttonClass='';
+
+                if(action === 'edit'){
+                    modalTitle='Edit User';
+                    buttonText='Update User';
+                    buttonClass="btn btn-success";
+                    $("#staticBackdrop").attr('id','editForm');
+                }
+                $('#staticBackdrop').modal('show');
+
+            })
+
+            // Delete User
+            $(document).on('click', '.deleteData', function() {
+                var itemId = $(this).attr('data-id');
+                // console.log(itemId);
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '/admin/user/delete/' + itemId,
+                            type: 'get',
+                            success: function(response) {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your item has been deleted.',
+                                    'success'
+                                );
+                                table.draw();
+                                // Reload or re-fetch DataTable here if using Yajra DataTable
+                            },
+                            error: function() {
+                                Swal.fire(
+                                    'Error!',
+                                    'An error occurred while deleting the item.',
+                                    'error'
+                                );
+                            }
+                        });
                     }
                 });
-
-                $("#updateUserData").submit(function(event){
-                    event.preventDefault();
-                    let formdata=new FormData(this);
-                    $.ajax({
-                        type:"post",
-                        url:"/admin/user/update/"+id,
-                        data:formdata,
-                        processData:false,
-                        contentType:false,
-                        success:function(response){
-                            if(response.success == true){
-                                Swal.fire({
-                                    icon:"success",
-                                    title:"Success",
-                                    text:"User Updated Successfully",
-                                    showConfirmButton:false,
-                                    timer:1500
-                                });
-                            }
-                        },
-                        error:function(xhr){
-
-                        }
-                    })
-                })
-            })
-            // Edit Users
+            });
 
         });
     </script>

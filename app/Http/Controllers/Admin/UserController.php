@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
@@ -21,8 +22,7 @@ class UserController extends Controller
                 ->addIndexColumn()
                 ->addColumn('image', function ($item) {
                     $url = asset('storage/' . $item->image); // Get image URL
-                    return '
-                     <td class="py-1"><img src="' . $url . '" width="50" height="50"/></td>';
+                    return ' <td class="py-1"><img src="' . $url . '" width="50" height="50"/></td>';
                 })
                 ->addColumn('action', function ($data) {
                     return view('Admin.Button.button', compact('data'));
@@ -31,25 +31,13 @@ class UserController extends Controller
                 ->make(true);
         }
 
-        return view('Admin.pages.users');
+        return view('Admin.pages.test');
     }
 
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         DB::beginTransaction();
         try {
-
-            $validator = Validator::make($request->all(), [
-                'full_name' => 'required',
-                'email' => 'required|unique:users,email',
-                'position' => 'required',
-                'password' => 'required|min:6',
-                'image' => 'image',
-            ]);
-
-            if ($validator->fails()) {
-                return response()->json(['errors' => $validator->errors()], 422);
-            }
 
             $folder = 'images/users/';
             $user = new User();
@@ -86,16 +74,56 @@ class UserController extends Controller
     }
 
 
-    public function userDetail($id){
-        try{
-            $data=User::find($id);
-            return response()->json(['success'=>true,'message'=>$data]);
-        }catch(\Exception $e){
-            return response()->json(['success'=>false,'message'=>$e->getMessage()]);
+    public function userDetail($id)
+    {
+        try {
+            $data = User::find($id);
+            return response()->json(['success' => true, 'message' => $data]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
     }
 
-    public function update(Request $request,$id){
+    public function update(UserRequest $request, $id)
+    {
+        DB::beginTransaction();
+        try {
+            $user = User::find($id);
+            // dd($user);
+            $data=$request->all();
 
+            $folder = 'images/users/';
+            if ($request->hasFile('image')) {
+                if ($user->image != null) {
+                    Storage::disk('public')->delete($user->image);
+                }
+                $imagename = time() . '.' . $request->image->extension();
+                $path = $request->image->storeAs($folder, $imagename, 'public');
+                $data['image'] = $path;
+            }
+
+            $user->update($data);
+            DB::commit();
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            dd($e);
+            DB::rollBack();
+            return response()->json(['success' => false, 'message' => $e->getMessage()]);
+        }
+    }
+
+
+    public function destory($id)
+    {
+        DB::beginTransaction();
+        try {
+            $user = User::find($id);
+            $user->delete();
+            DB::commit();
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['success' => false, 'message' => $e->getMessage()]);
+        }
     }
 }

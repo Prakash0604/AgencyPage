@@ -26,6 +26,7 @@ Route::get('/admin/user',[UserController::class,'index'])->name('admin.user');
 Route::post('/admin/user/store',[UserController::class,'store'])->name('admin.store');
 Route::get('/admin/user/detail/{id}',[UserController::class,'userDetail'])->name('admin.detail');
 Route::post('/admin/user/update/{id}',[UserController::class,'update'])->name('admin.update');
+Route::get('/admin/user/delete/{id}',[UserController::class,'destory'])->name('admin.destory');
 
 Route::get('/post', function () {
     return view('post');

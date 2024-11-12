@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('position')->nullable();
             $table->string('image')->nullable();
             $table->string('email')->unique();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->string('email_link')->nullable();
             $table->string('facebook_link')->nullable();
             $table->string('instagram_link')->nullable();
