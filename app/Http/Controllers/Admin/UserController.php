@@ -31,7 +31,7 @@ class UserController extends Controller
                 ->make(true);
         }
 
-        return view('Admin.pages.test');
+        return view('Admin.pages.users');
     }
 
     public function store(UserRequest $request)

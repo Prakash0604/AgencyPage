@@ -235,6 +235,7 @@
 
             $(document).on("click", ".editUserButton", function() {
                 $(".submitBtn").hide();
+                $(".labelPassword").hide();
                 $(".updateBtn").show();
                 $('.form').attr('id', 'updateForm');
                 $('#updateForm')[0].reset();

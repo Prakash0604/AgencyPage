@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <button type="button" class="btn btn-primary mb-3 addUserButton" data-action="add">
             Add User
         </button>
 
@@ -32,98 +32,14 @@
         {{-- Table --}}
 
         <!-- Modal -->
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        <div class="modal fade" id="formModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <form id="storeUserData">
+                    <form id="formId" class="form">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Add User</h1>
+                            <h1 class="modal-title fs-5" id="">Add User</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <p id="validationErrors" class="alert alert-danger d-none"></p>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    @csrf
-                                    <label for="" class="form-label">Full Name</label>
-                                    <input type="text" name="full_name" id="" class="form-control"
-                                        placeholder="" aria-describedby="helpId" />
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label for="" class="form-label">Position</label>
-                                    <input type="text" name="position" id="" class="form-control" placeholder=""
-                                        aria-describedby="helpId" />
-                                </div>
-
-                                <div class="col-md-6 mt-2 mb-2">
-                                    <label for="" class="form-label">Email</label>
-                                    <input type="email" name="email" id="" class="form-control" placeholder=""
-                                        aria-describedby="helpId" />
-                                </div>
-                                <div class="col-md-6 mt-2 mb-2">
-                                    <label for="" class="form-label">Password</label>
-                                    <input type="password" name="password" id="" class="form-control"
-                                        placeholder="" aria-describedby="helpId" />
-                                </div>
-                                <div class="col-md-6 mt-2 mb-2">
-                                    <label for="" class="form-label">Phone Number</label>
-                                    <input type="number" name="phonenumber" id="" class="form-control"
-                                        placeholder="" aria-describedby="helpId" />
-                                </div>
-                                <div class="col-md-6 mt-2 mb-2">
-                                    <label for="" class="form-label">Email Link (optional)</label>
-                                    <input type="url" name="email_link" id="" class="form-control"
-                                        placeholder="" aria-describedby="helpId" />
-                                </div>
-                                <div class="col-md-6 mt-2 mb-2">
-                                    <label for="" class="form-label">Facebook Link (optional)</label>
-                                    <input type="url" name="facebook_link" id="" class="form-control"
-                                        placeholder="" aria-describedby="helpId" />
-                                </div>
-                                <div class="col-md-6 mt-2 mb-2">
-                                    <label for="" class="form-label">Instagram Link (optional)</label>
-                                    <input type="url" name="instagram_link" id="" class="form-control"
-                                        placeholder="" aria-describedby="helpId" />
-                                </div>
-                                <div class="col-md-6 mt-2 mb-2">
-                                    <label for="" class="form-label">Twitter Link (optional)</label>
-                                    <input type="url" name="twitter_link" id="" class="form-control"
-                                        placeholder="" aria-describedby="helpId" />
-                                </div>
-                                <div class="col-md-6 mt-2 mb-2">
-                                    <label for="" class="form-label">Image (optional)</label>
-                                    <input type="file" name="image" id="" class="form-control"
-                                        placeholder="" aria-describedby="helpId" />
-                                </div>
-
-                                <div class="col-md-12 mt-4 mb-2">
-                                    <label for="" class="form-label">Notes (optinal)</label>
-                                    <textarea class="form-control summernote" name="notes" rows="4"></textarea>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-success" id="modalActionButton">Add User</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        {{-- Edit Modal --}}
-        <div class="modal fade" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <form id="updateUserData">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit User</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <p id="validationErrors" class="alert alert-danger d-none"></p>
@@ -137,14 +53,20 @@
 
                                 <div class="col-md-6">
                                     <label for="" class="form-label">Position</label>
-                                    <input type="text" name="position" id="position" class="form-control"
-                                        placeholder="" aria-describedby="helpId" />
+                                    <input type="text" name="position" id="position" class="form-control" placeholder=""
+                                        aria-describedby="helpId" />
                                 </div>
 
-                                <div class="col-md-12 mt-2 mb-2">
+                                <div class="col-md-6 mt-2 mb-2">
                                     <label for="" class="form-label">Email</label>
-                                    <input type="email" name="email" id="email" class="form-control"
+                                    <input type="email" name="email" id="email" class="form-control" placeholder=""
+                                        aria-describedby="helpId" />
+                                </div>
+                                <div class="col-md-6 mt-2 mb-2 labelPassword">
+                                    <label for="" class="form-label">Password</label>
+                                    <input type="password" name="password" id="password" class="form-control"
                                         placeholder="" aria-describedby="helpId" />
+                                    Show Password <input type="checkbox" name="" id="checkbox">
                                 </div>
                                 <div class="col-md-6 mt-2 mb-2">
                                     <label for="" class="form-label">Phone Number</label>
@@ -173,45 +95,29 @@
                                 </div>
                                 <div class="col-md-6 mt-2 mb-2">
                                     <label for="" class="form-label">Image (optional)</label>
-                                    <input type="file" name="image" id="user_image" class="form-control"
+                                    <input type="file" name="image" id="image" class="form-control"
                                         placeholder="" aria-describedby="helpId" />
-                                    <div id="userImage" class="mt-1"></div>
+                                    <div id="userImage"> </div>
                                 </div>
 
                                 <div class="col-md-12 mt-4 mb-2">
                                     <label for="" class="form-label">Notes (optinal)</label>
-                                    <textarea class="form-control summernote" name="notes" id="notes_user" rows="4"></textarea>
+                                    <textarea class="form-control summernote" id="notes_user" name="notes" rows="4"></textarea>
                                 </div>
                             </div>
 
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-success">Update User</button>
+                            <button type="submit" class="btn btn-success submitBtn" data-action="">Submit</button>
+                            <button type="submit" class="btn btn-success updateBtn" data-action="edit">Update
+                                User</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        {{-- Edit Modal --}}
 
-        {{-- View Detail Modal --}}
-        <div class="modal fade" id="detailModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">View Detail User</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <h1 class="text-center">User Detail</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{-- View Detail Modal --}}
 
     </div>
 
@@ -258,9 +164,30 @@
                 ]
             });
 
-            // Store User Data
-            $("#storeUserData").submit(function(event) {
+            $("#checkbox").on("change", function() {
+                if ($("#password").prop("type") == 'password') {
+                    $("#password").prop("type", "text");
+                } else {
+                    $("#password").prop("type", "password");
+                }
+            })
+
+
+
+            // New User Add and Edit
+            $(document).on("click", ".addUserButton", function() {
+                // let action=$(this).data("action");
+                $(".submitBtn").show();
+                $(".updateBtn").hide();
+                $('.form').attr('id', 'storeForm');
+                $('#storeForm')[0].reset();
+                $("#formModal").modal("show");
+                // $('#password').attr('required', true);
+            });
+
+            $(document).on("submit", "#storeForm", function(event) {
                 event.preventDefault();
+                $(".submitBtn").prop("disabled", true);
                 $('#validationErrors').addClass('d-none').html('');
                 let formdata = new FormData(this);
                 $.ajax({
@@ -279,8 +206,10 @@
                                 timer: 1500
                             });
                             table.draw();
-                            $("#staticBackdrop").modal("hide");
-                            $("#storeUserData").trigger("reset");
+
+                            $("#formModal").modal("hide");
+                            $('#storeForm')[0].reset();
+                            // $("#storeUserData").trigger("reset");
 
                         }
                     },
@@ -293,84 +222,93 @@
                                     '</li>'; // Display the first error for each field
                             });
                             errorMessages += '</ul>';
-                            $('#validationErrors').removeClass('d-none').html(errorMessages);
+                            $('#validationErrors').removeClass('d-none').html(
+                                errorMessages);
                         }
+                    },
+                    complete: function() {
+                        $(".submitBtn").prop("disabled", false);
                     }
                 })
+            });
+
+
+            $(document).on("click", ".editUserButton", function() {
+                $(".submitBtn").hide();
+                $(".labelPassword").hide();
+                $(".updateBtn").show();
+                $('.form').attr('id', 'updateForm');
+                $('#updateForm')[0].reset();
+                $("#formModal").modal("show");
+                let id = $(this).data("id");
+
+                // $('#password').attr('required', false);
+                // Fetch User Data
+
+                $.ajax({
+                    type: "get",
+                    url: "/admin/user/detail/" + id,
+                    success: function(response) {
+                        $("#full_name").val(response.message.full_name);
+                        $("#email").val(response.message.email);
+                        $("#position").val(response.message.position);
+                        $("#phonenumber").val(response.message.phonenumber);
+                        $("#email_link").val(response.message.email_link);
+                        $("#facebook_link").val(response.message.facebook_link);
+                        $("#twitter_link").val(response.message.twitter_link);
+                        $("#instagram_link").val(response.message.instagram_link);
+                        $("#notes_user").val(response.message.notes);
+                        $("#userImage").html(
+                            `<img src="/storage/${response.message.image}" alt="User Image" width="100" height="100">`
+                        );
+                    }
+                });
+
+                // Submit Form
+                $("#updateForm").submit(function(event) {
+                    event.preventDefault();
+                    let formdata = new FormData(this);
+                    $(".updateBtn").prop("disabled", true);
+                    // console.log(formdata);
+                    $.ajax({
+                        type: "post",
+                        url: "/admin/user/update/" + id,
+                        data: formdata,
+                        contentType: false,
+                        processData: false,
+                        success: function(response) {
+                            Swal.fire({
+                                icon: "success",
+                                title: "Updated",
+                                text: "User Updated Successfully",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            $("#formModal").modal("hide");
+                            table.draw();
+                        },
+                        error: function(response) {
+                            if (response.status === 422) {
+                                let errors = response.responseJSON.errors;
+                                let errorMessages = '<ul>';
+                                $.each(errors, function(key, value) {
+                                    errorMessages += '<li>' + value[0] +
+                                        '</li>'; // Display the first error for each field
+                                });
+                                errorMessages += '</ul>';
+                                $('#validationErrors').removeClass('d-none').html(
+                                    errorMessages);
+                            }
+                        },
+                        complete: function() {
+                            $(".updateBtn").prop("disabled", false);
+                        }
+
+                    })
+                })
             })
-            // Store User Data
 
-            // Edit Users
-            // $(document).on("click", ".editData", function() {
-            //     let id = $(this).attr("data-id");
-            //     $.ajax({
-            //         type: "get",
-            //         url: "/admin/user/detail/" + id,
-            //         success: function(response) {
-            //             console.log(response);
 
-            //             $("#full_name").val(response.message.full_name);
-            //             $("#email").val(response.message.email);
-            //             $("#position").val(response.message.position);
-            //             $("#phonenumber").val(response.message.phonenumber);
-            //             $("#email_link").val(response.message.email_link);
-            //             $("#facebook_link").val(response.message.facebook_link);
-            //             $("#twitter_link").val(response.message.twitter_link);
-            //             $("#instagram_link").val(response.message.instagram_link);
-            //             $("#notes_user").val(response.message.notes);
-            //             $("#userImage").html(
-            //                 ` <img src="/storage/${response.message.image}" alt="" width="100" height="100"> `
-            //             );
-            //         }
-            //     });
-
-            //     $("#updateUserData").submit(function(event) {
-            //         event.preventDefault();
-            //         let formdata = new FormData(this);
-            //         $.ajax({
-            //             type: "post",
-            //             url: "/admin/user/update/" + id,
-            //             data: formdata,
-            //             processData: false,
-            //             contentType: false,
-            //             success: function(response) {
-            //                 if (response.success == true) {
-            //                     Swal.fire({
-            //                         icon: "success",
-            //                         title: "Success",
-            //                         text: "User Updated Successfully",
-            //                         showConfirmButton: false,
-            //                         timer: 1500
-            //                     });
-            //                 }
-            //             },
-            //             error: function(xhr) {
-
-            //             }
-            //         })
-            //     })
-            // })
-            // Edit Users
-
-            $(document).on("click",".open-modal-btn",function(){
-                var action=$(this).data("action");
-                var userId=$(this).data("id");
-                // $("#modalActionButton").empty();
-                // $("#modalActionButton").removeClass();
-                // console.log(userId);
-                var modalTitle='';
-                var buttonText='';
-                var buttonClass='';
-
-                if(action === 'edit'){
-                    modalTitle='Edit User';
-                    buttonText='Update User';
-                    buttonClass="btn btn-success";
-                    $("#staticBackdrop").attr('id','editForm');
-                }
-                $('#staticBackdrop').modal('show');
-
-            })
 
             // Delete User
             $(document).on('click', '.deleteData', function() {
