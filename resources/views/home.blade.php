@@ -177,6 +177,7 @@
         <!--/ Container end -->
     </section><!-- Facts end -->
 
+    @include('testimonial')
     {{-- <section id="ts-service-area" class="ts-service-area pb-0">
         <div class="container">
             <div class="row text-center">

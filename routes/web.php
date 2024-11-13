@@ -1,10 +1,12 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminDashboardController;
-use App\Http\Controllers\Admin\HomeSliderController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\HomeSliderController;
+use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\FrontendController as AdminFrontendController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +40,16 @@ Route::get('/admin/home-slide/detail/{id}',[HomeSliderController::class,'getHome
 Route::post('/admin/home-slide/update/{id}',[HomeSliderController::class,'update'])->name('admin.homeslide.update');
 Route::get('/admin/home-slide/delete/{id}',[HomeSliderController::class,'destory'])->name('admin.homeslide.destory');
 
+// FrontEnd
+Route::get('/admin/front-end',[AdminFrontendController::class,'index'])->name('admin.frontend');
+Route::post('/admin/front-end',[AdminFrontendController::class,'update'])->name('admin.update');
+
+
+// Testimonial
+Route::get('/admin/testimonial',[TestimonialController::class,'index'])->name('admin.testimonial');
+Route::post('/admin/testimonial/store',[TestimonialController::class,'store'])->name('admin.testimonial.store');
+Route::post('/admin/testimonial/update/{id}',[TestimonialController::class,'store'])->name('admin.testimonial.update');
+Route::get('/admin/testimonial/delete/{id}',[TestimonialController::class,'destory'])->name('admin.testimonial.destory');
 Route::get('/post', function () {
     return view('post');
 });

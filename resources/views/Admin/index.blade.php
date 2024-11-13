@@ -76,13 +76,25 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" href="{{ route('admin.user') }}">
                             <i class="mdi mdi-grid-large menu-icon"></i>
                             <span class="menu-title">Users</span>
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.frontend') }}">
+                            <i class="mdi mdi-grid-large menu-icon"></i>
+                            <span class="menu-title">Home Page</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="index.html">
+                            <i class="mdi mdi-grid-large menu-icon"></i>
+                            <span class="menu-title">Footer</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.homeslide') }}">
                             <i class="mdi mdi-grid-large menu-icon"></i>
                             <span class="menu-title">HomeSlide</span>
                         </a>
@@ -93,12 +105,7 @@
                             <span class="menu-title">Testimonial</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">
-                            <i class="mdi mdi-grid-large menu-icon"></i>
-                            <span class="menu-title">Home Page</span>
-                        </a>
-                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="index.html">
                             <i class="mdi mdi-grid-large menu-icon"></i>
@@ -111,6 +118,7 @@
                             <span class="menu-title">Post</span>
                         </a>
                     </li>
+
 
                 </ul>
             </nav>
