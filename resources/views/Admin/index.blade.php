@@ -71,19 +71,19 @@
                 <ul class="nav">
                     <li class="nav-item">
                         <a class="nav-link" href="index.html">
-                            <i class="mdi mdi-grid-large menu-icon"></i>
+                            <i class="mdi mdi-view-dashboard menu-icon"></i>
                             <span class="menu-title">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.user') }}">
-                            <i class="mdi mdi-grid-large menu-icon"></i>
+                            <i class="mdi mdi-account menu-icon"></i>
                             <span class="menu-title">Users</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.frontend') }}">
-                            <i class="mdi mdi-grid-large menu-icon"></i>
+                            <i class="mdi mdi-apps menu-icon"></i>
                             <span class="menu-title">Home Page</span>
                         </a>
                     </li>
@@ -95,13 +95,13 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.homeslide') }}">
-                            <i class="mdi mdi-grid-large menu-icon"></i>
+                            <i class="mdi mdi-application menu-icon"></i>
                             <span class="menu-title">HomeSlide</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.testimonial') }}">
-                            <i class="mdi mdi-grid-large menu-icon"></i>
+                            <i class="mdi mdi-animation menu-icon"></i>
                             <span class="menu-title">Testimonial</span>
                         </a>
                     </li>
@@ -114,8 +114,15 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="index.html">
-                            <i class="mdi mdi-grid-large menu-icon"></i>
+                            <i class="mdi mdi-file-image  menu-icon"></i>
                             <span class="menu-title">Post</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="mdi mdi-logout  menu-icon"></i>
+                            <span class="menu-title">Logout</span>
                         </a>
                     </li>
 

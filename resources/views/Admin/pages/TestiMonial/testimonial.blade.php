@@ -63,6 +63,7 @@
                     name: "action"
                 }]
             })
+
             $(document).on("click", ".addTestimonialBtn", function() {
                 $("#formModal").modal("show");
                 $(".submitBtn").show();
@@ -111,6 +112,72 @@
                     complete: function() {
                         $(".submitBtn").prop("disabled", false);
                     }
+                })
+            })
+
+            // Edit and Update
+            $(document).on("click",".editUserButton",function(){
+                $("#formModal").modal("show");
+                $(".submitBtn").hide();
+                $(".updateBtn").show();
+                $(".form").attr("id", "updateForm");
+                $(".activeStatus").show();
+                // $("#updateForm")[0].reset();
+
+                var id=$(this).attr("data-id");
+                $.ajax({
+                    type:"get",
+                    url:"/admin/testimonial/detail/"+id,
+                    success:function(response){
+                        console.log(response);
+                        $("#name").val(response.message.name);
+                        $("#designation").val(response.message.designation);
+                        $("#address").val(response.message.address);
+                        $("#status").val(response.message.status);
+                        $("#testimonialDescription").summernote('code',response.message.description);
+                        if(response.message.image !=null){
+                            $("#testimonialImage").html(
+                                `<img src="/storage/${response.message.image}" alt="User Image" width="100" height="100"> `
+                            );
+                        }
+
+                    }
+                });
+
+                $("#updateForm").off("submit").on("submit",function(event){
+                    event.preventDefault();
+                    $(".updateBtn").prop("disabled",true);
+                    let formdata=new FormData(this);
+                    $.ajax({
+                        type:"post",
+                        url:"/admin/testimonial/update/"+id,
+                        data:formdata,
+                        processData:false,
+                        contentType:false,
+                        success:function(response){
+                            Swal.fire({
+                                icon:"success",
+                                title:"Success",
+                                text:"Testimonial Updated Successfully",
+                                showConfirmButton:false,
+                                timer:1500
+                            });
+                            table.draw();
+                            $("#formModal").modal("hide");
+                        },
+                        error:function(xhr){
+                            Swal.fire({
+                                icon:"warning",
+                                title:"Something went wrong!",
+                                showConfirmButton:false,
+                                timer:1500
+                            });
+                            $(".updateBtn").prop("disabled",false);
+                        },
+                        complete:function(){
+                            $(".updateBtn").prop("disabled",false);
+                        }
+                    })
                 })
             })
 

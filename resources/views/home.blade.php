@@ -66,60 +66,7 @@
                     <h3 class="into-sub-title">{{ $frontend->about_us_value ?? '' }}</h3>
                     <p>{{ $frontend->about_us_value_description  ?? ''}}</p>
 
-                    <div class="accordion accordion-group" id="our-values-accordion">
-                        <div class="card">
-                            <div class="card-header p-0 bg-transparent" id="headingOne">
-                                <h2 class="mb-0">
-                                    <button class="btn btn-block text-left" type="button" data-toggle="collapse"
-                                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        Safety
-                                    </button>
-                                </h2>
-                            </div>
 
-                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-                                data-parent="#our-values-accordion">
-                                <div class="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-                                    squid. 3 wolf moon officia aute, non cupidata
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header p-0 bg-transparent" id="headingTwo">
-                                <h2 class="mb-0">
-                                    <button class="btn btn-block text-left collapsed" type="button" data-toggle="collapse"
-                                        data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Customer Service
-                                    </button>
-                                </h2>
-                            </div>
-                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                                data-parent="#our-values-accordion">
-                                <div class="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-                                    squid. 3 wolf moon officia aute, non cupidata
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header p-0 bg-transparent" id="headingThree">
-                                <h2 class="mb-0">
-                                    <button class="btn btn-block text-left collapsed" type="button" data-toggle="collapse"
-                                        data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        Integrity
-                                    </button>
-                                </h2>
-                            </div>
-                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-                                data-parent="#our-values-accordion">
-                                <div class="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-                                    squid. 3 wolf moon officia aute, non cupidata
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <!--/ Accordion end -->
 
                 </div><!-- Col end -->

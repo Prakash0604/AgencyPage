@@ -48,7 +48,8 @@ Route::post('/admin/front-end',[AdminFrontendController::class,'update'])->name(
 // Testimonial
 Route::get('/admin/testimonial',[TestimonialController::class,'index'])->name('admin.testimonial');
 Route::post('/admin/testimonial/store',[TestimonialController::class,'store'])->name('admin.testimonial.store');
-Route::post('/admin/testimonial/update/{id}',[TestimonialController::class,'store'])->name('admin.testimonial.update');
+Route::get('/admin/testimonial/detail/{id}',[TestimonialController::class,'showDetail'])->name('admin.testimonial.detail');
+Route::post('/admin/testimonial/update/{id}',[TestimonialController::class,'update'])->name('admin.testimonial.update');
 Route::get('/admin/testimonial/delete/{id}',[TestimonialController::class,'destory'])->name('admin.testimonial.destory');
 Route::get('/post', function () {
     return view('post');

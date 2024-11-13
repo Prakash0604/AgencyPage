@@ -18,15 +18,24 @@ class FrontendController extends Controller
 
     public function update(FrontendRequest $request){
         try{
-            $id=$request->frontend_id;
-            frontend::findOrFail($id)->updateOrCreate($request->all());
+            // dd($request->all());
+            $id=$request->input('frontend_id');
+            $frontend=frontend::findOrFail($id);
+            $frontend->about_us_title=$request->input('about_us_title');
+            $frontend->about_us_description=$request->input('about_us_description');
+            $frontend->about_us_value=$request->input('about_us_value');
+            $frontend->about_us_value_description=$request->input('about_us_value_description');
+            $frontend->contact_us_email=$request->input('contact_us_email');
+            $frontend->contact_us_address=$request->input('contact_us_address');
+            $frontend->contact_us_number=$request->input('contact_us_number');
+            $frontend->save();
             return redirect()->back()->with(['message'=>'Data Updated Successfully']);
 
         }catch(\Exception $e){
             Log::error('message :'.$e->getMessage());
 
             // return response()->json(['success'=>false,'message'=>$e->getMessage()]);
-            return redirect()->back()->with(['error'=>'Something went wrong!']);
+            return redirect()->back()->with(['error'=>'Something went wrong!'.$e->getMessage()]);
         }
     }
 }
