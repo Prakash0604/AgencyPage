@@ -14,6 +14,7 @@
                         <th scope="col">Address</th>
                         <th scope="col">Designation</th>
                         <th scope="col">Description</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -47,6 +48,16 @@
                 }, {
                     data: "description",
                     name: "description"
+                },
+                {
+                    data:"status", name:"status",render:function($data){
+                        if($data =='Active' ){
+                            return `<span class="badge badge-success">Active</span>`;
+                        }else{
+                            return `<span class="badge badge-danger">Inactive</span>`;
+
+                        }
+                    }
                 }, {
                     data: "action",
                     name: "action"
@@ -74,6 +85,7 @@
                     success: function(response) {
                         Swal.fire({
                             icon: "success",
+                            position:"top-end",
                             title: "Success",
                             text: "Testimonial Created Successfully",
                             showConfirmButton: false,
