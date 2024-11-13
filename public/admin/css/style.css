@@ -2,7 +2,7 @@
 /*------------------------------------------------------------------
  [Master Stylesheet]
 
-  Project:	Star Admin2 
+  Project:	Star Admin2
   Version:	1.2.1
 -------------------------------------------------------------------*/
 /*-------------------------------------------------------------------
@@ -26065,73 +26065,7 @@ select.border-purple.tt-query:focus,
 select.border-purple.tt-hint:focus, .select2-container--default .select2-selection--single select.border-purple.select2-search__field:focus, .select2-container--default select.border-purple.select2-selection--single:focus {
   outline: 1px solid #7B20C7;
 }
-select.form-select {
-  padding: 0.4375rem 0.75rem;
-  border: 0;
-  outline: 1px solid #dee2e6;
-  color: #c9c8c8;
-  appearance: none;
-  background: url("../../images/arrow-down.svg");
-  background-repeat: no-repeat;
-  background-position: 99% center;
-}
-select.form-select:focus {
-  outline: 1px solid #dee2e6;
-}
-select.form-select.border-primary {
-  outline: 1px solid #1F3BB3;
-}
-select.form-select.border-primary:focus {
-  outline: 1px solid #1F3BB3;
-}
-select.form-select.border-secondary, select.form-select.loader-demo-box {
-  outline: 1px solid #05C3FB;
-}
-select.form-select.border-secondary:focus, select.form-select.loader-demo-box:focus {
-  outline: 1px solid #05C3FB;
-}
-select.form-select.border-success {
-  outline: 1px solid #34B1AA;
-}
-select.form-select.border-success:focus {
-  outline: 1px solid #34B1AA;
-}
-select.form-select.border-info {
-  outline: 1px solid #51B1E1;
-}
-select.form-select.border-info:focus {
-  outline: 1px solid #51B1E1;
-}
-select.form-select.border-warning {
-  outline: 1px solid #E29E09;
-}
-select.form-select.border-warning:focus {
-  outline: 1px solid #E29E09;
-}
-select.form-select.border-danger {
-  outline: 1px solid #F95F53;
-}
-select.form-select.border-danger:focus {
-  outline: 1px solid #F95F53;
-}
-select.form-select.border-light {
-  outline: 1px solid #E9E9E9;
-}
-select.form-select.border-light:focus {
-  outline: 1px solid #E9E9E9;
-}
-select.form-select.border-dark {
-  outline: 1px solid #1E283D;
-}
-select.form-select.border-dark:focus {
-  outline: 1px solid #1E283D;
-}
-select.form-select.border-purple {
-  outline: 1px solid #7B20C7;
-}
-select.form-select.border-purple:focus {
-  outline: 1px solid #7B20C7;
-}
+
 
 .form-group label {
   font-size: 0.812rem;
