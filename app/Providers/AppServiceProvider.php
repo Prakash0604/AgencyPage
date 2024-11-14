@@ -21,8 +21,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::composer('index',function($view){
-            $view->with('data',frontend::all());
+        View::composer(['header','footer'],function($view){
+            $setting=frontend::first();
+            $view->with([
+                'email'=>$setting->contact_us_email ?? '',
+                'address'=>$setting->contact_us_address ?? '',
+                'contact'=>$setting->contact_us_number ?? '',
+            ]);
         });
     }
 }

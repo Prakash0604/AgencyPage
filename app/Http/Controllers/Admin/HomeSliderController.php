@@ -22,8 +22,13 @@ class HomeSliderController extends Controller
                     return view('Admin.Button.button', compact('data'));
                 })
                 ->addColumn('image', function ($item) {
-                    $url = asset('storage/' . $item->image); // Get image URL
-                    return ' <td class="py-1"><img src="' . $url . '" width="50" height="50"/></td>';
+                    if ($item->image != null) {
+                        $url = asset('storage/' . $item->image); // Get image URL
+                        return ' <td class="py-1"><img src="' . $url . '" width="50" height="50"/></td>';
+                    } else {
+                        $url = asset('defaultImage/defaultimage.webp');
+                        return ' <td class="py-1"><img src="' . $url . '" width="50" height="50"/></td>';
+                    }
                 })
                 ->rawColumns(['action', 'image'])
                 ->make(true);

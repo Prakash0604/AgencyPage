@@ -6,7 +6,10 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\HomeSliderController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\FrontendController as AdminFrontendController;
+use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +26,11 @@ use App\Http\Controllers\Admin\FrontendController as AdminFrontendController;
 //     return view('home');
 // });
 
-Route::get('/',[FrontendController::class,'index']);
+Route::get('/register',[AuthController::class,'index'])->name('register');
+Route::post('/register',[AuthController::class,'storeRegister'])->name('register.store');
+Route::get('/login',[AuthController::class,'login'])->name('login');
+Route::post('/login',[AuthController::class,'storeLogin'])->name('login.store');
+Route::get('/',[FrontendController::class,'index'])->name('first.index');
 Route::get('/admin/dashboard',[AdminDashboardController::class,'index']);
 
 // User
@@ -51,17 +58,31 @@ Route::post('/admin/testimonial/store',[TestimonialController::class,'store'])->
 Route::get('/admin/testimonial/detail/{id}',[TestimonialController::class,'showDetail'])->name('admin.testimonial.detail');
 Route::post('/admin/testimonial/update/{id}',[TestimonialController::class,'update'])->name('admin.testimonial.update');
 Route::get('/admin/testimonial/delete/{id}',[TestimonialController::class,'destory'])->name('admin.testimonial.destory');
-Route::get('/post', function () {
-    return view('post');
-});
-Route::get('/single-post', function () {
-    return view('single-post');
-});
 
-Route::get('/contact-us', function () {
-    return view('contact');
-});
 
-Route::get('/about-us', function () {
-    return view('about');
-});
+// Category
+Route::get('/admin/category',[CategoryController::class,'index'])->name('admin.category');
+Route::post('/admin/category/store',[CategoryController::class,'store'])->name('admin.category.store');
+Route::get('/admin/category/detail/{id}',[CategoryController::class,'detailCategory'])->name('admin.category.detail');
+Route::post('/admin/category/update/{id}',[CategoryController::class,'update'])->name('admin.category.update');
+Route::get('/admin/category/delete/{id}',[CategoryController::class,'destroy'])->name('admin.category.destory');
+
+
+// Post
+Route::get( '/admin/post',[PostController::class,'index'])->name('admin.post');
+Route::post('/admin/post/store',[PostController::class,'store'])->name('admin.post.store');
+
+// Route::get('/post', function () {
+//     return view('post');
+// });
+// Route::get('/single-post', function () {
+//     return view('single-post');
+// });
+
+// Route::get('/contact-us', function () {
+//     return view('contact');
+// });
+
+// Route::get('/about-us', function () {
+//     return view('about');
+// });
