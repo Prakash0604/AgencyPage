@@ -17,8 +17,15 @@
             </div>
         </li>
 
+        @if (auth()->user())
+
+        <li class="header-get-a-quote">
+            <a class="btn btn-primary" href="{{ route('logout') }}">Logout</a>
+        </li>
+        @else
         <li class="header-get-a-quote">
             <a class="btn btn-primary" href="{{ route('register') }}">Register</a>
         </li>
+        @endif
     </ul><!-- Ul end -->
 </div>

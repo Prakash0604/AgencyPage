@@ -52,4 +52,9 @@ class AuthController extends Controller
             return back()->with(['error' => 'Something Went Wrong' . $e->getMessage()]);
         }
     }
+
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('login')->with(['message'=>'Logout Successfully']);
+    }
 }

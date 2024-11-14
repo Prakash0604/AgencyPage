@@ -120,7 +120,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" href="{{ route('logout') }}">
                             <i class="mdi mdi-logout  menu-icon"></i>
                             <span class="menu-title">Logout</span>
                         </a>
