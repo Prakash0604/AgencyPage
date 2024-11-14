@@ -23,17 +23,23 @@ class PostController extends Controller
                 ->addColumn('image', function ($item) {
                     if ($item->image != null) {
                         $image = asset('storage/' . $item->image);
-                        return '<td class="py-1"><img src="' . $image . '" width="50" height="50"/></td>>';
+                        return '<td class="py-1"><img src="' . $image . '" width="50" height="50"/></td>';
                     } else {
                         $url = asset('storage/' . $item->image); // Get image URL
                         return ' <td class="py-1"><img src="' . $url . '" width="50" height="50"/></td>';
                     }
                 })
+                ->addColumn('title',function($title){
+                    return $title->title ?? '';
+                })
                 ->addColumn('category', function ($category) {
-                    return $category->category->title;
+                    return $category->category->title ?? '';
                 })
                 ->addColumn('description', function ($desc) {
-                    return Str::limit($desc->description, 20);
+                    return Str::limit($desc->description, 20) ?? '';
+                })
+                ->addColumn('created_by',function($created){
+                    return $created->createdBy->full_name ?? '';
                 })
                 ->addColumn('action', function ($data) {
                     return view('Admin.Button.button', compact('data'));

@@ -28,8 +28,8 @@ class UserRequest extends FormRequest
             'email'=>['required','email',Rule::unique('users')->ignore($this->route('id'))],
             'position'=>'required',
             'phonenumber'=>'required|min:7',
-            'password'=>['required',Password::min(8)->mixedCase()->numbers()->symbols()],
-            'image'=>'image|mimes:png,jpg,jpeg',
+            'password'=>$this->route('id') ? 'nullable': ['required',Password::min(8)->mixedCase()->numbers()->symbols()],
+            'image'=>'image|mimes:png,jpg,jpeg,webp',
 
         ];
     }

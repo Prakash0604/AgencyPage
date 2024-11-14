@@ -113,7 +113,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" href="{{ route('admin.post') }}">
                             <i class="mdi mdi-file-image  menu-icon"></i>
                             <span class="menu-title">Post</span>
                         </a>

@@ -22,6 +22,8 @@
 
     <!-- CSS
 ================================================== -->
+    {{-- Jquery --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="{{ asset('front/plugins/bootstrap/bootstrap.min.css') }}">
     <!-- FontAwesome -->
@@ -35,6 +37,9 @@
     <link rel="stylesheet" href="{{ asset('front/plugins/colorbox/colorbox.css') }}">
     <!-- Template styles-->
     <link rel="stylesheet" href="{{ asset('front/css/style.css') }}">
+
+    {{-- Bootstrap Icon --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 </head>
 
@@ -52,7 +57,7 @@
                                 </a>
                             </div><!-- logo end -->
 
-                          @include('header')
+                            @include('header')
                             <!-- header right end -->
                         </div><!-- logo area end -->
 
@@ -73,11 +78,11 @@
 
                                 <div id="navbar-collapse" class="collapse navbar-collapse">
                                     <ul class="nav navbar-nav mr-auto">
-                                        <li class="nav-item"><a class="nav-link" href="contact.html">Home</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="contact.html">About Us</a>
+                                        <li class="nav-item"><a class="nav-link" href="{{ route('first.index') }}">Home</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="{{ route('about-us') }}">About Us</a>
                                         </li>
-                                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="contact.html">Posts</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="{{ route('contact-us') }}">Contact</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="{{ route('post') }}">Posts</a></li>
                                     </ul>
                                 </div>
                             </nav>
@@ -106,20 +111,20 @@
         <!--/ Header end -->
 
         <section class="content">
-          @yield('content')
+            @yield('content')
             <!--/ Container end -->
         </section><!-- Content end -->
         <!--/ News end -->
 
         @include('footer')
-     <!-- Footer end -->
+        <!-- Footer end -->
 
 
         <!-- Javascript Files
   ================================================== -->
 
         <!-- initialize jQuery Library -->
-        <script src="{{ asset('front/plugins/jQuery/jquery.min.js') }}"></script>
+        {{-- <script src="{{ asset('front/plugins/jQuery/jquery.min.js') }}"></script> --}}
         <!-- Bootstrap jQuery -->
         <script src="{{ asset('front/plugins/bootstrap/bootstrap.min.js') }}" defer></script>
         <!-- Slick Carousel -->

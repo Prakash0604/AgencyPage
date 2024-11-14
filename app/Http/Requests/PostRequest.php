@@ -24,7 +24,7 @@ class PostRequest extends FormRequest
     {
         return [
             'post_title' => 'required|min:3',
-            'post_image' => 'required|mimes:png,jpg,jpeg',
+            'post_image' => 'required|mimes:png,jpg,jpeg,webp',
             'post_description' => 'required',
             'post_category_id' => 'required|in:' . implode(',', $this->getOptions()),
         ];
@@ -35,7 +35,7 @@ class PostRequest extends FormRequest
             'title.required'=>'Please Enter the Title',
             'title.min'=>'Title should be at least 3 character',
             'image.required'=>'Please Insert the Image',
-            'image.mimes'=>'Image should be of : png,jpeg,jpg',
+            'image.mimes'=>'Image should be of : png,jpeg,jpg,webp',
             'description.required'=>'Please Enter the description',
             'category_id.required'=>'Please Select the Category',
             'category_id.in'=>'Please Select from the given options only'

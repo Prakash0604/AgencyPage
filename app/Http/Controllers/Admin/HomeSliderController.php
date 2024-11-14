@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\HomeSliderRequest;
 use Illuminate\Support\Facades\Storage;
+use Str;
 use Yajra\DataTables\Facades\DataTables;
 
 class HomeSliderController extends Controller
@@ -29,6 +30,9 @@ class HomeSliderController extends Controller
                         $url = asset('defaultImage/defaultimage.webp');
                         return ' <td class="py-1"><img src="' . $url . '" width="50" height="50"/></td>';
                     }
+                })
+                ->addColumn('description',function($desc){
+                    return Str::limit($desc->description,70);
                 })
                 ->rawColumns(['action', 'image'])
                 ->make(true);

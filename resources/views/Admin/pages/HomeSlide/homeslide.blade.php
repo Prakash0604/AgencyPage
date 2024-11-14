@@ -139,7 +139,7 @@
                         `);
                         }
                         $("#status").val(response.message.status);
-                        $("#homeSliderDescription").val(response.message.shortdesc);
+                        $("#homeSliderDescription").summernote('code',response.message.shortdesc);
 
                     }
                 });

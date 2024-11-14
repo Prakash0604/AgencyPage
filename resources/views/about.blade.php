@@ -26,17 +26,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="column-title">Who We Are</h3>
-                    <p>when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible
-                        vermin.</p>
-                    <blockquote>
-                        <p>Semporibus autem quibusdam et aut officiis debitis aut rerum est aut optio cumque nihil
-                            necessitatibus autemn ec tincidunt nunc posuere ut</p>
-                    </blockquote>
-                    <p>He lay on his armour-like back, and if he lifted. ultrices ultrices sapien, nec tincidunt nunc
-                        posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. If you are going to use a
-                        passage of Lorem Ipsum, you need to be sure there isn’t anything embarrassing.</p>
-
+                    <h3 class="column-title">{{ $frontend->about_us_title }}</h3>
+                    <p>{{ $frontend->about_us_description }}</p>
                 </div><!-- Col end -->
 
             </div><!-- Content row end -->
@@ -49,6 +40,7 @@
         <div class="container">
             <div class="facts-wrapper">
                 <div class="row">
+
                     <div class="col-md-3 col-sm-6 ts-facts">
                         <div class="ts-facts-img">
                             <img loading="lazy" src="{{ asset('front/images/icon-image/fact1.png') }}" alt="facts-img">
@@ -108,129 +100,31 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div id="team-slide" class="team-slide">
+                        @foreach ($users as $user)
                         <div class="item">
                             <div class="ts-team-wrapper">
                                 <div class="team-img-wrapper">
-                                    <img loading="lazy" class="w-100" src="{{ asset('front/images/team/team1.jpg') }}"
-                                        alt="team-img">
+                                    @if ($user->image!=null)
+                                    <img loading="lazy" class="w-100" src="{{ asset('storage/'.$user->image) }}"  alt="team-img">
+                                    @else
+                                    <img loading="lazy" class="w-100" src="{{ asset('defaultImage/defaultimage.webp') }}"  alt="team-img">
+
+                                    @endif
                                 </div>
                                 <div class="ts-team-content">
-                                    <h3 class="ts-name">Nats Stenman</h3>
-                                    <p class="ts-designation">Chief Operating Officer</p>
-                                    <p class="ts-description">Nats Stenman began his career in construction with boots on
-                                        the ground</p>
+                                    <h3 class="ts-name">{{ $user->full_name }}</h3>
+                                    <p class="ts-designation">{{ $user->position ?? '' }}</p>
+                                    <p class="ts-description">{{ $user->notes ?? '' }}</p>
                                     <div class="team-social-icons">
-                                        <a target="_blank" href="#"><i class="fab fa-facebook-f"></i></a>
-                                        <a target="_blank" href="#"><i class="fab fa-twitter"></i></a>
-                                        <a target="_blank" href="#"><i class="fab fa-google-plus"></i></a>
-                                        <a target="_blank" href="#"><i class="fab fa-linkedin"></i></a>
+                                        <a target="_blank" href="{{ $user->facebook_link ?? '' }}"><i class="fab fa-facebook-f"></i></a>
+                                        <a target="_blank" href="{{ $user->twitter_link ?? '' }}"><i class="fab fa-twitter"></i></a>
+                                        <a target="_blank" href="{{ $user->email_link ?? '' }}"><i class="fab fa-google-plus"></i></a>
+                                        <a target="_blank" href="{{ $user->instagram_link ?? '' }}"><i class="fab fa-linkedin"></i></a>
                                     </div><!--/ social-icons-->
                                 </div>
                             </div><!--/ Team wrapper end -->
                         </div><!-- Team 1 end -->
-
-                        <div class="item">
-                            <div class="ts-team-wrapper">
-                                <div class="team-img-wrapper">
-                                    <img loading="lazy" class="w-100" src="{{ asset('front/images/team/team2.jpg') }}"
-                                        alt="team-img">
-                                </div>
-                                <div class="ts-team-content">
-                                    <h3 class="ts-name">Angela Lyouer</h3>
-                                    <p class="ts-designation">Innovation Officer</p>
-                                    <p class="ts-description">Nats Stenman began his career in construction with boots on
-                                        the ground</p>
-                                    <div class="team-social-icons">
-                                        <a target="_blank" href="#"><i class="fab fa-facebook-f"></i></a>
-                                        <a target="_blank" href="#"><i class="fab fa-twitter"></i></a>
-                                        <a target="_blank" href="#"><i class="fab fa-linkedin"></i></a>
-                                    </div><!--/ social-icons-->
-                                </div>
-                            </div><!--/ Team wrapper end -->
-                        </div><!-- Team 2 end -->
-
-                        <div class="item">
-                            <div class="ts-team-wrapper">
-                                <div class="team-img-wrapper">
-                                    <img loading="lazy" class="w-100" src="{{ asset('front/images/team/team3.jpg') }}"
-                                        alt="team-img">
-                                </div>
-                                <div class="ts-team-content">
-                                    <h3 class="ts-name">Mark Conter</h3>
-                                    <p class="ts-designation">Safety Officer</p>
-                                    <p class="ts-description">Nats Stenman began his career in construction with boots on
-                                        the ground</p>
-                                    <div class="team-social-icons">
-                                        <a target="_blank" href="#"><i class="fab fa-twitter"></i></a>
-                                        <a target="_blank" href="#"><i class="fab fa-google-plus"></i></a>
-                                        <a target="_blank" href="#"><i class="fab fa-linkedin"></i></a>
-                                    </div><!--/ social-icons-->
-                                </div>
-                            </div><!--/ Team wrapper end -->
-                        </div><!-- Team 3 end -->
-
-                        <div class="item">
-                            <div class="ts-team-wrapper">
-                                <div class="team-img-wrapper">
-                                    <img loading="lazy" class="w-100" src="{{ asset('front/images/team/team4.jpg') }}"
-                                        alt="team-img">
-                                </div>
-                                <div class="ts-team-content">
-                                    <h3 class="ts-name">Ayesha Stewart</h3>
-                                    <p class="ts-designation">Finance Officer</p>
-                                    <p class="ts-description">Nats Stenman began his career in construction with boots on
-                                        the ground</p>
-                                    <div class="team-social-icons">
-                                        <a target="_blank" href="#"><i class="fab fa-facebook-f"></i></a>
-                                        <a target="_blank" href="#"><i class="fab fa-twitter"></i></a>
-                                        <a target="_blank" href="#"><i class="fab fa-google-plus"></i></a>
-                                        <a target="_blank" href="#"><i class="fab fa-linkedin"></i></a>
-                                    </div><!--/ social-icons-->
-                                </div>
-                            </div><!--/ Team wrapper end -->
-                        </div><!-- Team 4 end -->
-
-                        <div class="item">
-                            <div class="ts-team-wrapper">
-                                <div class="team-img-wrapper">
-                                    <img loading="lazy" class="w-100" src="{{ asset('front/images/team/team5.jpg') }}"
-                                        alt="team-img">
-                                </div>
-                                <div class="ts-team-content">
-                                    <h3 class="ts-name">Dave Clarkte</h3>
-                                    <p class="ts-designation">Civil Engineer</p>
-                                    <p class="ts-description">Nats Stenman began his career in construction with boots on
-                                        the ground</p>
-                                    <div class="team-social-icons">
-                                        <a target="_blank" href="#"><i class="fab fa-twitter"></i></a>
-                                        <a target="_blank" href="#"><i class="fab fa-google-plus"></i></a>
-                                        <a target="_blank" href="#"><i class="fab fa-linkedin"></i></a>
-                                    </div><!--/ social-icons-->
-                                </div>
-                            </div><!--/ Team wrapper end -->
-                        </div><!-- Team 5 end -->
-
-                        <div class="item">
-                            <div class="ts-team-wrapper">
-                                <div class="team-img-wrapper">
-                                    <img loading="lazy" class="w-100" src="{{ asset('front/images/team/team6.jpg') }}"
-                                        alt="team-img">
-                                </div>
-                                <div class="ts-team-content">
-                                    <h3 class="ts-name">Elton Joe</h3>
-                                    <p class="ts-designation">Site Supervisor</p>
-                                    <p class="ts-description">Nats Stenman began his career in construction with boots on
-                                        the ground</p>
-                                    <div class="team-social-icons">
-                                        <a target="_blank" href="#"><i class="fab fa-facebook-f"></i></a>
-                                        <a target="_blank" href="#"><i class="fab fa-twitter"></i></a>
-                                        <a target="_blank" href="#"><i class="fab fa-google-plus"></i></a>
-                                        <a target="_blank" href="#"><i class="fab fa-linkedin"></i></a>
-                                    </div><!--/ social-icons-->
-                                </div>
-                            </div><!--/ Team wrapper end -->
-                        </div><!-- Team 6 end -->
-
+                        @endforeach
                     </div><!-- Team slide end -->
                 </div>
             </div><!--/ Content row end -->

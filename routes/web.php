@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutUsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Admin\UserController;
@@ -10,6 +11,9 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\FrontendController as AdminFrontendController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\PostController as ControllersPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +39,7 @@ Route::get('/admin/dashboard', [AdminDashboardController::class, 'index']);
 
 // User
 
-Route::middleware('auth')->group(function(){
+Route::middleware('admin')->group(function(){
 
 
 Route::get('/admin/user', [UserController::class, 'index'])->name('admin.user');
@@ -53,7 +57,7 @@ Route::get('/admin/home-slide/delete/{id}', [HomeSliderController::class, 'desto
 
 // FrontEnd
 Route::get('/admin/front-end', [AdminFrontendController::class, 'index'])->name('admin.frontend');
-Route::post('/admin/front-end', [AdminFrontendController::class, 'update'])->name('admin.update');
+Route::post('/admin/front-end', [AdminFrontendController::class, 'update'])->name('admin.frontend.update');
 
 
 // Testimonial
@@ -77,7 +81,14 @@ Route::get('/admin/post', [PostController::class, 'index'])->name('admin.post');
 Route::post('/admin/post/store', [PostController::class, 'store'])->name('admin.post.store');
 
 Route::get('/logout',[AuthController::class,'logout'])->name('logout');
+
 });
+
+Route::get('/post',[ControllersPostController::class,'index'])->name('post');
+Route::get('/post/{id}',[ControllersPostController::class,'singlePost'])->name('single.post');
+
+// Comment
+Route::post('/comment/store',[CommentController::class,'store'])->name('store.comment');
 
 // Route::get('/post', function () {
 //     return view('post');
@@ -85,10 +96,11 @@ Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 // Route::get('/single-post', function () {
 //     return view('single-post');
 // });
-
+Route::get('/contact-us',[ContactController::class,'index'])->name('contact-us');
+Route::get('/about-us',[AboutUsController::class,'index'])->name('about-us');
 // Route::get('/contact-us', function () {
 //     return view('contact');
-// });
+// })->name('contact-us');
 
 // Route::get('/about-us', function () {
 //     return view('about');

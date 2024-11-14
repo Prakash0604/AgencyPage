@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::composer(['header','footer'],function($view){
+        View::composer(['header','footer','contact'],function($view){
             $setting=frontend::first();
             $view->with([
                 'email'=>$setting->contact_us_email ?? '',

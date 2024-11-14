@@ -67,7 +67,7 @@ class UserController extends Controller
             $user->facebook_link = $request->facebook_link;
             $user->instagram_link = $request->instagram_link;
             $user->twitter_link = $request->twitter_link;
-            $user->notes = $request->notes;
+            $user->notes =strip_tags( $request->notes);
             $user->save();
 
             DB::commit();

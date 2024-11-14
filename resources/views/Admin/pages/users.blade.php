@@ -185,7 +185,7 @@
                 // $('#password').attr('required', true);
             });
 
-            $(document).on("submit", "#storeForm", function(event) {
+            $(document).off('submit').on("submit", "#storeForm", function(event) {
                 event.preventDefault();
                 $(".submitBtn").prop("disabled", true);
                 $('#validationErrors').addClass('d-none').html('');
@@ -236,6 +236,7 @@
             $(document).on("click", ".editUserButton", function() {
                 $(".submitBtn").hide();
                 $(".labelPassword").hide();
+                // $("#password").hide();
                 $(".updateBtn").show();
                 $('.form').attr('id', 'updateForm');
                 $('#updateForm')[0].reset();
@@ -257,7 +258,8 @@
                         $("#facebook_link").val(response.message.facebook_link);
                         $("#twitter_link").val(response.message.twitter_link);
                         $("#instagram_link").val(response.message.instagram_link);
-                        $("#notes_user").val(response.message.notes);
+                        $("#notes_user").summernote('code',response.message.notes);
+
                         $("#userImage").html(
                             `<img src="/storage/${response.message.image}" alt="User Image" width="100" height="100">`
                         );
@@ -267,6 +269,8 @@
                 // Submit Form
                 $("#updateForm").submit(function(event) {
                     event.preventDefault();
+                    $("#password").prop("disabled",true);
+
                     let formdata = new FormData(this);
                     $(".updateBtn").prop("disabled", true);
                     // console.log(formdata);

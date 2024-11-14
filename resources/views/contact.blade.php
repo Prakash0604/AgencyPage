@@ -44,10 +44,11 @@
           </span>
           <div class="ts-service-box-content">
             <h4>Visit Our Office</h4>
-            <p>9051 Constra Incorporate, USA</p>
+            <p>{{ $address }}</p>
           </div>
         </div>
       </div><!-- Col 1 end -->
+
 
       <div class="col-md-4">
         <div class="ts-service-box-bg text-center h-100">
@@ -56,7 +57,7 @@
           </span>
           <div class="ts-service-box-content">
             <h4>Email Us</h4>
-            <p>office@Constra.com</p>
+            <p>{{ $email }}</p>
           </div>
         </div>
       </div><!-- Col 2 end -->
@@ -68,7 +69,7 @@
           </span>
           <div class="ts-service-box-content">
             <h4>Call Us</h4>
-            <p>(+9) 847-291-4353</p>
+            <p>{{ $contact }}</p>
           </div>
         </div>
       </div><!-- Col 3 end -->

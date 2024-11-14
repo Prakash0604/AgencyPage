@@ -55,7 +55,8 @@
                         data:"created_by", name:"created_by"
                     },
                     {
-                        data:"status", name:"status",fetch:function(status){
+                        data:"status", name:"status",
+                        fetch:function(status){
                             if(status == 'Active'){
                                 return `<span class="badge badge-success">Active</span>`;
                             }else{
