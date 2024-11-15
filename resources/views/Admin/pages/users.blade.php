@@ -258,7 +258,7 @@
                         $("#facebook_link").val(response.message.facebook_link);
                         $("#twitter_link").val(response.message.twitter_link);
                         $("#instagram_link").val(response.message.instagram_link);
-                        $("#notes_user").summernote('code',response.message.notes);
+                        $("#notes_user").summernote('code', response.message.notes);
 
                         $("#userImage").html(
                             `<img src="/storage/${response.message.image}" alt="User Image" width="100" height="100">`
@@ -269,7 +269,7 @@
                 // Submit Form
                 $("#updateForm").submit(function(event) {
                     event.preventDefault();
-                    $("#password").prop("disabled",true);
+                    $("#password").prop("disabled", true);
 
                     let formdata = new FormData(this);
                     $(".updateBtn").prop("disabled", true);
@@ -332,13 +332,23 @@
                             url: '/admin/user/delete/' + itemId,
                             type: 'get',
                             success: function(response) {
-                                Swal.fire(
-                                    'Deleted!',
-                                    'Your item has been deleted.',
-                                    'success'
-                                );
-                                table.draw();
-                                // Reload or re-fetch DataTable here if using Yajra DataTable
+                                if (response.success == true) {
+
+                                    Swal.fire(
+                                        'Deleted!',
+                                        'User has been deleted!',
+                                        'success'
+                                    );
+                                    table.draw();
+                                } else {
+                                        Swal.fire({
+                                            icon: "warning",
+                                            title: "Warning",
+                                            text: "User Already Tagged in anothe menu",
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        });
+                                }
                             },
                             error: function() {
                                 Swal.fire(

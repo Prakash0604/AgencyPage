@@ -184,15 +184,24 @@
                         $.ajax({
                             type: "get",
                             url: "/admin/category/delete/" + id,
-                            success: function() {
-                                Swal.fire({
-                                    icon: "success",
-                                    title: "Sucess",
-                                    text: "Category Deleted Successfully",
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                });
-                                table.draw();
+                            success: function(response) {
+                                if (response.message == true) {
+
+                                    Swal.fire({
+                                        icon: "success",
+                                        title: "Sucess",
+                                        text: "Category Deleted Successfully",
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                    table.draw();
+                                } else {
+                                    Swal.fire({
+                                        icon: "warning",
+                                        title: "Unable to Delete",
+                                        text: "Already Tagged in another menu",
+                                    });
+                                }
                             },
                             error: function() {
                                 Swal.fire({

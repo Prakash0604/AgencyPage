@@ -76,4 +76,15 @@ class PostController extends Controller
             return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
     }
+
+
+
+    public function destroy($id){
+        try{
+            Post::find($id)->delete();
+            return response()->json(['success'=>true]);
+        }catch(\Exception $e){
+            return response()->json(['success'=>false,'message'=>$e->getMessage()]);
+        }
+    }
 }

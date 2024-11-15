@@ -10,8 +10,8 @@
                             <h1 class="banner-title">Posts</h1>
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb justify-content-center">
-                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item"><a href="#">Posts</a></li>
+                                    <li class="breadcrumb-item"><a href="{{ route('first.index') }}">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="{{ route('post') }}">Posts</a></li>
                                 </ol>
                             </nav>
                         </div>

@@ -13,7 +13,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\PostController as ControllersPostController;
+use App\Http\Controllers\UserPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,13 +79,17 @@ Route::get('/admin/category/delete/{id}', [CategoryController::class, 'destroy']
 // Post
 Route::get('/admin/post', [PostController::class, 'index'])->name('admin.post');
 Route::post('/admin/post/store', [PostController::class, 'store'])->name('admin.post.store');
+Route::get('/admin/post/delete/{id}',[PostController::class,'destroy']);
+
+
+
 
 Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
 });
 
-Route::get('/post',[ControllersPostController::class,'index'])->name('post');
-Route::get('/post/{id}',[ControllersPostController::class,'singlePost'])->name('single.post');
+Route::get('/post',[UserPostController::class,'index'])->name('post');
+Route::get('/post/{id}',[UserPostController::class,'singlePost'])->name('single.post');
 
 // Comment
 Route::post('/comment/store',[CommentController::class,'store'])->name('store.comment');

@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\HomeSlide;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\HomeSliderRequest;
 use Illuminate\Support\Facades\Storage;
-use Str;
+use App\Http\Requests\HomeSliderRequest;
 use Yajra\DataTables\Facades\DataTables;
 
 class HomeSliderController extends Controller
@@ -31,8 +31,8 @@ class HomeSliderController extends Controller
                         return ' <td class="py-1"><img src="' . $url . '" width="50" height="50"/></td>';
                     }
                 })
-                ->addColumn('description',function($desc){
-                    return Str::limit($desc->description,70);
+                ->addColumn('shortdesc',function($desc){
+                    return Str::limit($desc->shortdesc,70);
                 })
                 ->rawColumns(['action', 'image'])
                 ->make(true);
