@@ -107,8 +107,7 @@
                 });
             });
 
-
-
+            // Edit Category
             $(document).on("click", ".editUserButton", function() {
                 let id = $(this).attr("data-id");
                 $("#formModal").modal("show");
@@ -169,6 +168,7 @@
                 })
             });
 
+            // Delete Category
             $(document).on("click", ".deleteData", function() {
                 let id = $(this).attr("data-id");
                 Swal.fire({

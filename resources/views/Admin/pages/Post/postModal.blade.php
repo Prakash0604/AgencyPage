@@ -4,7 +4,7 @@
         <div class="modal-content">
             <form id="formId" class="form">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="categoryTitle">Add Post</h1>
+                    <h1 class="modal-title fs-5" id="postTitle">Add Post</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -28,13 +28,14 @@
                         <div class="col-md-12 mb-4">
                             @csrf
                             <label for="" class="form-label">Title</label>
-                            <input type="text" name="post_title" id="categorytitleData" class="form-control" placeholder=""
+                            <input type="text" name="post_title" id="posttitleData" class="form-control" placeholder=""
                                 aria-describedby="helpId" />
                         </div>
                         <div class="col-md-12 mb-4">
                             <label for="" class="form-label">Image</label>
                             <input type="file" name="post_image" id="post_image" class="form-control" placeholder=""
                                 aria-describedby="helpId" />
+                                <div class="postImageData"></div>
                         </div>
 
                         <div class="mb-3 mb-4">

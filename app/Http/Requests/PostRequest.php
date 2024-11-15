@@ -24,7 +24,7 @@ class PostRequest extends FormRequest
     {
         return [
             'post_title' => 'required|min:3',
-            'post_image' => 'required|mimes:png,jpg,jpeg,webp',
+            'post_image' => $this->route('id') ? 'mimes:png,jpeg,jpg,webp': 'required|mimes:png,jpg,jpeg,webp',
             'post_description' => 'required',
             'post_category_id' => 'required|in:' . implode(',', $this->getOptions()),
         ];

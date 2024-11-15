@@ -79,6 +79,8 @@ Route::get('/admin/category/delete/{id}', [CategoryController::class, 'destroy']
 // Post
 Route::get('/admin/post', [PostController::class, 'index'])->name('admin.post');
 Route::post('/admin/post/store', [PostController::class, 'store'])->name('admin.post.store');
+Route::get('/admin/post/detail/{id}', [PostController::class, 'getDetail'])->name('admin.post.detail');
+Route::post('/admin/post/edit/{id}', [PostController::class, 'update'])->name('admin.post.update');
 Route::get('/admin/post/delete/{id}',[PostController::class,'destroy']);
 
 

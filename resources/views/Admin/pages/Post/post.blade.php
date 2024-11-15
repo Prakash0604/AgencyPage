@@ -72,6 +72,7 @@
                     }
                 ]
             })
+            // Add Post
             $(document).on("click", ".addPostBtn", function() {
                 $("#formModal").modal("show");
                 $(".submitBtn").show();
@@ -102,7 +103,7 @@
                         table.draw();
                         $("#formModal").modal("hide");
                         $("#addForm")[0].reset();
-                        $("#post_description").summernote("code","");
+                        $("#post_description").summernote("code", "");
                     },
                     error: function(xhr) {
                         if (xhr.status === 422) {
@@ -122,6 +123,77 @@
                     }
                 })
             });
+
+            // Edit Post
+
+            $(document).on("click", ".editUserButton", function() {
+                let id = $(this).attr("data-id");
+                $("#formModal").modal("show");
+                $("#postTitle").text("Edit Post");
+                $(".submitBtn").hide();
+                $(".updateBtn").show();
+                $(".form").attr('id', 'updateForm');
+                $("#updateForm")[0].reset();
+
+                $.ajax({
+                    url: "/admin/post/detail/" + id,
+                    type: "get",
+                    success: function(response) {
+                        console.log(response);
+                        $("#posttitleData").val(response.message.title);
+                        $("#category_id").val(response.message.category_id);
+                        $(".postImageData").html(
+                            `<img src="/storage/${response.message.image}" height="100" width="100">`
+                        );
+                        $("#post_description").summernote('code', response.message.description);
+                        $("#post_status").val(response.message.status);
+                    }
+                });
+
+                $(document).off("submit").on("submit", "#updateForm", function(event) {
+                    event.preventDefault();
+                    // $("#post_image").prop("disabled", true);
+                    $(".updateBtn").prop("disabled", true);
+                    let formdata = new FormData(this);
+                    $.ajax({
+                        type: "post",
+                        url: "/admin/post/edit/" + id,
+                        data: formdata,
+                        processData: false,
+                        contentType: false,
+                        success: function(response) {
+                            Swal.fire({
+                                icon: "success",
+                                title: "Updated",
+                                text: "Post Updated Successfully",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            $("#formModal").modal("hide");
+                            table.draw();
+                        },
+                        error: function(response) {
+                            if (response.status === 422) {
+                                let errors = response.responseJSON.errors;
+                                let errorMessages = '<ul>';
+                                $.each(errors, function(key, value) {
+                                    errorMessages += '<li>' + value[0] +
+                                        '</li>';
+                                });
+                                errorMessages += '</ul>';
+                                $('#validationErrors').removeClass('d-none').html(
+                                    errorMessages);
+                            }
+                        },
+                        complete: function() {
+                            $("#post_image").prop("disabled", false);
+                            $(".updateBtn").prop("disabled", false);
+                        }
+                    })
+                })
+            })
+
+            // Delete Post
 
             $(document).on("click", ".deleteData", function() {
                 let id = $(this).attr("data-id");

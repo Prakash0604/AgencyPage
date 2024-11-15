@@ -10,6 +10,7 @@ use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
 class PostController extends Controller
@@ -78,10 +79,51 @@ class PostController extends Controller
     }
 
 
+    public function getDetail($id){
+        try{
+            $data=Post::with(['category'])->find($id);
+            return response()->json(['success'=>true,'message'=>$data]);
+        }catch(\Exception $e){
+            return response()->json(['success'=>false,'message'=>$e->getMessage()]);
+        }
+    }
+
+
+    public function update(PostRequest $postRequest,$id){
+        DB::beginTransaction();
+        try{
+            $data=Post::find($id);
+            $data->title=$postRequest->input('post_title');
+            $data->category_id=$postRequest->input('post_category_id');
+            $data->description=strip_tags($postRequest->input('post_description'));
+            $data->status=$postRequest->input('post_status');
+            if($postRequest->hasFile('post_image')){
+                $filepath='images/post/';
+                if($data->image!== null){
+                    Storage::disk('public')->delete($data->image);
+                }
+                $imagename=time().'.'.$postRequest->post_image->extension();
+                $path=$postRequest->post_image->storeAs($filepath,$imagename,'public');
+                $data->image=$path;
+            }
+            $data->save();
+            DB::commit();
+            return response()->json(['success'=>true]);
+        }catch(\Exception $e){
+            DB::rollBack();
+            return response()->json(['success'=>false,'message'=>$e->getMessage()]);
+        }
+    }
+
 
     public function destroy($id){
         try{
-            Post::find($id)->delete();
+           $data= Post::find($id);
+
+           if($data->image){
+            Storage::disk('public')->delete($data->image);
+           }
+           $data->delete();
             return response()->json(['success'=>true]);
         }catch(\Exception $e){
             return response()->json(['success'=>false,'message'=>$e->getMessage()]);
