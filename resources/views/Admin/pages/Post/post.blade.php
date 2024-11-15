@@ -1,10 +1,10 @@
 @extends('Admin.index')
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
         <button class="btn btn-primary addPostBtn mb-4">Add Post</button>
         @include('Admin.pages.Post.postModal')
         <div class="table-responsive">
-            <table class="table table-bordered" id="data-post-show">
+            <table class="table table-striped" id="data-post-show">
                 <thead>
                     <tr>
                         <th scope="col">S.N</th>

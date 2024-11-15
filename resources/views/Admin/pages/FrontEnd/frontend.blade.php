@@ -1,7 +1,7 @@
 @extends('Admin.index')
 @section('content')
     {{-- <h1 class="text-center">Hello world</h1> --}}
-    <div class="container">
+    <div class="container-fluid">
         <div class="card">
             <h1 class="text-center">Front End </h1>
         </div>

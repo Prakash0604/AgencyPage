@@ -1,11 +1,11 @@
 @extends('Admin.index')
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
         <button class="btn btn-primary addTestimonialBtn mb-4 mt-4">Add Testimonial</button>
         @include('Admin.pages.TestiMonial.testimonialModal')
 
         <div class="table-responsive">
-            <table class="table table-bordered" id="show-testimonial-data">
+            <table class="table table-striped" id="show-testimonial-data">
                 <thead>
                     <tr>
                         <th scope="col">S.N</th>

@@ -1,11 +1,11 @@
 @extends('Admin.index')
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
         <button class="btn btn-primary addHomeSlideBtn mb-2">Add HomeSlide</button>
         @include('Admin.pages.HomeSlide.homeSlideModal')
 
         <div class="table-responsive">
-            <table class="table table-bordered" id="show-homeSlide-data">
+            <table class="table table-striped" id="show-homeSlide-data">
                 <thead>
                     <tr>
                         <th scope="col">S.N</th>
