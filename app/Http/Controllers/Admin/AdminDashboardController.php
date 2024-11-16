@@ -10,11 +10,15 @@ use App\Http\Controllers\Controller;
 class AdminDashboardController extends Controller
 {
     public function index(){
-        $totaluser=User::count();
-        $admin=User::where('role','Admin')->count();
-        $user=User::where('role','User')->count();
-        $post=Post::count();
+        $users=User::all();
 
-        return view('Admin.pages.Dashboard.index',compact('totaluser','admin','user','post'));
+        $admin=$users->where('role','Admin')->count();
+        $user=$users->where('role','User')->count();
+        $totaluser=$users->count();
+        $today_post = Post::whereDate('created_at',today())->count();
+        $totalpost=Post::count();
+        // $totalBillNumber = Bill::whereDate('created_at',date('Y-m-d'))->count();
+
+        return view('Admin.pages.Dashboard.index',compact('totaluser','admin','user','today_post','totalpost'));
     }
 }

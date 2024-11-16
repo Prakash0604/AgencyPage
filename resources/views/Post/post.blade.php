@@ -42,7 +42,7 @@
                                         <span class="post-meta-date"><i class="far fa-calendar"></i>{{ $post->category->title }}</span>
                                     </div>
                                     <h2 class="entry-title">
-                                        <a href="news-single.html"> {{ $post->title }}</a>
+                                        <a href="{{ route('single.post',$post->id) }}"> {{ $post->title }}</a>
                                     </h2>
                                 </div><!-- header end -->
 
@@ -60,15 +60,7 @@
 
 
                     <nav class="paging" aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#"><i
-                                        class="fas fa-angle-double-left"></i></a></li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#"><i
-                                        class="fas fa-angle-double-right"></i></a></li>
-                        </ul>
+                       {{ $posts->links() }}
                     </nav>
 
                 </div><!-- Content Col end -->

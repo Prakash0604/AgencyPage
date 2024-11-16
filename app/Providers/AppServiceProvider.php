@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\frontend;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -29,5 +30,7 @@ class AppServiceProvider extends ServiceProvider
                 'contact'=>$setting->contact_us_number ?? '',
             ]);
         });
+
+        Paginator::useBootstrapFive();
     }
 }

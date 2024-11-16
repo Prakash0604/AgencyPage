@@ -57,17 +57,7 @@
                                                 </div>
                                                 <div class="d-none d-md-block">
                                                     <p class="statistics-title">Total Post</p>
-                                                    <h3 class="rate-percentage">{{ $post }}</h3>
-                                                </div>
-                                                <div class="d-none d-md-block">
-                                                    <p class="statistics-title">Total Comment</p>
-                                                    <h3 class="rate-percentage">68.8</h3>
-                                                </div>
-                                                <div class="d-none d-md-block">
-                                                    <p class="statistics-title">Avg. Time on Site</p>
-                                                    <h3 class="rate-percentage">2m:35s</h3>
-                                                    <p class="text-success d-flex"><i
-                                                            class="mdi mdi-menu-down"></i><span>+0.8%</span></p>
+                                                    <h3 class="rate-percentage">{{ $totalpost }}</h3>
                                                 </div>
                                             </div>
                                         </div>
@@ -83,56 +73,11 @@
                                                                 <div>
                                                                     <h4 class="card-title card-title-dash">Performance Line
                                                                         Chart</h4>
-                                                                    <h5 class="card-subtitle card-subtitle-dash">Lorem
-                                                                        Ipsum is simply dummy text of the printing</h5>
+                                                                    <h5 class="card-subtitle card-subtitle-dash">Bar Graph Data from DataSet</h5>
                                                                 </div>
-                                                                <div id="performanceLine-legend"></div>
                                                             </div>
-                                                            <div class="chartjs-wrapper mt-4">
-                                                                <canvas id="performanceLine" width=""></canvas>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-12 d-flex flex-column">
-                                            <div class="col-12 grid-margin stretch-card">
-                                                <div class="card card-rounded">
-                                                    <div class="card-body">
-                                                        <div class="row">
-                                                            <div class="col-lg-12">
-                                                                <div
-                                                                    class="d-flex justify-content-between align-items-center mb-3">
-                                                                    <div>
-                                                                        <h4 class="card-title card-title-dash">Leave
-                                                                            Report</h4>
-                                                                    </div>
-                                                                    <div>
-                                                                        <div class="dropdown">
-                                                                            <button
-                                                                                class="btn btn-light dropdown-toggle toggle-dark btn-lg mb-0 me-0"
-                                                                                type="button"
-                                                                                id="dropdownMenuButton3"
-                                                                                data-bs-toggle="dropdown"
-                                                                                aria-haspopup="true"
-                                                                                aria-expanded="false"> Month Wise
-                                                                            </button>
-                                                                            <div class="dropdown-menu"
-                                                                                aria-labelledby="dropdownMenuButton3">
-                                                                                <h6 class="dropdown-header">week Wise
-                                                                                </h6>
-                                                                                <a class="dropdown-item"
-                                                                                    href="#">Year Wise</a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="mt-3">
-                                                                    <canvas id="leaveReport"></canvas>
-                                                                </div>
+                                                            <div class="mt-4">
+                                                                <canvas id="performanceLine"></canvas>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -151,4 +96,46 @@
             <!-- partial -->
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            var ctx = document.getElementById('performanceLine').getContext('2d');
+            var dashboardBarChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Admin', 'User', 'Total Post', 'Todays Post'],
+                    datasets: [{
+                        label: 'Dashboard Data',
+                        data: [
+                            {{ $admin }},
+                            {{ $user }},
+                            {{ $totalpost }},
+                            {{ $today_post }},
+                        ],
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(0, 140, 70, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(0, 140, 70, 1)',
+                            'rgba(153, 102, 255, 1)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 50
+                        }
+                    }
+                }
+            });
+        })
+    </script>
 @endsection

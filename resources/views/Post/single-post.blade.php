@@ -9,9 +9,9 @@
                             <h1 class="banner-title">News</h1>
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb justify-content-center">
-                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item"><a href="#">News</a></li>
-                                    <li class="breadcrumb-item"><a href="#">detail</a></li>
+                                    <li class="breadcrumb-item"><a href="{{ route('first.index') }}">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="{{ route('post') }}">Post</a></li>
+                                    <li class="breadcrumb-item"><a href="{{ route('single.post',$post->id) }}">{{ $post->title }}</a></li>
                                 </ol>
                             </nav>
                         </div>
@@ -28,14 +28,14 @@
                 <div>
 
                     <div class="post-content post-single">
-                        <div class="post-media post-image">
-                            <img loading="lazy" src="{{ asset('storage/' . $post->image) }}" class="img-fluid"
+                        <div class="post-media post-image d-flex">
+                            <img loading="lazy" src="{{ asset('storage/' . $post->image) }}" class="img-fluid mx-auto"
                                 alt="post-image">
                         </div>
 
                         <div class="post-body">
                             <div class="entry-header">
-                                <div class="post-meta">
+                                <div class="post-meta ">
                                     <span class="post-author">
                                         <i class="far fa-user"></i><a href="#"> {{ $post->createdBy->full_name }}</a>
                                     </span>
@@ -70,11 +70,9 @@
 
                             <li>
                                 @foreach ($comments as $comment)
-
-
-                                <div class="comment d-flex">
+                                <div class="comment">
                                     @if ($comment->user->image !=null)
-                                    <img loading="lazy" class="comment-avatar" alt="author"src="{{ asset('storage/'.$comment->user->image) }}">
+                                    <img loading="lazy" class="comment-avatar mx-auto" alt="author"src="{{ asset('storage/'.$comment->user->image) }}">
                                     @else
                                     <img loading="lazy" class="comment-avatar" alt="author"src="{{ asset('defaultImage/defaultimage.webp') }}">
 

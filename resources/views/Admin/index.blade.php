@@ -150,6 +150,10 @@
     <script src="{{ asset('admin/vendors/chart.js/chart.umd.js') }}"></script>
     <script src="{{ asset('admin/vendors/progressbar.js/progressbar.min.js') }}"></script>
     <!-- End plugin js for this page -->
+
+    {{-- Chart js --}}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    {{-- Chart js --}}
     <!-- inject:js -->
     <script src="{{ asset('admin/js/off-canvas.js') }}"></script>
     <script src="{{ asset('admin/js/template.js') }}"></script>
@@ -159,7 +163,7 @@
     <!-- endinject -->
     <!-- Custom js for this page-->
     <script src="{{ asset('admin/js/jquery.cookie.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('admin/js/dashboard.js') }}"></script>
+    {{-- <script src="{{ asset('admin/js/dashboard.js') }}"></script> --}}
 
     <!-- DataTables JS -->
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
