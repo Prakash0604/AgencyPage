@@ -93,6 +93,9 @@ Route::get('/post/{id}', [UserPostController::class, 'singlePost'])->name('singl
 
 // Comment
 Route::post('/comment/store', [CommentController::class, 'store'])->name('store.comment');
+Route::get('/comment/post/edit/{id}', [CommentController::class, 'edit'])->name('comment.edit');
+Route::post('/comment/post/update/{id}', [CommentController::class, 'update'])->name('comment.update');
+Route::get('/comment/post/delete/{id}', [CommentController::class, 'destroy'])->name('comment.destory');
 
 // Route::get('/post', function () {
 //     return view('post');

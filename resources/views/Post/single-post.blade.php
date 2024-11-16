@@ -11,7 +11,8 @@
                                 <ol class="breadcrumb justify-content-center">
                                     <li class="breadcrumb-item"><a href="{{ route('first.index') }}">Home</a></li>
                                     <li class="breadcrumb-item"><a href="{{ route('post') }}">Post</a></li>
-                                    <li class="breadcrumb-item"><a href="{{ route('single.post',$post->id) }}">{{ $post->title }}</a></li>
+                                    <li class="breadcrumb-item"><a
+                                            href="{{ route('single.post', $post->id) }}">{{ $post->title }}</a></li>
                                 </ol>
                             </nav>
                         </div>
@@ -70,27 +71,41 @@
 
                             <li>
                                 @foreach ($comments as $comment)
-                                <div class="comment">
-                                    @if ($comment->user->image !=null)
-                                    <img loading="lazy" class="comment-avatar mx-auto" alt="author"src="{{ asset('storage/'.$comment->user->image) }}">
-                                    @else
-                                    <img loading="lazy" class="comment-avatar" alt="author"src="{{ asset('defaultImage/defaultimage.webp') }}">
+                                    <div class="comment">
+                                        @if ($comment->user->image != null)
+                                            <img loading="lazy" class="comment-avatar mx-auto"
+                                                alt="author"src="{{ asset('storage/' . $comment->user->image) }}">
+                                        @else
+                                            <img loading="lazy" class="comment-avatar"
+                                                alt="author"src="{{ asset('defaultImage/defaultimage.webp') }}">
+                                        @endif
+                                        <div class="comment-body">
+                                            <div class="meta-data">
+                                                <span class="comment-author mr-3">{{ $comment->user->full_name }}</span>
+                                                <span class="comment-date float-right">{{ $comment->created_at }}</span>
+                                            </div>
+                                            <div class="comment-content">
+                                                <p>{{ $comment->comment }}
+                                                </p>
+                                            </div>
+                                            <div class="comment-content">
+                                                <p>
+                                                    <a type="button" class="btnEditPost" data-id="{{ $comment->id }}">
+                                                        <i class="bi bi-pen"></i>
+                                                    </a>
+                                                    <a type="button" class="btnDeletePost" data-id="{{ $comment->id }}">
+                                                        <i class="bi bi-trash"></i>
+                                                    </a>
+                                                </p>
+                                                <form id="updatePostForm">
+                                                    <div class="fetchEditComment">
 
-                                    @endif
-                                    <div class="comment-body">
-                                        <div class="meta-data">
-                                            <span class="comment-author mr-3">{{ $comment->user->full_name }}</span>
-                                            <span class="comment-date float-right">{{ $comment->created_at }}</span>
+                                                    </div>
+                                                </form>
+                                            </div>
+
                                         </div>
-                                        <div class="comment-content">
-                                            <p>{{ $comment->comment }}
-                                            </p>
-                                        </div>
-                                         <div class="comment-content">
-                                            <p><a href="" class=""><i class=" bi bi-pen"></i></a> <a href=""><i class="bi bi-trash"></i></a></p>
-                                        </div>
-                                    </div>
-                                </div><!-- Comments end -->
+                                    </div><!-- Comments end -->
                                 @endforeach
                             </li><!-- Comments-list li end -->
                         </ul><!-- Comments-list ul end -->
@@ -118,6 +133,7 @@
     </section><!-- Main container end -->
     <script>
         $(document).ready(function() {
+            // Add Comment
             $("#addComment").submit(function(event) {
                 event.preventDefault();
                 $("#commentBtn").prop("disabled", true);
@@ -130,15 +146,13 @@
                     processData: false,
                     success: function(response) {
                         console.log(response);
-                        if(response.auth === null){
-                           window.location.href="/register";
+                        if (response.auth === null) {
+                            window.location.href = "/register";
                         }
 
-                            location.reload();
+                        location.reload();
                     },
                     error: function(response) {
-                        // console.log(response);
-
                         if (response.status === 422) {
                             let errors = response.responseJSON.errors;
                             let errorMessages = '<ul>';
@@ -154,8 +168,73 @@
                     complete: function() {
                         $("#commentBtn").prop("disabled", false);
                     }
-                })
+                });
             })
+
+            $(document).on("click", ".btnEditPost", function() {
+                let id = $(this).data('id');
+                let clickedElement = this;
+
+
+                $.ajax({
+                    type: "get",
+                    url: "/comment/post/edit/" + id,
+                    success: function(response) {
+                        $(clickedElement).closest(".comment-content").find(".fetchEditComment")
+                            .html(`
+                <div class="input-group">
+                    @csrf
+                    <span class="input-group-text">Edit Comment</span>
+                    <input type="text" name="comment" class="form-control" value="${response.message.comment}">
+                    <button type="submit" class="btn btn-success btn-small">update</button>
+                </div>
+            `);
+                    },
+                    error: function(xhr) {
+                        console.log("Error:", xhr);
+                    }
+                });
+
+                // Update Form
+                $(document).off('submit').on("submit", "#updatePostForm", function(event) {
+                    event.preventDefault();
+                    let formdata = new FormData(this);
+                    $.ajax({
+                        type: "post",
+                        url: "/comment/post/update/" + id,
+                        data: formdata,
+                        contentType: false,
+                        processData: false,
+                        success: function(response) {
+                            location.reload();
+                            // console.log(response);
+
+                        },
+                        error: function(xhr) {
+                            console.log(xhr);
+                        }
+                    })
+                })
+            });
+
+
+
+            // Delete Comment
+            $(document).on("click", ".btnDeletePost", function() {
+                let id = $(this).data('id');
+                console.log(id);
+                $.ajax({
+                    type: "get",
+                    url: "/comment/post/delete/" + id,
+                    success: function(response) {
+                        location.reload();
+                    },
+                    error: function(xhr) {
+                        console.log(xhr);
+                    },
+                })
+
+            });
         })
     </script>
 @endsection
