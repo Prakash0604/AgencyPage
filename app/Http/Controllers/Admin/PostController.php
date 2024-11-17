@@ -18,8 +18,10 @@ class PostController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
+
             $data = Post::orderBy('id', 'desc')->get();
             return DataTables::of($data)
+                // ->setTotalRecords($totalRecords)
                 ->addIndexColumn()
                 ->addColumn('image', function ($item) {
                     if ($item->image != null) {
@@ -30,16 +32,16 @@ class PostController extends Controller
                         return ' <td class="py-1"><img src="' . $url . '" width="50" height="50"/></td>';
                     }
                 })
-                ->addColumn('title',function($title){
+                ->addColumn('title', function ($title) {
                     return $title->title ?? '';
                 })
                 ->addColumn('category', function ($category) {
                     return $category->category->title ?? '';
                 })
                 ->addColumn('description', function ($desc) {
-                    return Str::limit($desc->description, 20) ?? '';
+                    return Str::limit(strip_tags($desc->description), 20) ?? '';
                 })
-                ->addColumn('created_by',function($created){
+                ->addColumn('created_by', function ($created) {
                     return $created->createdBy->full_name ?? '';
                 })
                 ->addColumn('action', function ($data) {
@@ -59,7 +61,7 @@ class PostController extends Controller
 
             $post = new Post();
             $post->title = $postRequest->input('post_title');
-            $post->description = strip_tags($postRequest->input('post_description'));
+            $post->description = $postRequest->input('post_description');
             $post->category_id = $postRequest->input('post_category_id');
             if ($postRequest->hasFile('post_image')) {
                 $filepath = 'images/post/';
@@ -79,54 +81,57 @@ class PostController extends Controller
     }
 
 
-    public function getDetail($id){
-        try{
-            $data=Post::with(['category'])->find($id);
-            return response()->json(['success'=>true,'message'=>$data]);
-        }catch(\Exception $e){
-            return response()->json(['success'=>false,'message'=>$e->getMessage()]);
+    public function getDetail($id)
+    {
+        try {
+            $data = Post::with(['category'])->find($id);
+            return response()->json(['success' => true, 'message' => $data]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
     }
 
 
-    public function update(PostRequest $postRequest,$id){
+    public function update(PostRequest $postRequest, $id)
+    {
         DB::beginTransaction();
-        try{
-            $data=Post::find($id);
-            $data->title=$postRequest->input('post_title');
-            $data->category_id=$postRequest->input('post_category_id');
-            $data->description=strip_tags($postRequest->input('post_description'));
-            $data->status=$postRequest->input('post_status');
-            if($postRequest->hasFile('post_image')){
-                $filepath='images/post/';
-                if($data->image!== null){
+        try {
+            $data = Post::find($id);
+            $data->title = $postRequest->input('post_title');
+            $data->category_id = $postRequest->input('post_category_id');
+            $data->description = $postRequest->input('post_description');
+            $data->status = $postRequest->input('post_status');
+            if ($postRequest->hasFile('post_image')) {
+                $filepath = 'images/post/';
+                if ($data->image !== null) {
                     Storage::disk('public')->delete($data->image);
                 }
-                $imagename=time().'.'.$postRequest->post_image->extension();
-                $path=$postRequest->post_image->storeAs($filepath,$imagename,'public');
-                $data->image=$path;
+                $imagename = time() . '.' . $postRequest->post_image->extension();
+                $path = $postRequest->post_image->storeAs($filepath, $imagename, 'public');
+                $data->image = $path;
             }
             $data->save();
             DB::commit();
-            return response()->json(['success'=>true]);
-        }catch(\Exception $e){
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
             DB::rollBack();
-            return response()->json(['success'=>false,'message'=>$e->getMessage()]);
+            return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
     }
 
 
-    public function destroy($id){
-        try{
-           $data= Post::find($id);
+    public function destroy($id)
+    {
+        try {
+            $data = Post::find($id);
 
-           if($data->image){
-            Storage::disk('public')->delete($data->image);
-           }
-           $data->delete();
-            return response()->json(['success'=>true]);
-        }catch(\Exception $e){
-            return response()->json(['success'=>false,'message'=>$e->getMessage()]);
+            if ($data->image) {
+                Storage::disk('public')->delete($data->image);
+            }
+            $data->delete();
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
     }
 }

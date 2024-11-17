@@ -25,7 +25,7 @@ class UserRequest extends FormRequest
     {
         return [
             'full_name'=>'required|min:3',
-            'email'=>['required','email',Rule::unique('users')->ignore($this->route('id'))],
+            'email'=>['required','email',$this->route('id') ?  Rule::unique('users')->ignore($this->route('id')) : 'unique:users,email'],
             'position'=>'required',
             'phonenumber'=>'required|min:7',
             'password'=>$this->route('id') ? 'nullable': ['required',Password::min(8)->mixedCase()->numbers()->symbols()],

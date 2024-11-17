@@ -32,13 +32,15 @@
         {{-- Table --}}
 
         <!-- Modal -->
-      @include('Admin.pages.User.usermodal')
+        @include('Admin.pages.User.usermodal')
     </div>
 
     <script>
         $(document).ready(function() {
             // Summer note
-            $('.summernote').summernote();
+            $('.summernote').summernote({
+                height: 300
+            });
 
             // Data Table
             var table = $("#show-user-data").DataTable({
@@ -84,22 +86,26 @@
                 } else {
                     $("#password").prop("type", "password");
                 }
-            })
+            });
 
+            function clearModal() {
+                $('#validationErrors').addClass('d-none').html('');
+                $("#notes_user").summernote('code', '');
+                $('#userImage').html('');
+            }
 
-
-            // New User Add and Edit
             $(document).on("click", ".addUserButton", function() {
-                // let action=$(this).data("action");
+                clearModal(); // Clear errors and reset fields
                 $(".submitBtn").show();
                 $(".updateBtn").hide();
+                $(".labelPassword").show();
                 $('.form').attr('id', 'storeForm');
                 $('#storeForm')[0].reset();
                 $("#formModal").modal("show");
-                // $('#password').attr('required', true);
             });
 
-            $(document).off('submit').on("submit", "#storeForm", function(event) {
+            // Add and Store User Data
+            $(document).off('submit', '#storeForm').on("submit", "#storeForm", function(event) {
                 event.preventDefault();
                 $(".submitBtn").prop("disabled", true);
                 $('#validationErrors').addClass('d-none').html('');
@@ -120,11 +126,10 @@
                                 timer: 1500
                             });
                             table.draw();
-
+                            $("#notes_user").summernote("code", "");
                             $("#formModal").modal("hide");
                             $('#storeForm')[0].reset();
                             // $("#storeUserData").trigger("reset");
-
                         }
                     },
                     error: function(response) {
@@ -146,11 +151,11 @@
                 })
             });
 
-
+            // Click and Edit User
             $(document).on("click", ".editUserButton", function() {
+                clearModal();
                 $(".submitBtn").hide();
                 $(".labelPassword").hide();
-                // $("#password").hide();
                 $(".updateBtn").show();
                 $('.form').attr('id', 'updateForm');
                 $('#updateForm')[0].reset();
@@ -179,53 +184,120 @@
                         );
                     }
                 });
+            });
 
-                // Submit Form
-                $("#updateForm").submit(function(event) {
-                    event.preventDefault();
-                    $("#password").prop("disabled", true);
+            // Edit and Submit User Data
+            $(document).off("submit", "#updateForm").on("submit", "#updateForm", function(event) {
+                event.preventDefault();
+                $("#password").prop("disabled", true);
 
-                    let formdata = new FormData(this);
-                    $(".updateBtn").prop("disabled", true);
-                    // console.log(formdata);
-                    $.ajax({
-                        type: "post",
-                        url: "/admin/user/update/" + id,
-                        data: formdata,
-                        contentType: false,
-                        processData: false,
-                        success: function(response) {
-                            Swal.fire({
-                                icon: "success",
-                                title: "Updated",
-                                text: "User Updated Successfully",
-                                showConfirmButton: false,
-                                timer: 1500
+                let formdata = new FormData(this);
+                $(".updateBtn").prop("disabled", true);
+                // console.log(formdata);
+                $.ajax({
+                    type: "post",
+                    url: "/admin/user/update/" + id,
+                    data: formdata,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        Swal.fire({
+                            icon: "success",
+                            title: "Updated",
+                            text: "User Updated Successfully",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        $("#formModal").modal("hide");
+                        table.draw();
+                    },
+                    error: function(response) {
+                        if (response.status === 422) {
+                            let errors = response.responseJSON.errors;
+                            let errorMessages = '<ul>';
+                            $.each(errors, function(key, value) {
+                                errorMessages += '<li>' + value[0] +
+                                    '</li>'; // Display the first error for each field
                             });
-                            $("#formModal").modal("hide");
-                            table.draw();
-                        },
-                        error: function(response) {
-                            if (response.status === 422) {
-                                let errors = response.responseJSON.errors;
-                                let errorMessages = '<ul>';
-                                $.each(errors, function(key, value) {
-                                    errorMessages += '<li>' + value[0] +
-                                        '</li>'; // Display the first error for each field
-                                });
-                                errorMessages += '</ul>';
-                                $('#validationErrors').removeClass('d-none').html(
-                                    errorMessages);
-                            }
-                        },
-                        complete: function() {
-                            $(".updateBtn").prop("disabled", false);
+                            errorMessages += '</ul>';
+                            $('#validationErrors').removeClass('d-none').html(
+                                errorMessages);
                         }
+                    },
+                    complete: function() {
+                        $(".updateBtn").prop("disabled", false);
+                    }
 
-                    })
                 })
             })
+            // Reset Password
+            $(document).on("click", ".resetUserBtn", function() {
+                let id = $(this).attr("data-id");
+                Swal.fire({
+                    title: "Enter you Password",
+                    // input: "password",
+                    // inputLabel: "Password",
+                    inputPlaceholder: "Enter your current password",
+                    // inputAttributes: {
+                    //     autocorrect: "off"
+                    // },
+                    html: `
+                    @csrf
+                           <input id="swal-input1"  type="password" placeholder="Current Password" class=" swal2-input">
+                           <input id="swal-input2"  type="password" placeholder="New Password" class=" swal2-input">
+                           <input id="swal-input3"  type="password" placeholder="Confirm Password" class="swal2-input">
+                         `,
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d3",
+                    confirmButtonText: "Reset Password"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        let currentPassword = $("#swal-input1").val();
+                        let newPassword = $("#swal-input2").val();
+                        let confirmPassword = $("#swal-input3").val();
 
+                        if (newPassword !== confirmPassword) {
+                            Swal.fire({
+                                icon: "warning",
+                                title: "Password Not Match",
+                                text: "Confirm Password does not Match"
+                            });
+                        }
+                        $.ajax({
+                            type: "post",
+                            url: "/admin/user/reset-password/" + id,
+                            data: {
+                                _token: $('meta[name="csrf-token"]').attr('content'),
+                                // _token: $('meta[name="csrf-token"]').attr('content'),
+                                "currentPassword": currentPassword,
+                                "newPassword": newPassword,
+                                "confirmPassword": confirmPassword,
+                            },
+                            success: function(response) {
+                                if (response.success === true) {
+                                    Swal.fire({
+                                        icon: "success",
+                                        title: "Success",
+                                        text: response.message,
+                                        showConfirmButton: false,
+                                        timer: 1500,
+                                    });
+                                    table.draw();
+                                } else {
+                                    Swal.fire({
+                                        icon: "warning",
+                                        title: "Warning!",
+                                        text: response.message,
+                                    });
+                                }
+                            },
+                            error: function(xhr) {
+                                console.log(xhr);
+                            }
+                        })
+                    }
+                })
+            });
 
 
             // Delete User
@@ -255,13 +327,13 @@
                                     );
                                     table.draw();
                                 } else {
-                                        Swal.fire({
-                                            icon: "warning",
-                                            title: "Warning",
-                                            text: "User Already Tagged in anothe menu",
-                                            showConfirmButton: false,
-                                            timer: 1500
-                                        });
+                                    Swal.fire({
+                                        icon: "warning",
+                                        title: "Warning",
+                                        text: "User Already Tagged in anothe menu",
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
                                 }
                             },
                             error: function() {

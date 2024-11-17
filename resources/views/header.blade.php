@@ -17,14 +17,21 @@
             </div>
         </li>
 
-        @if (auth()->user())
+        @if (auth()->user() && auth()->user()->role == 'Admin')
 
         <li class="header-get-a-quote">
-            <a class="btn btn-primary" href="{{ route('logout') }}">Logout</a>
+            <a class="btn btn-primary" href="{{ route('admin.logout') }}">Logout</a>
         </li>
+
+        @elseif (auth()->user() && auth()->user()->role == 'User')
+        <li class="header-get-a-quote">
+            <a class="btn btn-primary" href="{{ route('user.logout') }}">Logout</a>
+        </li>
+
         @else
         <li class="header-get-a-quote">
             <a class="btn btn-primary" href="{{ route('register') }}">Register</a>
+            <a class="btn btn-primary" href="{{ route('login') }}">Login</a>
         </li>
         @endif
     </ul><!-- Ul end -->

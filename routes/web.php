@@ -30,11 +30,14 @@ use App\Http\Controllers\UserPostController;
 //     return view('home');
 // });
 
-Route::get('/register', [AuthController::class, 'index'])->name('register');
-Route::post('/register', [AuthController::class, 'storeRegister'])->name('register.store');
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/login/store', [AuthController::class, 'storeLogin'])->name('login.store');
-Route::get('/', [FrontendController::class, 'index'])->name('first.index');
+Route::middleware('isLogin')->group(function(){
+
+    Route::get('/register', [AuthController::class, 'index'])->name('register');
+    Route::post('/register', [AuthController::class, 'storeRegister'])->name('register.store');
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login/store', [AuthController::class, 'storeLogin'])->name('login.store');
+});
+
 
 // User
 
@@ -43,6 +46,7 @@ Route::middleware('admin')->group(function () {
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
     Route::get('/admin/user', [UserController::class, 'index'])->name('admin.user');
+    Route::post('/admin/user/reset-password/{id}', [UserController::class, 'passwordReset'])->name('admin.user.reset-password');
     Route::post('/admin/user/store', [UserController::class, 'store'])->name('admin.store');
     Route::get('/admin/user/detail/{id}', [UserController::class, 'userDetail'])->name('admin.detail');
     Route::post('/admin/user/update/{id}', [UserController::class, 'update'])->name('admin.update');
@@ -58,6 +62,9 @@ Route::middleware('admin')->group(function () {
     // FrontEnd
     Route::get('/admin/front-end', [AdminFrontendController::class, 'index'])->name('admin.frontend');
     Route::post('/admin/front-end', [AdminFrontendController::class, 'update'])->name('admin.frontend.update');
+
+    // Site Datas
+    Route::get('/admin/site-data',[AdminFrontendController::class,'siteData'])->name('admin.siteData');
 
     // Testimonial
     Route::get('/admin/testimonial', [TestimonialController::class, 'index'])->name('admin.testimonial');
@@ -82,11 +89,13 @@ Route::middleware('admin')->group(function () {
     Route::post('/admin/post/edit/{id}', [PostController::class, 'update'])->name('admin.post.update');
     Route::get('/admin/post/delete/{id}', [PostController::class, 'destroy']);
 
-
-
-
-    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
 });
+
+
+Route::get('/', [FrontendController::class, 'index'])->name('first.index');
+Route::get('/contact-us', [ContactController::class, 'index'])->name('contact-us');
+Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');
 
 Route::get('/post', [UserPostController::class, 'index'])->name('post');
 Route::get('/post/{id}', [UserPostController::class, 'singlePost'])->name('single.post');
@@ -96,19 +105,5 @@ Route::post('/comment/store', [CommentController::class, 'store'])->name('store.
 Route::get('/comment/post/edit/{id}', [CommentController::class, 'edit'])->name('comment.edit');
 Route::post('/comment/post/update/{id}', [CommentController::class, 'update'])->name('comment.update');
 Route::get('/comment/post/delete/{id}', [CommentController::class, 'destroy'])->name('comment.destory');
+Route::get('/user/logout', [AuthController::class, 'logout'])->name('user.logout');
 
-// Route::get('/post', function () {
-//     return view('post');
-// });
-// Route::get('/single-post', function () {
-//     return view('single-post');
-// });
-Route::get('/contact-us', [ContactController::class, 'index'])->name('contact-us');
-Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');
-// Route::get('/contact-us', function () {
-//     return view('contact');
-// })->name('contact-us');
-
-// Route::get('/about-us', function () {
-//     return view('about');
-// });

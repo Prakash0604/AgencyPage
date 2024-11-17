@@ -26,7 +26,7 @@ class TestimonialController extends Controller
                 return ' <td class="py-1"><img src="' . $dataimage . '" width="50" height="50"/></td>';
             })
             ->addColumn('description',function($item){
-                return Str::limit($item->description,20);
+                return Str::limit(strip_tags($item->description),20);
             })
             ->rawColumns(['action','image'])
             ->make(true);
@@ -37,8 +37,7 @@ class TestimonialController extends Controller
     public function store(TestimonalRequest $request){
         DB::beginTransaction();
         try{
-            $data=$request->only(['name','designation','address']);
-            $data['description']=strip_tags($request->description);
+            $data=$request->only(['name','designation','address','description']);
             if($request->hasFile('image')){
                 $path='/images/testimonial/';
                 $imagename=time().'.'.$request->image->extension();
@@ -70,7 +69,7 @@ class TestimonialController extends Controller
             $testimonial=Testimonial::find($id);
             $testimonial->name=$request->input('name');
             $testimonial->designation=$request->input('designation');
-            $testimonial->description=strip_tags($request->input('description'));
+            $testimonial->description=$request->input('description');
             $testimonial->status=$request->input('status');
             if($request->hasFile('image')){
                 $filepath='/images/testimonial/';
@@ -94,7 +93,12 @@ class TestimonialController extends Controller
     public function destory($id)
     {
         try{
-            Testimonial::find($id)->delete();
+            $data=Testimonial::find($id);
+            if($data->image){
+                Storage::disk('public')->delete($data->image);
+            }
+            $data->delete();
+
             return response()->json(['success'=>true]);
         }catch(\Exception $e){
             return response()->json(['success'=>false,'message'=>$e->getMessage()]);

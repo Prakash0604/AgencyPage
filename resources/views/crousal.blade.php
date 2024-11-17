@@ -10,7 +10,7 @@
                     <div class="col-md-12 text-center">
                         <h3 class="slide-sub-title" data-animation-in="slideInRight">{{ $slide->title }}
                         </h3>
-                        <p>{{ $slide->shortdesc }}</p>
+                        <p>{!! $slide->shortdesc !!}</p>
                     </div>
                 </div>
             </div>

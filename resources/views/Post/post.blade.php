@@ -47,7 +47,7 @@
                                 </div><!-- header end -->
 
                                 <div class="entry-content">
-                                    <p>{{ Str::limit($post->description,400)  }}</p>
+                                    <p>{!! Str::limit($post->description,400) !!}</p>
                                 </div>
 
                                 <div class="post-footer">

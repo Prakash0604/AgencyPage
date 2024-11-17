@@ -24,7 +24,9 @@
     </div>
     <script>
         $(document).ready(function() {
-            $(".summernote").summernote();
+            $(".summernote").summernote({
+                height:300
+            });
             // Data Table
             var table = $("#show-testimonial-data").DataTable({
                 processing: true,
@@ -64,7 +66,13 @@
                 }]
             })
 
+            function clearModal(){
+                $("#testimonialImage").html("");
+                $("#validationErrors").addClass("d-none").html("");
+                $("#testimonialDescription").summernote("code","");
+            }
             $(document).on("click", ".addTestimonialBtn", function() {
+                clearModal();
                 $("#formModal").modal("show");
                 $(".submitBtn").show();
                 $(".updateBtn").hide();
@@ -73,7 +81,7 @@
                 $("#addForm")[0].reset();
             });
 
-            $(document).on("submit", "#addForm", function(event) {
+            $(document).off("submit","#addForm").on("submit", "#addForm", function(event) {
                 event.preventDefault();
                 $(".submitBtn").prop("disabled", true);
                 let formdata = new FormData(this);
@@ -117,6 +125,7 @@
 
             // Edit and Update
             $(document).on("click",".editUserButton",function(){
+                clearModal();
                 $("#formModal").modal("show");
                 $(".submitBtn").hide();
                 $(".updateBtn").show();

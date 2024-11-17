@@ -10,9 +10,9 @@
                 <div class="modal-body">
                     <p id="validationErrors" class="alert alert-danger d-none"></p>
                     <div class="row">
-
+                        <span class="mt-2 mb-4"><span class="text-danger">Note:</span> (<span class="text-danger">*</span>) symbol represent that the field is required</span>
                         <div class="col-md-12 mb-4">
-                            <label for="" class="form-label">Category</label>
+                            <label for="" class="form-label">Category<span class="text-danger">*</span></label>
                             <select
                                 class="form-select"
                                 name="post_category_id"
@@ -27,19 +27,19 @@
 
                         <div class="col-md-12 mb-4">
                             @csrf
-                            <label for="" class="form-label">Title</label>
+                            <label for="" class="form-label">Title<span class="text-danger">*</span></label>
                             <input type="text" name="post_title" id="posttitleData" class="form-control" placeholder=""
                                 aria-describedby="helpId" />
                         </div>
                         <div class="col-md-12 mb-4">
-                            <label for="" class="form-label">Image</label>
+                            <label for="" class="form-label">Image<span class="text-danger">*</span></label>
                             <input type="file" name="post_image" id="post_image" class="form-control" placeholder=""
                                 aria-describedby="helpId" />
                                 <div class="postImageData"></div>
                         </div>
 
                         <div class="mb-3 mb-4">
-                            <label for="" class="form-label">Description</label>
+                            <label for="" class="form-label">Description<span class="text-danger">*</span></label>
                             <textarea class="form-control summernote" name="post_description" id="post_description" rows="3"></textarea>
                         </div>
 

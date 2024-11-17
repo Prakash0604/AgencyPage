@@ -26,13 +26,14 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h3 class="column-title">{{ $frontend->about_us_title }}</h3>
-                    <p>{{ $frontend->about_us_description }}</p>
+                    <p>{!! $frontend->about_us_description !!}</p>
                 </div><!-- Col end -->
 
             </div><!-- Content row end -->
 
         </div><!-- Container end -->
     </section><!-- Main container end -->
+
 
 
     <section id="facts" class="facts-area dark-bg">
@@ -113,7 +114,7 @@
                                 <div class="ts-team-content">
                                     <h3 class="ts-name">{{ $user->full_name }}</h3>
                                     <p class="ts-designation">{{ $user->position ?? '' }}</p>
-                                    <p class="ts-description">{{ $user->notes ?? '' }}</p>
+                                    <p class="ts-description">{!! $user->notes ?? '' !!}</p>
                                     <div class="team-social-icons">
                                         <a target="_blank" href="{{ $user->facebook_link ?? '' }}"><i class="fab fa-facebook-f"></i></a>
                                         <a target="_blank" href="{{ $user->twitter_link ?? '' }}"><i class="fab fa-twitter"></i></a>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FrontendRequest;
+use App\Models\SiteData;
 
 class FrontendController extends Controller
 {
@@ -37,5 +38,12 @@ class FrontendController extends Controller
             // return response()->json(['success'=>false,'message'=>$e->getMessage()]);
             return redirect()->back()->with(['error'=>'Something went wrong!'.$e->getMessage()]);
         }
+    }
+
+
+    public function siteData(){
+        $siteData=SiteData::firstOrFail();
+        $days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+        return view('Admin.pages.FrontEnd.sitedata',compact('days','siteData'));
     }
 }

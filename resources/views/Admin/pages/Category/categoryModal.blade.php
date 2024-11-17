@@ -10,9 +10,10 @@
                 <div class="modal-body">
                     <p id="validationErrors" class="alert alert-danger d-none"></p>
                     <div class="row">
+                        <span class="mt-2 mb-4"><span class="text-danger">Note:</span> (<span class="text-danger">*</span>) symbol represent that the field is required</span>
                         <div class="col-md-12">
                             @csrf
-                            <label for="" class="form-label">Title</label>
+                            <label for="" class="form-label">Title<span class="text-danger">*</span></label>
                             <input type="text" name="title" id="categorytitleData" class="form-control" placeholder=""
                                 aria-describedby="helpId" />
                         </div>

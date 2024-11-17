@@ -49,7 +49,7 @@
                             </div><!-- header end -->
 
                             <div class="entry-content">
-                                <p>{{ $post->description }}</p>
+                                <p>{!! $post->description !!}</p>
 
                                 <p>Kucididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
 

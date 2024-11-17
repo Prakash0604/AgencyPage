@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
@@ -67,7 +68,7 @@ class UserController extends Controller
             $user->facebook_link = $request->facebook_link;
             $user->instagram_link = $request->instagram_link;
             $user->twitter_link = $request->twitter_link;
-            $user->notes =strip_tags( $request->notes);
+            $user->notes = $request->notes;
             $user->save();
 
             DB::commit();
@@ -83,7 +84,7 @@ class UserController extends Controller
     {
         try {
             $data = User::find($id);
-            return response()->json(['success' => true, 'message' => $data]);
+            return response()->json(data: ['success' => true, 'message' => $data]);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
@@ -109,11 +110,30 @@ class UserController extends Controller
 
             $user->update($data);
             DB::commit();
-            return response()->json(['success' => true]);
+            return response()->json(['success' => true],200);
         } catch (\Exception $e) {
             dd($e);
             DB::rollBack();
             return response()->json(['success' => false, 'message' => $e->getMessage()]);
+        }
+    }
+
+
+    public function passwordReset(Request $request,$id){
+        try{
+            $request->validate([
+                'newPassword'=>'required',
+                'confirmPassword'=>'same:newPassword',
+            ]);
+            $userid=User::find($id);
+            if(!Hash::check($request->currentPassword,$userid->password)){
+                return response()->json(['success'=>false,'message'=>"Current Password does not match ?"]);
+            }
+            $userid->password=$request->newPassword;
+            $userid->save();
+            return response()->json(['success'=>true,'message'=>'Password Changed Successfully!']);
+        }catch(\Exception $e){
+            return response()->json(['success'=>false,'message'=>$e->getMessage()]);
         }
     }
 
@@ -123,6 +143,9 @@ class UserController extends Controller
         DB::beginTransaction();
         try {
             $user = User::find($id);
+            if($user->image){
+                Storage::disk('public')->delete($user->image);
+               }
             $user->delete();
             DB::commit();
             return response()->json(['success' => true]);

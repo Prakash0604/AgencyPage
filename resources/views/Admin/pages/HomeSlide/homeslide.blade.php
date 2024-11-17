@@ -24,7 +24,9 @@
 
     <script>
         $(document).ready(function() {
-            $(".summernote").summernote();
+            $(".summernote").summernote({
+                height: 300
+            });
 
             // Data Tables
             var table = $("#show-homeSlide-data").DataTable({
@@ -63,7 +65,15 @@
                     }
                 ]
             })
+
+            function clearModal() {
+                $("#homeSliderDescription").summernote("code", "");
+                $("#homeSlideImage").html("");
+                $("#validationErrors").addClass("d-none").html('');
+            }
+
             $(document).on("click", ".addHomeSlideBtn", function() {
+                clearModal();
                 $("#formModal").modal("show");
                 $(".updateBtn").hide();
                 $(".submitBtn").show();
@@ -72,7 +82,7 @@
                 $('#addForm')[0].reset();
             });
 
-            $(document).on("submit", "#addForm", function(event) {
+            $(document).off("submit", "#addForm").on("submit", "#addForm", function(event) {
                 event.preventDefault();
                 $(".submitBtn").prop("disabled", true);
                 let formdata = new FormData(this);
@@ -118,6 +128,7 @@
 
             // Edit
             $(document).on("click", ".editUserButton", function() {
+                clearModal();
                 let id = $(this).attr("data-id");
                 $("#formModal").modal("show");
                 $(".updateBtn").show();
@@ -139,13 +150,16 @@
                         `);
                         }
                         $("#status").val(response.message.status);
-                        $("#homeSliderDescription").summernote('code',response.message.shortdesc);
+                        $("#homeSliderDescription").summernote('code', response.message
+                            .shortdesc);
 
                     }
                 });
 
-                $("#updateForm").submit(function(event) {
+                // Update
+                $(document).off("submit", "#updateForm").on("submit", "#updateForm", function(event) {
                     event.preventDefault();
+                    // clearModal();
                     let formdata = new FormData(this);
                     $(".updateBtn").prop("disabled", true);
                     $.ajax({
@@ -177,9 +191,11 @@
                         complete: function() {
                             $(".updateBtn").prop("disabled", false);
                         }
-                    })
-                })
+                    });
+                });
             })
+
+
 
             // Delete Record
 

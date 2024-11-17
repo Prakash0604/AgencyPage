@@ -10,26 +10,27 @@
                 <div class="modal-body">
                     <p id="validationErrors" class="alert alert-danger d-none"></p>
                     <div class="row">
+                        <span class="mt-2 mb-4"><span class="text-danger">Note:</span> (<span class="text-danger">*</span>) symbol represent that the field is required</span>
                         <div class="col-md-6">
                             @csrf
-                            <label for="" class="form-label">Name</label>
+                            <label for="" class="form-label">Name<span class="text-danger">*</span></label>
                             <input type="text" name="name" id="name" class="form-control" placeholder=""
                                 aria-describedby="helpId" />
                         </div>
 
                         <div class="col-md-6">
-                            <label for="" class="form-label">Designation</label>
+                            <label for="" class="form-label">Designation<span class="text-danger">*</span></label>
                             <input type="text" name="designation" id="designation" class="form-control" placeholder=""
                                 aria-describedby="helpId" />
                             <div id="homeSlideImage"> </div>
                         </div>
                         <div class="col-md-6">
-                            <label for="" class="form-label">Address</label>
+                            <label for="" class="form-label">Address<span class="text-danger">*</span></label>
                             <input type="text" name="address" id="address" class="form-control" placeholder=""
                                 aria-describedby="helpId" />
                         </div>
                          <div class="col-md-6">
-                            <label for="" class="form-label">Image</label>
+                            <label for="" class="form-label">Image<span class="text-danger">*</span></label>
                             <input type="file" name="image" id="image" class="form-control" placeholder=""
                                 aria-describedby="helpId" />
                             <div id="testimonialImage"> </div>

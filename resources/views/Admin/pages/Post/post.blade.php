@@ -23,7 +23,9 @@
     </div>
     <script>
         $(document).ready(function() {
-            $(".summernote").summernote();
+            $(".summernote").summernote({
+                height:300
+            });
 
             // Data Table
             var table = $("#data-post-show").DataTable({
@@ -70,10 +72,19 @@
                         orderable: false,
                         searchable: false
                     }
-                ]
+                ],
+                pageLength: 10, // Set default limit
+                lengthMenu: [5, 10, 25, 50],
             })
+
+            function clearModal(){
+                $("#validationErrors").addClass('d-none').html("");
+                $("#post_description").summernote("code","");
+                $(".postImageData").html("");
+            }
             // Add Post
             $(document).on("click", ".addPostBtn", function() {
+                clearModal();
                 $("#formModal").modal("show");
                 $(".submitBtn").show();
                 $(".updateBtn").hide();
@@ -82,7 +93,7 @@
                 $("#addForm")[0].reset();
             });
 
-            $(document).on("submit", "#addForm", function(event) {
+            $(document).off("submit","#addForm").on("submit", "#addForm", function(event) {
                 event.preventDefault();
                 $(".submitBtn").prop("disabled", true);
                 let formdata = new FormData(this);
@@ -127,6 +138,7 @@
             // Edit Post
 
             $(document).on("click", ".editUserButton", function() {
+                clearModal();
                 let id = $(this).attr("data-id");
                 $("#formModal").modal("show");
                 $("#postTitle").text("Edit Post");
@@ -150,7 +162,7 @@
                     }
                 });
 
-                $(document).off("submit").on("submit", "#updateForm", function(event) {
+                $(document).off("submit","#updateForm").on("submit", "#updateForm", function(event) {
                     event.preventDefault();
                     // $("#post_image").prop("disabled", true);
                     $(".updateBtn").prop("disabled", true);

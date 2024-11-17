@@ -7,7 +7,7 @@
                     <div class="item">
                         <div class="quote-item">
                             <span class="quote-text">
-                                {{ $testimonial->description }}
+                                {!! $testimonial->description !!}
                             </span>
                             <div class="quote-item-footer d-flex align-content-center">
                                 <img loading="lazy" class="testimonial-thumb"

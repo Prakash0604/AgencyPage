@@ -32,7 +32,7 @@ class HomeSliderController extends Controller
                     }
                 })
                 ->addColumn('shortdesc',function($desc){
-                    return Str::limit($desc->shortdesc,70);
+                    return Str::limit(strip_tags($desc->shortdesc),70);
                 })
                 ->rawColumns(['action', 'image'])
                 ->make(true);
@@ -45,8 +45,7 @@ class HomeSliderController extends Controller
     {
         DB::beginTransaction();
         try {
-            $data = $request->only('title');
-            $data['shortdesc'] = strip_tags($request->shortdesc);
+            $data = $request->only(['title','shortdesc']);
             if ($request->hasFile('image')) {
                 $folder = 'images/homeslide/';
                 $imagename = time() . '.' . $request->image->extension();
@@ -55,7 +54,7 @@ class HomeSliderController extends Controller
             }
             HomeSlide::create($data);
             DB::commit();
-            return response()->json(['success' => true]);
+            return response()->json(['success' => true],200);
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json(['success' => false, 'message' => $e->getMessage()]);
@@ -76,10 +75,8 @@ class HomeSliderController extends Controller
     {
         try {
             $homeslide = HomeSlide::find($id);
-            $data = $request->only(['title', 'status']);
-            // $data['status']=$request->status;
-            $data['shortdesc'] = strip_tags($request->shortdesc);
-
+            $data = $request->only(['title', 'status','shortdesc']);
+            // dd($data);
             if ($request->hasFile('image')) {
                 $path = '/images/homeslide/';
                 if ($homeslide->image != null) {
@@ -98,7 +95,11 @@ class HomeSliderController extends Controller
     public function destory($id)
     {
         try {
-            HomeSlide::find($id)->delete();
+            $data=HomeSlide::find($id);
+            if($data->image){
+                Storage::disk('public')->delete($data->image);
+            }
+            $data->delete();
             return response()->json(['success' => true]);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => $e->getMessage()]);
