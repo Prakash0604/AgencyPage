@@ -32,6 +32,7 @@
                             <label for="" class="form-label">Image<span class="text-danger">*</span></label>
                             <input type="file" name="post_images[]" id="post_image" class="form-control" multiple
                                 placeholder="" aria-describedby="helpId" />
+                                <span class="text-danger infoPostImageText"></span>
                             <div class="postImageData"></div>
                         </div>
 

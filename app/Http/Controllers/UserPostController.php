@@ -9,7 +9,7 @@ class UserPostController extends Controller
 {
     public function index()
     {
-        $posts = Post::with(['createdBy', 'category'])->where('status', 'Active')->orderBy('id','desc')->paginate(5);
+        $posts = Post::with(['createdBy', 'category','postImages'])->where('status', 'Active')->orderBy('id','desc')->paginate(5);
         return view('Post.post', compact('posts'));
     }
 

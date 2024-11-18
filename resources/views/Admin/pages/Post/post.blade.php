@@ -97,7 +97,7 @@
                         if (response.images && response.images.length > 0) {
 
                             response.images.forEach((image, index) => {
-                                let imagePath = '/storage/' + image.replace('//',
+                                let imagePath = '/storage/' + image.path.replace('//',
                                     '/');
                                 $(".fetch-post-image-data").append(`
                                  <div class="carousel-item ${index === 0 ? 'active':''} ">
@@ -118,6 +118,7 @@
                 $(".submitBtn").show();
                 $(".updateBtn").hide();
                 $(".statusdiv").hide();
+                $(".infoPostImageText").text("Multiple Image Can be Uploaded");
                 $(".form").attr("id", 'addForm');
                 $("#addForm")[0].reset();
             });
@@ -171,6 +172,7 @@
                 let id = $(this).attr("data-id");
                 $("#formModal").modal("show");
                 $("#postTitle").text("Edit Post");
+                // $(".infoPostImageText").text("Note:The Image Can be removed without updating after you click on remove button Also");
                 $(".submitBtn").hide();
                 $(".updateBtn").show();
                 $(".form").attr('id', 'updateForm');
@@ -180,16 +182,16 @@
                     url: "/admin/post/detail/" + id,
                     type: "get",
                     success: function(response) {
-                        console.log(response);
+                        // console.log(response);
                         $("#posttitleData").val(response.message.title);
                         $("#category_id").val(response.message.category_id);
                         if (response.images && response.images.length > 0) {
                             $(".postImageData").html("");
-                            response.images.forEach((image, index) => {
-                                let imagePath = '/storage/' + image.replace('//', '/');
+                            response.images.forEach((image) => {
+                                let imagePath = '/storage/' + image.path.replace('//', '/');
                                 $(".postImageData").append(`
                                     <li class="image-item"><img src="${imagePath}" alt="Image" class="img-thumbnail" width="100">
-                                        <button type="button" class="btn btn-danger btn-sm remove-image" data-image-id="${image}">
+                                        <button type="button" class="btn btn-danger btn-sm remove-image" data-image-id="${image.id}">
                                         Remove
                                         </button>
                                     </li>
@@ -260,6 +262,7 @@
                         success: function(response) {
                             if (response.success) {
                                 $(this).parent(".image-item").remove();
+                                table.draw();
                             }
                         }.bind(this),
                         error: function(response) {

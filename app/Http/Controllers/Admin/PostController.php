@@ -100,7 +100,12 @@ class PostController extends Controller
     {
         try {
             $data = Post::with(['category', 'postImages'])->find($id);
-            $images = $data->postImages->pluck('image');
+            $images = $data->postImages->map(function($image){
+                return [
+                    'id'=>$image->id,
+                    'path'=>$image->image
+                ];
+            });
             // dd($images);
             return response()->json(['success' => true, 'message' => $data, 'images' => $images]);
         } catch (\Exception $e) {
@@ -112,10 +117,16 @@ class PostController extends Controller
     public function destoryImage(Request $request) {
         try{
             // dd($request->all());
-            PostImage::where('image',$request->image_id)->delete();
+           $data= PostImage::find($request->image_id);
+        //    dd($data->image);
+           if($data->image!=null){
+            Storage::disk('public')->delete($data->image);
+           }
+           $data->delete();
+
             return response()->json(['success'=>true,'message'=>'Image Deleted Successfully']);
         }catch(\Exception $e){
-            return response()->json(['success'=>false,'message'=>$e->getMessage()]);
+            return response()->json(['success'=>false,'message'=>$e->getMessage(),'line'=>$e->getTrace()]);
         }
     }
 
@@ -161,12 +172,14 @@ class PostController extends Controller
     public function destroy($id)
     {
         try {
-            $data = Post::with(['postImage'])->find($id);
+            $data = Post::with('postImages')->find($id);
 
-            dd($data);
-            // if ($data->postImage->image) {
-            //     Storage::disk('public')->delete($data->postImage->image);
-            // }
+            // dd($data);
+            if ($data->postImages!= null) {
+                foreach($data->postImages as $img){
+                    Storage::disk('public')->delete($img->image);
+                }
+            }
             $data->delete();
             return response()->json(['success' => true]);
         } catch (\Exception $e) {
