@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\PostImage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
@@ -19,18 +20,26 @@ class PostController extends Controller
     {
         if ($request->ajax()) {
 
-            $data = Post::orderBy('id', 'desc')->get();
+            $data = Post::with('postImages')->orderBy('id', 'desc')->get();
+            // dd($data);
             return DataTables::of($data)
                 // ->setTotalRecords($totalRecords)
                 ->addIndexColumn()
-                ->addColumn('image', function ($item) {
-                    if ($item->image != null) {
-                        $image = asset('storage/' . $item->image);
-                        return '<td class="py-1"><img src="' . $image . '" width="50" height="50"/></td>';
-                    } else {
-                        $url = asset('storage/' . $item->image); // Get image URL
-                        return ' <td class="py-1"><img src="' . $url . '" width="50" height="50"/></td>';
-                    }
+                ->addColumn('image', function ($item)
+                {
+                    return "<a type='button' data-id='".$item->id."' class='imageListPopup'><span class='badge badge-primary'>".$item->postImages->count() ."</span></a>";
+                    // if ($item->postImages && $item->postImages->count() > 0) {
+                    //     foreach ($item->postImages as $index=>$postImage) {
+                    //         // dd($postImage->image);
+                    //             $imageHtml = '<ul class="persons">';
+                    //             $imageUrl = asset('storage/' . $postImage->image);
+                    //             $imageHtml = '<li><a href=""> <img src="' . $imageUrl . '" alt="Image" class="img-fluid" width="50" height="50"> </a></li>';
+                    //             $imageHtml = "</ul>";
+                    //             return $imageHtml;
+                    //     }
+                    // } else {
+                    //     return '<span>No Images Available</span>';
+                    // }
                 })
                 ->addColumn('title', function ($title) {
                     return $title->title ?? '';
@@ -63,15 +72,22 @@ class PostController extends Controller
             $post->title = $postRequest->input('post_title');
             $post->description = $postRequest->input('post_description');
             $post->category_id = $postRequest->input('post_category_id');
-            if ($postRequest->hasFile('post_image')) {
-                $filepath = 'images/post/';
-                $imagename = time() . '.' . $postRequest->post_image->extension();
-                $path = $postRequest->post_image->storeAs($filepath, $imagename, 'public');
-                $post->image = $path;
-            }
             $post->status = $postRequest->input('post_status');
             $post->created_by = Auth::id();
             $post->save();
+
+            // To Save Multiple Images
+            if ($postRequest->hasFile('post_images')) {
+                $filepath = 'images/post/';
+                foreach ($postRequest->post_images as $image) {
+                    $imagename = time() . '.' . $image->getClientOriginalName();
+                    $path = $image->storeAs($filepath, $imagename, 'public');
+                    PostImage::create([
+                        'post_id' => $post->id,
+                        'image' => $path
+                    ]);
+                }
+            }
             DB::commit();
             return response()->json(['success' => true]);
         } catch (\Exception $e) {
@@ -84,8 +100,10 @@ class PostController extends Controller
     public function getDetail($id)
     {
         try {
-            $data = Post::with(['category'])->find($id);
-            return response()->json(['success' => true, 'message' => $data]);
+            $data = Post::with(['category','postImages'])->find($id);
+            $images=$data->postImages->pluck('image');
+            // dd($images);
+            return response()->json(['success' => true, 'message' => $data,'images'=>$images]);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
@@ -123,15 +141,16 @@ class PostController extends Controller
     public function destroy($id)
     {
         try {
-            $data = Post::find($id);
+            $data = Post::with(['postImage'])->find($id);
 
-            if ($data->image) {
-                Storage::disk('public')->delete($data->image);
-            }
+            dd($data);
+            // if ($data->postImage->image) {
+            //     Storage::disk('public')->delete($data->postImage->image);
+            // }
             $data->delete();
             return response()->json(['success' => true]);
         } catch (\Exception $e) {
-            return response()->json(['success' => false, 'message' => $e->getMessage()]);
+            return response()->json(['success' => false, 'message' => $e->getMessage(), 'line' => $e->getLine(), 'which' => $e->getTrace()]);
         }
     }
 }

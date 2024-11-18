@@ -22100,6 +22100,21 @@ code {
   display: flex;
 }
 
+.custom-table tbody .persons {
+    padding: 0;
+    margin: 0; }
+    .custom-table tbody .persons li {
+      padding: 0;
+      margin: 0 0 0 -15px;
+      list-style: none;
+      display: inline-block; }
+      .custom-table tbody .persons li a {
+        display: inline-block;
+        width: 36px; }
+        .custom-table tbody .persons li a img {
+          border-radius: 50%;
+          max-width: 100%; }
+
 #doughnutChart-legend ul,
 #doughnutChartPurple-legend ul,
 #doughnutChartPurple-dark-legend ul {

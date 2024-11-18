@@ -4,7 +4,7 @@
         <button class="btn btn-primary addPostBtn mb-4">Add Post</button>
         @include('Admin.pages.Post.postModal')
         <div class="table-responsive">
-            <table class="table table-striped" id="data-post-show">
+            <table class="table table-striped custom-table" id="data-post-show">
                 <thead>
                     <tr>
                         <th scope="col">S.N</th>
@@ -24,8 +24,9 @@
     <script>
         $(document).ready(function() {
             $(".summernote").summernote({
-                height:300
+                height: 300
             });
+
 
             // Data Table
             var table = $("#data-post-show").DataTable({
@@ -77,11 +78,87 @@
                 lengthMenu: [5, 10, 25, 50],
             })
 
-            function clearModal(){
+            function clearModal() {
                 $("#validationErrors").addClass('d-none').html("");
-                $("#post_description").summernote("code","");
+                $("#post_description").summernote("code", "");
                 $(".postImageData").html("");
             }
+
+            // Show Multiple Image Modal
+            $(document).on("click", ".imageListPopup", function() {
+                $("#imageModal").modal("show");
+                let id = $(this).data('id');
+                // console.log(id);
+                $.ajax({
+                    tyoe: "get",
+                    url: "/admin/post/detail/" + id,
+                    // success: function(response) {
+                    //     // console.log(response);
+
+                    //     if (response.message === true) {
+                    //         $(".fetch-post-image-data").html("");
+
+                    //         if (response.images && response.images.length > 0) {
+                    //             response.images.forEach((image, index) => {
+
+                    //                 let imageUrl = '/storage/' + image.replace("//",
+                    //                     '/');
+
+
+                    //                 $(".fetch-post-image-data").append(`
+                //                 <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                //                     <img src="${imageUrl}" class="d-block w-100" alt="...">
+                //                 </div>
+                //                 `);
+                    //             });
+                    //         } else {
+                    //             $(".fetch-post-image-data").html(
+                    //                 '<div class="carousel-item active"><p>No images available</p></div>'
+                    //             );
+                    //         }
+                    //     } else {
+                    //         console.log("Error :" + response.message);
+
+                    //     }
+                    // }
+
+
+                    // test
+                    success: function(response) {
+                        if (response.success === true) {
+                            $("#postImageTitle").text(response.message.title);
+                            $(".fetch-post-image-data").html(
+                                ""); // Clear existing carousel items
+
+                            if (response.images && response.images.length > 0) {
+                                response.images.forEach((image, index) => {
+                                    // Normalize the image URL
+                                    let imageUrl = '/storage/' + image.replace('//',
+                                        '/');
+
+                                    // Append carousel items
+                                    $(".fetch-post-image-data").append(`
+                                      <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                                          <img src="${imageUrl}" class="d-block w-100" alt="Image">
+                                      </div>
+                                        `);
+                                });
+                            } else {
+                                // Handle case with no images
+                                $(".fetch-post-image-data").html(
+                                    '<div class="carousel-item active"><p>No images available</p></div>'
+                                );
+                            }
+                        } else {
+                            console.log("Error: " + response
+                                .message); // Log error for unsuccessful response
+                        }
+                    }
+
+                })
+
+            })
+
             // Add Post
             $(document).on("click", ".addPostBtn", function() {
                 clearModal();
@@ -93,7 +170,7 @@
                 $("#addForm")[0].reset();
             });
 
-            $(document).off("submit","#addForm").on("submit", "#addForm", function(event) {
+            $(document).off("submit", "#addForm").on("submit", "#addForm", function(event) {
                 event.preventDefault();
                 $(".submitBtn").prop("disabled", true);
                 let formdata = new FormData(this);
@@ -157,12 +234,13 @@
                         $(".postImageData").html(
                             `<img src="/storage/${response.message.image}" height="100" width="100">`
                         );
-                        $("#post_description").summernote('code', response.message.description);
+                        $("#post_description").summernote('code', response.message
+                            .description);
                         $("#post_status").val(response.message.status);
                     }
                 });
 
-                $(document).off("submit","#updateForm").on("submit", "#updateForm", function(event) {
+                $(document).off("submit", "#updateForm").on("submit", "#updateForm", function(event) {
                     event.preventDefault();
                     // $("#post_image").prop("disabled", true);
                     $(".updateBtn").prop("disabled", true);
@@ -235,7 +313,7 @@
                                     Swal.fire({
                                         icon: "warning",
                                         title: "Unable to Delete",
-                                        text: "Post Already been commented"
+                                        text: response.message
                                     });
                                 }
 

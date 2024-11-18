@@ -24,7 +24,9 @@ class PostRequest extends FormRequest
     {
         return [
             'post_title' => 'required|min:3',
-            'post_image' => $this->route('id') ? 'mimes:png,jpeg,jpg,webp': 'required|mimes:png,jpg,jpeg,webp',
+            // 'post_images' => $this->route('id') ? 'nullable|mimes:png,jpeg,jpg,webp'  : 'required|mimes:png,jpeg,jpg,webp',
+            'post_images' => $this->route('id') ? 'array'  : 'required|array',
+            'post_images.*' => 'mimes:png,jpeg,jpg,webp|max:2048',
             'post_description' => 'required',
             'post_category_id' => 'required|in:' . implode(',', $this->getOptions()),
         ];
@@ -34,8 +36,8 @@ class PostRequest extends FormRequest
         return[
             'title.required'=>'Please Enter the Title',
             'title.min'=>'Title should be at least 3 character',
-            'image.required'=>'Please Insert the Image',
-            'image.mimes'=>'Image should be of : png,jpeg,jpg,webp',
+            'post_images.required'=>'Please Insert the Image',
+            'post_images.*.mimes'=>'Image should be of : png,jpeg,jpg,webp',
             'description.required'=>'Please Enter the description',
             'category_id.required'=>'Please Select the Category',
             'category_id.in'=>'Please Select from the given options only'
