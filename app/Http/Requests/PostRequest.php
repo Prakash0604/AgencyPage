@@ -34,13 +34,13 @@ class PostRequest extends FormRequest
 
     public function messages(){
         return[
-            'title.required'=>'Please Enter the Title',
-            'title.min'=>'Title should be at least 3 character',
+            'post_title.required'=>'Please Enter the Title',
+            'post_title.min'=>'Title should be at least 3 character',
             'post_images.required'=>'Please Insert the Image',
             'post_images.*.mimes'=>'Image should be of : png,jpeg,jpg,webp',
-            'description.required'=>'Please Enter the description',
-            'category_id.required'=>'Please Select the Category',
-            'category_id.in'=>'Please Select from the given options only'
+            'post_description.required'=>'Please Enter the description',
+            'post_category_id.required'=>'Please Select the Category',
+            'post_category_id.in'=>'Please Select from the given options only'
         ];
     }
 

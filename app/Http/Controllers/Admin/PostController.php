@@ -25,9 +25,8 @@ class PostController extends Controller
             return DataTables::of($data)
                 // ->setTotalRecords($totalRecords)
                 ->addIndexColumn()
-                ->addColumn('image', function ($item)
-                {
-                    return "<a type='button' data-id='".$item->id."' class='imageListPopup'><span class='badge badge-primary'>".$item->postImages->count() ."</span></a>";
+                ->addColumn('image', function ($item) {
+                    return "<a type='button' data-id='" . $item->id . "' class='imageListPopup'><span class='badge badge-primary'>" . $item->postImages->count() . "</span></a>";
                     // if ($item->postImages && $item->postImages->count() > 0) {
                     //     foreach ($item->postImages as $index=>$postImage) {
                     //         // dd($postImage->image);
@@ -100,35 +99,55 @@ class PostController extends Controller
     public function getDetail($id)
     {
         try {
-            $data = Post::with(['category','postImages'])->find($id);
-            $images=$data->postImages->pluck('image');
+            $data = Post::with(['category', 'postImages'])->find($id);
+            $images = $data->postImages->pluck('image');
             // dd($images);
-            return response()->json(['success' => true, 'message' => $data,'images'=>$images]);
+            return response()->json(['success' => true, 'message' => $data, 'images' => $images]);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
     }
 
 
+    public function destoryImage(Request $request) {
+        try{
+            // dd($request->all());
+            PostImage::where('image',$request->image_id)->delete();
+            return response()->json(['success'=>true,'message'=>'Image Deleted Successfully']);
+        }catch(\Exception $e){
+            return response()->json(['success'=>false,'message'=>$e->getMessage()]);
+        }
+    }
+
     public function update(PostRequest $postRequest, $id)
     {
         DB::beginTransaction();
         try {
-            $data = Post::find($id);
+            $data = Post::findOrFail($id);
             $data->title = $postRequest->input('post_title');
             $data->category_id = $postRequest->input('post_category_id');
             $data->description = $postRequest->input('post_description');
             $data->status = $postRequest->input('post_status');
-            if ($postRequest->hasFile('post_image')) {
-                $filepath = 'images/post/';
-                if ($data->image !== null) {
-                    Storage::disk('public')->delete($data->image);
-                }
-                $imagename = time() . '.' . $postRequest->post_image->extension();
-                $path = $postRequest->post_image->storeAs($filepath, $imagename, 'public');
-                $data->image = $path;
-            }
             $data->save();
+
+            if ($postRequest->hasFile('post_images')) {
+                $existingImages = PostImage::where('post_id', $id)->get();
+                foreach ($existingImages as $image) {
+                    Storage::disk('public')->delete($image->image);
+                    $image->delete();
+                }
+
+                foreach ($postRequest->file('post_images') as $image) {
+                    $imagename = time() . '_' . $image->getClientOriginalName();
+                    $imagePath = $image->storeAs('images/post', $imagename, 'public');
+
+                    PostImage::create([
+                        'post_id' => $data->id,
+                        'image' => $imagePath,
+                    ]);
+                }
+            }
+
             DB::commit();
             return response()->json(['success' => true]);
         } catch (\Exception $e) {
@@ -136,6 +155,7 @@ class PostController extends Controller
             return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
     }
+
 
 
     public function destroy($id)

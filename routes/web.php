@@ -88,6 +88,7 @@ Route::middleware('admin')->group(function () {
     Route::get('/admin/post/detail/{id}', [PostController::class, 'getDetail'])->name('admin.post.detail');
     Route::post('/admin/post/edit/{id}', [PostController::class, 'update'])->name('admin.post.update');
     Route::get('/admin/post/delete/{id}', [PostController::class, 'destroy']);
+    Route::get('/admin/post/image/delete', [PostController::class, 'destoryImage']);
 
     Route::get('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
 });

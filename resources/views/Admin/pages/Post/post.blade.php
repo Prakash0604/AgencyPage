@@ -97,7 +97,7 @@
                         if (response.images && response.images.length > 0) {
 
                             response.images.forEach((image, index) => {
-                                let imagePath = '/storage/'+image.replace('//',
+                                let imagePath = '/storage/' + image.replace('//',
                                     '/');
                                 $(".fetch-post-image-data").append(`
                                  <div class="carousel-item ${index === 0 ? 'active':''} ">
@@ -107,7 +107,6 @@
                             });
                         }
                     }
-
                 })
 
             })
@@ -184,9 +183,19 @@
                         console.log(response);
                         $("#posttitleData").val(response.message.title);
                         $("#category_id").val(response.message.category_id);
-                        $(".postImageData").html(
-                            `<img src="/storage/${response.message.image}" height="100" width="100">`
-                        );
+                        if (response.images && response.images.length > 0) {
+                            $(".postImageData").html("");
+                            response.images.forEach((image, index) => {
+                                let imagePath = '/storage/' + image.replace('//', '/');
+                                $(".postImageData").append(`
+                                    <li class="image-item"><img src="${imagePath}" alt="Image" class="img-thumbnail" width="100">
+                                        <button type="button" class="btn btn-danger btn-sm remove-image" data-image-id="${image}">
+                                        Remove
+                                        </button>
+                                    </li>
+                                    `);
+                            });
+                        }
                         $("#post_description").summernote('code', response.message
                             .description);
                         $("#post_status").val(response.message.status);
@@ -235,6 +244,29 @@
                     })
                 })
             })
+
+            // Image Delete
+            $(document).on("click", ".remove-image", function() {
+                    let imageId = $(this).data("image-id");
+                    // console.log(id);
+
+                    $.ajax({
+                        type: "get",
+                        url: "/admin/post/image/delete",
+                        data: {
+                            // _token: $('meta[name="csrf-token"]').attr('content'),
+                            image_id: imageId
+                        },
+                        success: function(response) {
+                            if (response.success) {
+                                $(this).parent(".image-item").remove();
+                            }
+                        }.bind(this),
+                        error: function(response) {
+                            console.error("Failed to delete image.");
+                        }
+                    });
+                });
 
             // Delete Post
 
