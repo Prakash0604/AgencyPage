@@ -92,66 +92,19 @@
                 $.ajax({
                     tyoe: "get",
                     url: "/admin/post/detail/" + id,
-                    // success: function(response) {
-                    //     // console.log(response);
-
-                    //     if (response.message === true) {
-                    //         $(".fetch-post-image-data").html("");
-
-                    //         if (response.images && response.images.length > 0) {
-                    //             response.images.forEach((image, index) => {
-
-                    //                 let imageUrl = '/storage/' + image.replace("//",
-                    //                     '/');
-
-
-                    //                 $(".fetch-post-image-data").append(`
-                //                 <div class="carousel-item ${index === 0 ? 'active' : ''}">
-                //                     <img src="${imageUrl}" class="d-block w-100" alt="...">
-                //                 </div>
-                //                 `);
-                    //             });
-                    //         } else {
-                    //             $(".fetch-post-image-data").html(
-                    //                 '<div class="carousel-item active"><p>No images available</p></div>'
-                    //             );
-                    //         }
-                    //     } else {
-                    //         console.log("Error :" + response.message);
-
-                    //     }
-                    // }
-
-
-                    // test
                     success: function(response) {
-                        if (response.success === true) {
-                            $("#postImageTitle").text(response.message.title);
-                            $(".fetch-post-image-data").html(
-                                ""); // Clear existing carousel items
+                        $(".fetch-post-image-data").html("");
+                        if (response.images && response.images.length > 0) {
 
-                            if (response.images && response.images.length > 0) {
-                                response.images.forEach((image, index) => {
-                                    // Normalize the image URL
-                                    let imageUrl = '/storage/' + image.replace('//',
-                                        '/');
-
-                                    // Append carousel items
-                                    $(".fetch-post-image-data").append(`
-                                      <div class="carousel-item ${index === 0 ? 'active' : ''}">
-                                          <img src="${imageUrl}" class="d-block w-100" alt="Image">
-                                      </div>
-                                        `);
-                                });
-                            } else {
-                                // Handle case with no images
-                                $(".fetch-post-image-data").html(
-                                    '<div class="carousel-item active"><p>No images available</p></div>'
-                                );
-                            }
-                        } else {
-                            console.log("Error: " + response
-                                .message); // Log error for unsuccessful response
+                            response.images.forEach((image, index) => {
+                                let imagePath = '/storage/'+image.replace('//',
+                                    '/');
+                                $(".fetch-post-image-data").append(`
+                                 <div class="carousel-item ${index === 0 ? 'active':''} ">
+                                 <img src="${imagePath}" class="d-block w-100" alt="...">
+                                 </div>
+                                `);
+                            });
                         }
                     }
 

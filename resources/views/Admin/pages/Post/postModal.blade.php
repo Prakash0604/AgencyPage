@@ -65,7 +65,7 @@
 {{-- Image Crousal --}}
 <div class="modal fade" id="imageModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog">
         <div class="modal-content">
             <form id="formId" class="form">
                 <div class="modal-header">
