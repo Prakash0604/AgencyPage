@@ -58,6 +58,8 @@ Route::middleware('admin')->group(function () {
     Route::get('/admin/home-slide/detail/{id}', [HomeSliderController::class, 'getHomeSliderDetail'])->name('admin.homeslide.detail');
     Route::post('/admin/home-slide/update/{id}', [HomeSliderController::class, 'update'])->name('admin.homeslide.update');
     Route::get('/admin/home-slide/delete/{id}', [HomeSliderController::class, 'destory'])->name('admin.homeslide.destory');
+    Route::get('/admin/home-slide/status/{id}', [HomeSliderController::class, 'statusToggle'])->name('admin.homeslide.status');
+
 
     // FrontEnd
     Route::get('/admin/front-end', [AdminFrontendController::class, 'index'])->name('admin.frontend');
@@ -72,6 +74,7 @@ Route::middleware('admin')->group(function () {
     Route::get('/admin/testimonial/detail/{id}', [TestimonialController::class, 'showDetail'])->name('admin.testimonial.detail');
     Route::post('/admin/testimonial/update/{id}', [TestimonialController::class, 'update'])->name('admin.testimonial.update');
     Route::get('/admin/testimonial/delete/{id}', [TestimonialController::class, 'destory'])->name('admin.testimonial.destory');
+    Route::get('/admin/testimonial/status/{id}', [TestimonialController::class, 'statusToggle'])->name('admin.testimonial.status');
 
 
     // Category
@@ -80,6 +83,7 @@ Route::middleware('admin')->group(function () {
     Route::get('/admin/category/detail/{id}', [CategoryController::class, 'detailCategory'])->name('admin.category.detail');
     Route::post('/admin/category/update/{id}', [CategoryController::class, 'update'])->name('admin.category.update');
     Route::get('/admin/category/delete/{id}', [CategoryController::class, 'destroy'])->name('admin.category.destory');
+    Route::get('/admin/category/status/{id}', [CategoryController::class, 'statusToggle'])->name('admin.category.status');
 
 
     // Post
@@ -89,6 +93,9 @@ Route::middleware('admin')->group(function () {
     Route::post('/admin/post/edit/{id}', [PostController::class, 'update'])->name('admin.post.update');
     Route::get('/admin/post/delete/{id}', [PostController::class, 'destroy']);
     Route::get('/admin/post/image/delete', [PostController::class, 'destoryImage']);
+    Route::get('/admin/post/status/{id}', [PostController::class, 'statusToggle'])->name('admin.post.status');
+    Route::get('/admin/post/comment/detail/{id}', [PostController::class, 'postComment'])->name('admin.post.comment');
+
 
     Route::get('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
 });

@@ -40,13 +40,6 @@
                     {
                         data: "status",
                         name: "status",
-                        render: function($data) {
-                            if ($data === 'Active') {
-                                return `<span class="badge badge-success">Active</span>`;
-                            } else {
-                                return `<span class="badge badge-danger">Inactive</span>`;
-                            }
-                        }
                     },
                     {
                         data: "action",
@@ -63,7 +56,6 @@
                 $("#formModal").modal("show");
                 $(".updateBtn").hide();
                 $(".submitBtn").show();
-                $(".statusdiv").hide();
                 $(".form").attr("id", 'addForm');
                 $("#addForm")[0].reset();
 
@@ -113,7 +105,6 @@
                 $("#formModal").modal("show");
                 $(".updateBtn").show();
                 $(".submitBtn").hide();
-                $(".statusdiv").show();
                 $(".form").attr("id", "updateForm");
                 $("#updateForm")[0].reset();
                 $("#categoryTitle").text("Edit Category");
@@ -167,6 +158,24 @@
 
                 })
             });
+
+            // Status Toggle
+            $(document).on("change", ".statusIdData", function() {
+                let id = $(this).data("id");
+                // console.log(id);
+                $.ajax({
+                    type: "get",
+                    url: "/admin/category/status/" + id,
+                    success: function(response) {
+                        // console.log(response);
+                        table.draw();
+                    },
+                    error: function(xhr) {
+                        console.log(xhr.responseJSON.message);
+                    }
+                })
+
+            })
 
             // Delete Category
             $(document).on("click", ".deleteData", function() {

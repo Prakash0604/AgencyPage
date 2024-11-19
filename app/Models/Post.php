@@ -18,6 +18,11 @@ class Post extends Model
         return $this->hasMany(PostImage::class,'post_id','id');
     }
 
+    public function comments(){
+        return $this->morphMany(Comment::class,'commentable');
+    }
+
+
     public function createdBy(){
         return $this->belongsTo(User::class,'created_by','id');
     }

@@ -36,20 +36,6 @@
                             <div id="testimonialImage"> </div>
                         </div>
 
-                        <div class="mb-3 activeStatus">
-                            <label for="" class="form-label">Status</label>
-                            <select
-                                class="form-select"
-                                name="status"
-                                id="status"
-                            >
-                                <option value="">Select one</option>
-                                <option value="Active">Active</option>
-                                <option value="Inactive">Inactive</option>
-                            </select>
-                        </div>
-
-
                         <div class="col-md-12 mt-4 mb-2">
                             <label for="" class="form-label">Description</label>
                             <textarea class="form-control summernote" id="testimonialDescription" name="description" rows="4"></textarea>

@@ -10,13 +10,14 @@ class UserPostController extends Controller
     public function index()
     {
         $posts = Post::with(['createdBy', 'category','postImages'])->where('status', 'Active')->orderBy('id','desc')->paginate(5);
+        // dd($posts);
         return view('Post.post', compact('posts'));
     }
 
     public function singlePost($id)
     {
-        $post = Post::with(['createdBy', 'category'])->find($id);
-        $comments = Comment::where('post_id', $id)->get();
-        return view('Post.single-post', compact('post', 'comments'));
+        $post = Post::with(['createdBy', 'category','postImages','comments'])->find($id);
+        $comments = Comment::with('user')->where('user_id', auth()->id())->get();
+        return view('Post.single-post', compact('post','comments'));
     }
 }

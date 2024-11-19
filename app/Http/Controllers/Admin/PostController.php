@@ -27,18 +27,6 @@ class PostController extends Controller
                 ->addIndexColumn()
                 ->addColumn('image', function ($item) {
                     return "<a type='button' data-id='" . $item->id . "' class='imageListPopup'><span class='badge badge-primary'>" . $item->postImages->count() . "</span></a>";
-                    // if ($item->postImages && $item->postImages->count() > 0) {
-                    //     foreach ($item->postImages as $index=>$postImage) {
-                    //         // dd($postImage->image);
-                    //             $imageHtml = '<ul class="persons">';
-                    //             $imageUrl = asset('storage/' . $postImage->image);
-                    //             $imageHtml = '<li><a href=""> <img src="' . $imageUrl . '" alt="Image" class="img-fluid" width="50" height="50"> </a></li>';
-                    //             $imageHtml = "</ul>";
-                    //             return $imageHtml;
-                    //     }
-                    // } else {
-                    //     return '<span>No Images Available</span>';
-                    // }
                 })
                 ->addColumn('title', function ($title) {
                     return $title->title ?? '';
@@ -55,7 +43,16 @@ class PostController extends Controller
                 ->addColumn('action', function ($data) {
                     return view('Admin.Button.button', compact('data'));
                 })
-                ->rawColumns(['action', 'image'])
+                ->addColumn('comment', function ($data) {
+                    return '<button class="btn btn-info commentinfoBtn" data-id="'.$data->id.'" type="button">View Comment</button>';
+                })
+                ->addColumn('status', function ($status) {
+                    $checked = $status->status == 'Active' ? 'checked' : '';
+                    return '<div class="form-check form-switch">
+                    <input class="form-check-input statusIdData d-flex mx-auto" type="checkbox" data-id="'.$status->id.'" role="switch" id="flexSwitchCheckChecked" '.$checked.'>
+                    </div>';
+                })
+                ->rawColumns(['action', 'image', 'comment', 'status'])
                 ->make(true);
         }
         $categories = Category::pluck('title', 'id');
@@ -71,7 +68,6 @@ class PostController extends Controller
             $post->title = $postRequest->input('post_title');
             $post->description = $postRequest->input('post_description');
             $post->category_id = $postRequest->input('post_category_id');
-            $post->status = $postRequest->input('post_status');
             $post->created_by = Auth::id();
             $post->save();
 
@@ -100,10 +96,10 @@ class PostController extends Controller
     {
         try {
             $data = Post::with(['category', 'postImages'])->find($id);
-            $images = $data->postImages->map(function($image){
+            $images = $data->postImages->map(function ($image) {
                 return [
-                    'id'=>$image->id,
-                    'path'=>$image->image
+                    'id' => $image->id,
+                    'path' => $image->image
                 ];
             });
             // dd($images);
@@ -114,19 +110,20 @@ class PostController extends Controller
     }
 
 
-    public function destoryImage(Request $request) {
-        try{
+    public function destoryImage(Request $request)
+    {
+        try {
             // dd($request->all());
-           $data= PostImage::find($request->image_id);
-        //    dd($data->image);
-           if($data->image!=null){
-            Storage::disk('public')->delete($data->image);
-           }
-           $data->delete();
+            $data = PostImage::find($request->image_id);
+            //    dd($data->image);
+            if ($data->image != null) {
+                Storage::disk('public')->delete($data->image);
+            }
+            $data->delete();
 
-            return response()->json(['success'=>true,'message'=>'Image Deleted Successfully']);
-        }catch(\Exception $e){
-            return response()->json(['success'=>false,'message'=>$e->getMessage(),'line'=>$e->getTrace()]);
+            return response()->json(['success' => true, 'message' => 'Image Deleted Successfully']);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage(), 'line' => $e->getTrace()]);
         }
     }
 
@@ -167,16 +164,48 @@ class PostController extends Controller
         }
     }
 
+    // Toggle Status
+    public function statusToggle($id)
+    {
+        try {
+            $data = Post::find($id);
+            if ($data->status == 'Active') {
+                $data->status = 'Inactive';
+            } else {
+                $data->status = 'Active';
+            }
+            $data->save();
+            return response()->json(['success' => true, 'message' => 'Status Changes'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()]);
+        }
+    }
 
 
+    public function postComment($id){
+        try {
+            $data = Post::with(['comments'])->find($id);
+            $images = $data->comments->map(function ($comment) {
+                return [
+                    'id' => $comment->id,
+                    'content' => $comment->content,
+                    'image'=>$comment->user->image
+                ];
+            });
+            // dd($images);
+            return response()->json(['success' => true, 'message' => $data, 'images' => $images]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()]);
+        }
+    }
     public function destroy($id)
     {
         try {
             $data = Post::with('postImages')->find($id);
 
             // dd($data);
-            if ($data->postImages!= null) {
-                foreach($data->postImages as $img){
+            if ($data->postImages != null) {
+                foreach ($data->postImages as $img) {
                     Storage::disk('public')->delete($img->image);
                 }
             }

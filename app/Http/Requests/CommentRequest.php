@@ -22,14 +22,17 @@ class CommentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'comment'=>'required|min:3'
+            'content' => 'required|string|max:1000',
+            'commentable_id' => 'required|integer',
+            'commentable_type' => 'required|string',
         ];
     }
 
-    public function messages(){
-        return[
-            'comment.required'=>'Please Enter the Comment',
-            'comment.min'=>'Comment Must be at least 3 Character Long'
+    public function messages()
+    {
+        return [
+            'content.required' => 'Please Enter the Comment',
+            'content.max' => 'Max lenght of comment is 1000'
         ];
     }
 }

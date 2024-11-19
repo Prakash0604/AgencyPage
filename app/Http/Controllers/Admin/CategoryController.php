@@ -19,7 +19,13 @@ class CategoryController extends Controller
             ->addColumn('action',function($data){
                 return view('Admin.Button.button',compact('data'));
             })
-            ->rawColumns(['action'])
+            ->addColumn('status', function ($status) {
+                $checked = $status->status == 'Active' ? 'checked' : '';
+                return '<div class="form-check form-switch">
+                <input class="form-check-input statusIdData mx-auto" type="checkbox" data-id="'.$status->id.'" role="switch" id="flexSwitchCheckChecked" '.$checked.'>
+                </div>';
+            })
+            ->rawColumns(['action','status'])
             ->make(true);
         }
         return view('Admin.pages.Category.category');
@@ -57,6 +63,22 @@ class CategoryController extends Controller
             return response()->json(['success'=>true]);
         }catch(\Exception $e){
             DB::rollBack();
+            return response()->json(['success'=>false,'message'=>$e->getMessage()]);
+        }
+    }
+
+    public function statusToggle($id){
+        try{
+            $data=Category::find($id);
+
+            if($data->status === 'Active'){
+                $data->status='Inactive';
+            }else{
+                $data->status='Active';
+            }
+            $data->save();
+            return response()->json(['success'=>true,'message'=>'Status Changes'],200);
+        }catch(\Exception $e){
             return response()->json(['success'=>false,'message'=>$e->getMessage()]);
         }
     }

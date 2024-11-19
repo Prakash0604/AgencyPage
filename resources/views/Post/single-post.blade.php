@@ -30,8 +30,45 @@
 
                     <div class="post-content post-single">
                         <div class="post-media post-image d-flex">
-                            <img loading="lazy" src="{{ asset('storage/' . $post->image) }}" class="img-fluid mx-auto"
-                                alt="post-image">
+                            {{-- <div class="banner-carousel banner-carousel-1 mb-0">
+                                @foreach ($post->postImages as $image)
+                                    <div class="banner-carousel-item" style="background-image:url({{ asset('storage/' . $image->image) }})">
+                                        <div class="slider-content">
+                                            <div class="container h-100">
+                                                <div class="row align-items-center h-100">
+                                                    <div class="col-md-12 text-center">
+                                                        <h3 class="slide-sub-title" data-animation-in="slideInRight">
+                                                        </h3>
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div> --}}
+
+                            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    @foreach ($post->postImages as $image)
+                                        <div class="carousel-item active">
+                                            <img src="/storage/{{ $image->image }}" class="d-block w-100" alt="...">
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                    data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+
+
                         </div>
 
                         <div class="post-body">
@@ -54,7 +91,7 @@
                                 <p>Kucididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
 
                                 <blockquote>
-                                    <p>{{ $post->createdBy->notes }}<cite>-
+                                    <p>{!! $post->createdBy->notes !!}<cite>-
                                             {{ $post->createdBy->full_name }}</cite></p>
 
                                 </blockquote>
@@ -65,14 +102,14 @@
 
                     <!-- Post comment start -->
                     <div id="comments" class="comments-area">
-                        <h3 class="comments-heading">{{ $comments->count() }} Comments</h3>
+                        <h3 class="comments-heading">{{ $post->comments->count() }} Comments</h3>
 
                         <ul class="comments-list">
 
                             <li>
                                 @foreach ($comments as $comment)
                                     <div class="comment">
-                                        @if ($comment->user->image != null)
+                                        @if ($comment->user->image !=null)
                                             <img loading="lazy" class="comment-avatar mx-auto"
                                                 alt="author"src="{{ asset('storage/' . $comment->user->image) }}">
                                         @else
@@ -80,12 +117,12 @@
                                                 alt="author"src="{{ asset('defaultImage/defaultimage.webp') }}">
                                         @endif
                                         <div class="comment-body">
-                                            <div class="meta-data">
+                                            {{-- <div class="meta-data">
                                                 <span class="comment-author mr-3">{{ $comment->user->full_name }}</span>
                                                 <span class="comment-date float-right">{{ $comment->created_at }}</span>
-                                            </div>
+                                            </div> --}}
                                             <div class="comment-content">
-                                                <p>{{ $comment->comment }}
+                                                <p>{{ $comment->content }}
                                                 </p>
                                             </div>
                                             <div class="comment-content">
@@ -122,7 +159,10 @@
                     <input type="hidden" name="post_id" value="{{ $post->id }}">
                     <div class="col-md-12">
                         @csrf
-                        <textarea class="form-control" name="comment" id="" rows="3"></textarea>
+                        <input type="hidden" name="commentable_id" value="{{ $post->id }}">
+                        <input type="hidden" name="commentable_type"
+                            value="{{ isset($post) ? 'App\\Models\\Post' : '' }}">
+                        <textarea class="form-control" name="content" id="" rows="3"></textarea>
                         <p id="validationErrors" class="alert alert-danger d-none mt-2"></p>
                     </div>
                 </div>
@@ -180,12 +220,14 @@
                     type: "get",
                     url: "/comment/post/edit/" + id,
                     success: function(response) {
+                        console.log(response);
+
                         $(clickedElement).closest(".comment-content").find(".fetchEditComment")
                             .html(`
                 <div class="input-group">
                     @csrf
                     <span class="input-group-text">Edit Comment</span>
-                    <input type="text" name="comment" class="form-control" value="${response.message.comment}">
+                    <input type="text" name="comment" class="form-control" value="${response.message.content}">
                     <button type="submit" class="btn btn-success btn-small">update</button>
                 </div>
             `);

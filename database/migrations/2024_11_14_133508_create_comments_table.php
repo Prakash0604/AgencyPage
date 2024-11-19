@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->text('content');
+            $table->unsignedBigInteger('commentable_id');
+            $table->string('commentable_type');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade');
-            $table->longText('comment');
-            $table->unsignedBigInteger('post_id');
-            $table->foreign('post_id')->references('id')->on('posts')->onUpdate('cascade');
             $table->timestamps();
         });
     }

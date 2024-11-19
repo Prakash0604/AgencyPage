@@ -24,16 +24,6 @@
                                 aria-describedby="helpId" />
                             <div id="homeSlideImage"> </div>
                         </div>
-
-                        <div class="mb-3 statusdiv">
-                            <label for="" class="form-label">Status</label>
-                            <select class="form-select" name="status" id="status">
-                                <option value="">Select one</option>
-                                <option value="Active">Active</option>
-                                <option value="Inactive">Inactive</option>
-                            </select>
-                        </div>
-
                         <div class="col-md-12 mt-4 mb-2">
                             <label for="" class="form-label">Short Description</label>
                             <textarea class="form-control summernote" id="homeSliderDescription" name="shortdesc" rows="4"></textarea>

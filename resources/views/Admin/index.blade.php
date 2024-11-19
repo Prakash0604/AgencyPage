@@ -20,7 +20,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     {{-- Font Awesome --}}
 
-    <link rel="stylesheet" href="{{ asset('admin/vendors/typicons/typicons.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('admin/vendors/typicons/typicons.css') }}"> --}}
 
     <link rel="stylesheet" href="{{ asset('admin/vendors/css/vendor.bundle.base.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css') }}">
@@ -121,6 +121,12 @@
                         <a class="nav-link" href="{{ route('admin.post') }}">
                             <i class="mdi mdi-file-image  menu-icon"></i>
                             <span class="menu-title">Post</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.post') }}">
+                            <i class="mdi mdi-file-image  menu-icon"></i>
+                            <span class="menu-title">Comments</span>
                         </a>
                     </li>
 

@@ -1,5 +1,6 @@
 @extends('Admin.index')
 @section('content')
+
     <div class="container-fluid">
         <button class="btn btn-primary addHomeSlideBtn mb-2">Add HomeSlide</button>
         @include('Admin.pages.HomeSlide.homeSlideModal')
@@ -18,8 +19,6 @@
                 </thead>
             </table>
         </div>
-
-
     </div>
 
     <script>
@@ -49,14 +48,6 @@
                     {
                         data: "status",
                         name: "status",
-                        render: function($data) {
-                            if ($data == 'Active') {
-                                return `<span class="badge badge-success">Active</span>`;
-                            } else {
-                                return `<span class="badge badge-danger">Inactive</span>`;
-
-                            }
-                        }
                     },
 
                     {
@@ -78,7 +69,6 @@
                 $(".updateBtn").hide();
                 $(".submitBtn").show();
                 $(".form").attr("id", "addForm");
-                $(".statusdiv").hide();
                 $('#addForm')[0].reset();
             });
 
@@ -135,7 +125,6 @@
                 $(".submitBtn").hide();
                 $(".form").attr("id", "updateForm");
                 $("#updateForm")[0].reset();
-                $(".statusdiv").show();
                 $("#homeSlideTitle").text("Edit Home Slide ");
 
                 $.ajax({
@@ -149,7 +138,6 @@
                         <img src="/storage/${response.message.image}" width="100" height="100">
                         `);
                         }
-                        $("#status").val(response.message.status);
                         $("#homeSliderDescription").summernote('code', response.message
                             .shortdesc);
 
@@ -234,6 +222,24 @@
                         });
                     }
                 })
+            })
+
+            // Status Update Toggle Button
+            $(document).on("change", ".statusIdData", function() {
+                let id = $(this).data("id");
+                console.log(id);
+                $.ajax({
+                    type: "get",
+                    url: "/admin/home-slide/status/" + id,
+                    success: function(response) {
+                        // console.log(response);
+                        table.draw();
+                    },
+                    error: function(xhr) {
+                        console.log(xhr.responseJSON.message);
+                    }
+                })
+
             })
 
 

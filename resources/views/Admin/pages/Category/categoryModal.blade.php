@@ -17,15 +17,6 @@
                             <input type="text" name="title" id="categorytitleData" class="form-control" placeholder=""
                                 aria-describedby="helpId" />
                         </div>
-
-                        <div class="mb-3 statusdiv">
-                            <label for="" class="form-label">Status</label>
-                            <select class="form-select" name="status" id="categoryStatus">
-                                <option value="">Select one</option>
-                                <option selected value="Active">Active</option>
-                                <option value="Inactive">Inactive</option>
-                            </select>
-                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">

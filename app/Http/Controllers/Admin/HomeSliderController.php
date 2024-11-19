@@ -31,10 +31,16 @@ class HomeSliderController extends Controller
                         return ' <td class="py-1"><img src="' . $url . '" width="50" height="50"/></td>';
                     }
                 })
-                ->addColumn('shortdesc',function($desc){
-                    return Str::limit(strip_tags($desc->shortdesc),70);
+                ->addColumn('shortdesc', function ($desc) {
+                    return Str::limit(strip_tags($desc->shortdesc), 70);
                 })
-                ->rawColumns(['action', 'image'])
+                ->addColumn('status', function ($status) {
+                    $checked = $status->status == 'Active' ? 'checked' : '';
+                    return '<div class="form-check form-switch">
+                    <input class="form-check-input statusIdData d-flex mx-auto" type="checkbox" data-id="'.$status->id.'" role="switch" id="flexSwitchCheckChecked" '.$checked.'>
+                    </div>';
+                })
+                ->rawColumns(['action', 'image', 'status'])
                 ->make(true);
         }
         return view('Admin.pages.HomeSlide.homeslide');
@@ -45,7 +51,7 @@ class HomeSliderController extends Controller
     {
         DB::beginTransaction();
         try {
-            $data = $request->only(['title','shortdesc']);
+            $data = $request->only(['title', 'shortdesc']);
             if ($request->hasFile('image')) {
                 $folder = 'images/homeslide/';
                 $imagename = time() . '.' . $request->image->extension();
@@ -54,7 +60,7 @@ class HomeSliderController extends Controller
             }
             HomeSlide::create($data);
             DB::commit();
-            return response()->json(['success' => true],200);
+            return response()->json(['success' => true], 200);
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json(['success' => false, 'message' => $e->getMessage()]);
@@ -75,7 +81,7 @@ class HomeSliderController extends Controller
     {
         try {
             $homeslide = HomeSlide::find($id);
-            $data = $request->only(['title', 'status','shortdesc']);
+            $data = $request->only(['title', 'shortdesc']);
             // dd($data);
             if ($request->hasFile('image')) {
                 $path = '/images/homeslide/';
@@ -92,11 +98,29 @@ class HomeSliderController extends Controller
             return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
     }
+
+    // Toggle Status
+    public function statusToggle($id)
+    {
+        try {
+            $data = HomeSlide::find($id);
+            if ($data->status == 'Active') {
+                $data->status = 'Inactive';
+            } else {
+                $data->status = 'Active';
+            }
+            $data->save();
+            return response()->json(['success' => true, 'message' => 'Status Changes'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()]);
+        }
+    }
+
     public function destory($id)
     {
         try {
-            $data=HomeSlide::find($id);
-            if($data->image){
+            $data = HomeSlide::find($id);
+            if ($data->image) {
                 Storage::disk('public')->delete($data->image);
             }
             $data->delete();

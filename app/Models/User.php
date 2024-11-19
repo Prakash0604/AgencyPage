@@ -25,6 +25,9 @@ class User extends Authenticatable
         'role','position','email','email_link','facebook_link','instagram_link','twitter_link','phonenumber','notes'
     ];
 
+    public function comments(){
+        return $this->morphMany(Comment::class,'commentable');
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

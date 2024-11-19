@@ -32,7 +32,7 @@
                             <label for="" class="form-label">Image<span class="text-danger">*</span></label>
                             <input type="file" name="post_images[]" id="post_image" class="form-control" multiple
                                 placeholder="" aria-describedby="helpId" />
-                                <span class="text-danger infoPostImageText"></span>
+                            <span class="text-danger infoPostImageText"></span>
                             <div class="postImageData"></div>
                         </div>
 
@@ -40,15 +40,6 @@
                             <label for="" class="form-label">Description<span
                                     class="text-danger">*</span></label>
                             <textarea class="form-control summernote" name="post_description" id="post_description" rows="3"></textarea>
-                        </div>
-
-                        <div class="mb-3 statusdiv">
-                            <label for="" class="form-label">Status</label>
-                            <select class="form-select" name="post_status" id="post_status">
-                                <option value="">Select one</option>
-                                <option selected value="Active">Active</option>
-                                <option value="Inactive">Inactive</option>
-                            </select>
                         </div>
                     </div>
                 </div>
@@ -89,6 +80,27 @@
                             <span class="visually-hidden">Next</span>
                         </button>
                     </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{{-- Comment Lists --}}
+<div class="modal fade" id="commentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="formId" class="form">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 text-center" id="postImageTitle">Comment List</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
