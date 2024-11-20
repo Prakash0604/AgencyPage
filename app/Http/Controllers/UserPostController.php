@@ -17,7 +17,7 @@ class UserPostController extends Controller
     public function singlePost($id)
     {
         $post = Post::with(['createdBy', 'category','postImages','comments'])->find($id);
-        $comments = Comment::with('user')->where('user_id', auth()->id())->get();
+        $comments = Comment::with('user')->where('commentable_id',$id )->get();
         return view('Post.single-post', compact('post','comments'));
     }
 }

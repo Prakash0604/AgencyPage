@@ -135,7 +135,6 @@ class PostController extends Controller
             $data->title = $postRequest->input('post_title');
             $data->category_id = $postRequest->input('post_category_id');
             $data->description = $postRequest->input('post_description');
-            $data->status = $postRequest->input('post_status');
             $data->save();
 
             if ($postRequest->hasFile('post_images')) {
@@ -189,7 +188,8 @@ class PostController extends Controller
                 return [
                     'id' => $comment->id,
                     'content' => $comment->content,
-                    'image'=>$comment->user->image
+                    'image'=>$comment->user->image,
+                    'name'=>$comment->user->full_name
                 ];
             });
             // dd($images);

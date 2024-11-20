@@ -171,7 +171,6 @@
                 let id = $(this).attr("data-id");
                 $("#formModal").modal("show");
                 $("#postTitle").text("Edit Post");
-                // $(".infoPostImageText").text("Note:The Image Can be removed without updating after you click on remove button Also");
                 $(".submitBtn").hide();
                 $(".updateBtn").show();
                 $(".form").attr('id', 'updateForm');
@@ -198,8 +197,7 @@
                                     `);
                             });
                         }
-                        $("#post_description").summernote('code', response.message
-                            .description);
+                        $("#post_description").summernote('code', response.message.description);
                     }
                 });
 
@@ -341,7 +339,7 @@
             // Comment of Post
             $(document).on("click", ".commentinfoBtn", function() {
                 let id = $(this).attr("data-id");
-                console.log(id);
+                // console.log(id);
 
                 $("#commentModal").modal("show");
                 $("#postImageTitle").text("Comment List");
@@ -350,24 +348,34 @@
                     type: "get",
                     url: "/admin/post/comment/detail/" + id,
                     success: function(response) {
-                        console.log(response);
 
                         if (response.images && response.images.length > 0) {
-                            $(".fetch-comment-data").empty();
+                            // $(".fetch-comment-data").empty();
 
-                            response.images.forEach((imageObj) => {
-                                let imagePath = '/storage/' + imageObj.image;
-                                let content = imageObj.content;
+                            response.images.forEach((image) => {
+
+                                let imagePath = '/storage/' + image.image;
+                                let content = image.content;
+                                console.log(image);
+
 
                                 $(".fetch-comment-data").append(`
-                    <div class="carousel-item">
-                        <img src="${imagePath}" class="d-block w-100" alt="Image">
-                        <div class="carousel-caption d-md-block">
-                            <p>${content}</p>  <!-- Display the content associated with the image -->
-                        </div>
-                    </div>
-                `);
+                                    <div class="item">
+                                        <img src="${imagePath}" class="d-block w-50 mx-auto mt-3 mb-3" alt="Image">
+                                        <div class="caption d-md-block">
+                                            <h4>${image.name} : ${content}</h4>
+                                        </div>
+                                    </div>
+                                `);
                             });
+                        }else{
+                            $(".fetch-comment-data").html(
+                                `
+                                <div>
+                                <h4>No Comment Available</h4>
+                                </div>
+                                `
+                            );
                         }
                     }
                 });
