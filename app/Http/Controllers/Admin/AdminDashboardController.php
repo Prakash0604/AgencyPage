@@ -18,7 +18,9 @@ class AdminDashboardController extends Controller
         $today_post = Post::whereDate('created_at',today())->count();
         $totalpost=Post::count();
         // $totalBillNumber = Bill::whereDate('created_at',date('Y-m-d'))->count();
-
-        return view('Admin.pages.Dashboard.index',compact('totaluser','admin','user','today_post','totalpost'));
+        $extraJs=array_merge(
+            config('js-map.admin.chartjs')
+        );
+        return view('Admin.pages.Dashboard.index',compact('totaluser','admin','user','today_post','totalpost','extraJs'));
     }
 }

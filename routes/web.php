@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\UserFrontendController;
 use App\Http\Controllers\UserPostController;
 
 /*
@@ -109,12 +110,12 @@ Route::middleware('admin')->group(function () {
 });
 
 
-Route::get('/', [FrontendController::class, 'index'])->name('first.index');
-Route::get('/contact-us', [ContactController::class, 'index'])->name('contact-us');
-Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');
+Route::get('/', [UserFrontendController::class, 'home'])->name('first.index');
+Route::get('/contact-us', [UserFrontendController::class, 'contactUs'])->name('contact-us');
+Route::get('/about-us', [UserFrontendController::class, 'aboutUs'])->name('about-us');
 
-Route::get('/post', [UserPostController::class, 'index'])->name('post');
-Route::get('/post/{id}', [UserPostController::class, 'singlePost'])->name('single.post');
+Route::get('/post', [UserFrontendController::class, 'post'])->name('post');
+Route::get('/post/{id}', [UserFrontendController::class, 'singlePost'])->name('single.post');
 
 // Comment
 Route::post('/comment/store', [CommentController::class, 'store'])->name('store.comment');

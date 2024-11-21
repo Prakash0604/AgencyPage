@@ -64,6 +64,7 @@ $(document).ready(function () {
     $(document).on("click", ".addUserButton", function () {
         clearModal(); // Clear errors and reset fields
         $(".submitBtn").show();
+        $("#password").prop("disabled", false);
         $(".updateBtn").hide();
         $(".labelPassword").show();
         $(".form").attr("id", "storeForm");
@@ -81,7 +82,7 @@ $(document).ready(function () {
             let formdata = new FormData(this);
             $.ajax({
                 type: "post",
-                url: "{{ route('admin.store') }}",
+                url: "/admin/user/store/",
                 data: formdata,
                 contentType: false,
                 processData: false,
@@ -91,9 +92,10 @@ $(document).ready(function () {
                             icon: "success",
                             title: "Success",
                             text: "User Added Successfully",
-                            showConfirmButton: false,
-                            timer: 1500,
+                            showConfirmButton:false,
+                            timer:1000
                         });
+
                         table.draw();
                         $("#notes_user").summernote("code", "");
                         $("#formModal").modal("hide");
@@ -153,53 +155,54 @@ $(document).ready(function () {
                 );
             },
         });
+
+        // Edit and Submit User Data
+        $(document)
+            .off("submit", "#updateForm")
+            .on("submit", "#updateForm", function (event) {
+                event.preventDefault();
+                $("#password").prop("disabled", true);
+
+                let formdata = new FormData(this);
+                $(".updateBtn").prop("disabled", true);
+                // console.log(formdata);
+                $.ajax({
+                    type: "post",
+                    url: "/admin/user/update/" + id,
+                    data: formdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        Swal.fire({
+                            icon: "success",
+                            title: "Updated",
+                            text: "User Updated Successfully",
+                            showConfirmButton:false,
+                            timer:1000
+                        });
+                        $("#formModal").modal("hide");
+                        table.draw();
+                    },
+                    error: function (response) {
+                        if (response.status === 422) {
+                            let errors = response.responseJSON.errors;
+                            let errorMessages = "<ul>";
+                            $.each(errors, function (key, value) {
+                                errorMessages += "<li>" + value[0] + "</li>"; // Display the first error for each field
+                            });
+                            errorMessages += "</ul>";
+                            $("#validationErrors")
+                                .removeClass("d-none")
+                                .html(errorMessages);
+                        }
+                    },
+                    complete: function () {
+                        $(".updateBtn").prop("disabled", false);
+                    },
+                });
+            });
     });
 
-    // Edit and Submit User Data
-    $(document)
-        .off("submit", "#updateForm")
-        .on("submit", "#updateForm", function (event) {
-            event.preventDefault();
-            $("#password").prop("disabled", true);
-
-            let formdata = new FormData(this);
-            $(".updateBtn").prop("disabled", true);
-            // console.log(formdata);
-            $.ajax({
-                type: "post",
-                url: "/admin/user/update/" + id,
-                data: formdata,
-                contentType: false,
-                processData: false,
-                success: function (response) {
-                    Swal.fire({
-                        icon: "success",
-                        title: "Updated",
-                        text: "User Updated Successfully",
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
-                    $("#formModal").modal("hide");
-                    table.draw();
-                },
-                error: function (response) {
-                    if (response.status === 422) {
-                        let errors = response.responseJSON.errors;
-                        let errorMessages = "<ul>";
-                        $.each(errors, function (key, value) {
-                            errorMessages += "<li>" + value[0] + "</li>"; // Display the first error for each field
-                        });
-                        errorMessages += "</ul>";
-                        $("#validationErrors")
-                            .removeClass("d-none")
-                            .html(errorMessages);
-                    }
-                },
-                complete: function () {
-                    $(".updateBtn").prop("disabled", false);
-                },
-            });
-        });
     // Reset Password
     $(document).on("click", ".resetUserBtn", function () {
         let id = $(this).attr("data-id");
@@ -250,7 +253,6 @@ $(document).ready(function () {
                                 title: "Success",
                                 text: response.message,
                                 showConfirmButton: false,
-                                timer: 1500,
                             });
                             table.draw();
                         } else {

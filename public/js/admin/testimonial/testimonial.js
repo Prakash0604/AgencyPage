@@ -56,7 +56,7 @@ $(document).ready(function() {
         let formdata = new FormData(this);
         $.ajax({
             type: "post",
-            url: "{{ route('admin.testimonial.store') }}",
+            url: "/admin/testimonial/store",
             data: formdata,
             contentType: false,
             processData: false,
@@ -67,7 +67,7 @@ $(document).ready(function() {
                     title: "Success",
                     text: "Testimonial Created Successfully",
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 1000
                 });
                 table.draw();
                 $("#addForm")[0].reset();
@@ -137,12 +137,13 @@ $(document).ready(function() {
                         title: "Success",
                         text: "Testimonial Updated Successfully",
                         showConfirmButton: false,
-                        timer: 1500
+                        timer: 1000
                     });
                     table.draw();
                     $("#formModal").modal("hide");
                 },
                 error: function(xhr) {
+                    console.log(xhr);
                     Swal.fire({
                         icon: "warning",
                         title: "Something went wrong!",
@@ -165,7 +166,7 @@ $(document).ready(function() {
         $.ajax({
             type: "get",
             url: "/admin/testimonial/status/" + id,
-            success: function(response) {
+            success: function() {
                 // console.log(response);
                 table.draw();
             },
@@ -201,6 +202,7 @@ $(document).ready(function() {
                         table.draw();
                     },
                     error: function(response) {
+                        console.log(response);
                         Swal.fire({
                             icon: "warning",
                             title: "Something went wrong !",

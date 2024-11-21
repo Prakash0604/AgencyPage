@@ -36,4 +36,3 @@
 @endphp
 {{-- @stack('scripts') --}}
 
-

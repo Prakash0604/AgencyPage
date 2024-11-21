@@ -54,7 +54,7 @@ $(document).ready(function() {
         let formdata = new FormData(this);
         $.ajax({
             type: "post",
-            url: "{{ route('admin.homeslide.store') }}",
+            url: "/admin/home-slide/store",
             data: formdata,
             processData: false,
             contentType: false,

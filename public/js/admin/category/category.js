@@ -41,7 +41,7 @@ $(document).ready(function() {
             let formdata = new FormData(this);
             $.ajax({
                 type: "post",
-                url: "{{ route('admin.category.store') }}",
+                url: "/admin/category/store",
                 data: formdata,
                 processData: false,
                 contentType: false,
@@ -51,7 +51,7 @@ $(document).ready(function() {
                         title: "Success",
                         text: "Category Added Successfully",
                         showConfirmButton: false,
-                        timer: 1500
+                        timer: 1000
                     });
                     table.draw();
                     $("#addForm")[0].reset();
@@ -63,7 +63,7 @@ $(document).ready(function() {
                         title: "Warning!",
                         text: xhr.responseJSON.message,
                         showConfirmButton: false,
-                        timer: 1500
+                        timer: 1000
                     });
 
                 },
@@ -141,7 +141,7 @@ $(document).ready(function() {
         $.ajax({
             type: "get",
             url: "/admin/category/status/" + id,
-            success: function(response) {
+            success: function() {
                 // console.log(response);
                 table.draw();
             },
