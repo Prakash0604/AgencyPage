@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\FrontendController as AdminFrontendController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
@@ -67,6 +68,13 @@ Route::middleware('admin')->group(function () {
 
     // Site Datas
     Route::get('/admin/site-data',[AdminFrontendController::class,'siteData'])->name('admin.siteData');
+    Route::post('/admin/site-data',[AdminFrontendController::class,'updateSiteData'])->name('admin.updateSiteData');
+
+
+    // Setting
+    Route::get('/admin/setting',[SettingController::class,'index'])->name('admin.setting');
+    Route::post('/admin/setting',[SettingController::class,'store'])->name('admin.store.setting');
+    // Route::resource('users',UserController::class);
 
     // Testimonial
     Route::get('/admin/testimonial', [TestimonialController::class, 'index'])->name('admin.testimonial');

@@ -95,7 +95,7 @@
     + Pws-tabs
     + Quill Editor
     + Rating
-    + Select2
+    + select3
     + Summernote Editor
     + SweetAlert
     + Switchery
@@ -10473,7 +10473,7 @@ progress {
 
 .form-control, .typeahead,
 .tt-query,
-.tt-hint, .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single {
+.tt-hint{
   display: block;
   width: 100%;
   padding: 0.875rem 1.375rem;
@@ -10491,23 +10491,23 @@ progress {
 @media (prefers-reduced-motion: reduce) {
   .form-control, .typeahead,
   .tt-query,
-  .tt-hint, .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single {
+  .tt-hint, .select3--default .select3-selection--single .select3-search__field, .select3--default .select3-selection--single {
     transition: none;
   }
 }
 .form-control[type=file], [type=file].typeahead,
 [type=file].tt-query,
-[type=file].tt-hint, .select2-container--default .select2-selection--single [type=file].select2-search__field, .select2-container--default [type=file].select2-selection--single {
+[type=file].tt-hint, .select3--default .select3-selection--single [type=file].select3-search__field, .select3--default [type=file].select3-selection--single {
   overflow: hidden;
 }
 .form-control[type=file]:not(:disabled):not([readonly]), [type=file].typeahead:not(:disabled):not([readonly]),
 [type=file].tt-query:not(:disabled):not([readonly]),
-[type=file].tt-hint:not(:disabled):not([readonly]), .select2-container--default .select2-selection--single [type=file].select2-search__field:not(:disabled):not([readonly]), .select2-container--default [type=file].select2-selection--single:not(:disabled):not([readonly]) {
+[type=file].tt-hint:not(:disabled):not([readonly]), .select3--default .select3-selection--single [type=file].select3-search__field:not(:disabled):not([readonly]), .select3--default [type=file].select3-selection--single:not(:disabled):not([readonly]) {
   cursor: pointer;
 }
 .form-control:focus, .typeahead:focus,
 .tt-query:focus,
-.tt-hint:focus, .select2-container--default .select2-selection--single .select2-search__field:focus, .select2-container--default .select2-selection--single:focus {
+.tt-hint:focus, .select3--default .select3-selection--single .select3-search__field:focus, .select3--default .select3-selection--single:focus {
   color: var(--bs-body-color);
   background-color: var(--bs-body-bg);
   border-color: #86b7fe;
@@ -10516,32 +10516,32 @@ progress {
 }
 .form-control::-webkit-date-and-time-value, .typeahead::-webkit-date-and-time-value,
 .tt-query::-webkit-date-and-time-value,
-.tt-hint::-webkit-date-and-time-value, .select2-container--default .select2-selection--single .select2-search__field::-webkit-date-and-time-value, .select2-container--default .select2-selection--single::-webkit-date-and-time-value {
+.tt-hint::-webkit-date-and-time-value, .select3--default .select3-selection--single .select3-search__field::-webkit-date-and-time-value, .select3--default .select3-selection--single::-webkit-date-and-time-value {
   min-width: 85px;
   height: 1em;
   margin: 0;
 }
 .form-control::-webkit-datetime-edit, .typeahead::-webkit-datetime-edit,
 .tt-query::-webkit-datetime-edit,
-.tt-hint::-webkit-datetime-edit, .select2-container--default .select2-selection--single .select2-search__field::-webkit-datetime-edit, .select2-container--default .select2-selection--single::-webkit-datetime-edit {
+.tt-hint::-webkit-datetime-edit, .select3--default .select3-selection--single .select3-search__field::-webkit-datetime-edit, .select3--default .select3-selection--single::-webkit-datetime-edit {
   display: block;
   padding: 0;
 }
 .form-control::placeholder, .typeahead::placeholder,
 .tt-query::placeholder,
-.tt-hint::placeholder, .select2-container--default .select2-selection--single .select2-search__field::placeholder, .select2-container--default .select2-selection--single::placeholder {
+.tt-hint::placeholder, .select3--default .select3-selection--single .select3-search__field::placeholder, .select3--default .select3-selection--single::placeholder {
   color: #c9c8c8;
   opacity: 1;
 }
 .form-control:disabled, .typeahead:disabled,
 .tt-query:disabled,
-.tt-hint:disabled, .select2-container--default .select2-selection--single .select2-search__field:disabled, .select2-container--default .select2-selection--single:disabled {
+.tt-hint:disabled, .select3--default .select3-selection--single .select3-search__field:disabled, .select3--default .select3-selection--single:disabled {
   background-color: var(--bs-secondary-bg);
   opacity: 1;
 }
 .form-control::file-selector-button, .typeahead::file-selector-button,
 .tt-query::file-selector-button,
-.tt-hint::file-selector-button, .select2-container--default .select2-selection--single .select2-search__field::file-selector-button, .select2-container--default .select2-selection--single::file-selector-button {
+.tt-hint::file-selector-button, .select3--default .select3-selection--single .select3-search__field::file-selector-button, .select3--default .select3-selection--single::file-selector-button {
   padding: 0.875rem 1.375rem;
   margin: -0.875rem -1.375rem;
   margin-inline-end: 1.375rem;
@@ -10558,13 +10558,13 @@ progress {
 @media (prefers-reduced-motion: reduce) {
   .form-control::file-selector-button, .typeahead::file-selector-button,
   .tt-query::file-selector-button,
-  .tt-hint::file-selector-button, .select2-container--default .select2-selection--single .select2-search__field::file-selector-button, .select2-container--default .select2-selection--single::file-selector-button {
+  .tt-hint::file-selector-button, .select3--default .select3-selection--single .select3-search__field::file-selector-button, .select3--default .select3-selection--single::file-selector-button {
     transition: none;
   }
 }
 .form-control:hover:not(:disabled):not([readonly])::file-selector-button, .typeahead:hover:not(:disabled):not([readonly])::file-selector-button,
 .tt-query:hover:not(:disabled):not([readonly])::file-selector-button,
-.tt-hint:hover:not(:disabled):not([readonly])::file-selector-button, .select2-container--default .select2-selection--single .select2-search__field:hover:not(:disabled):not([readonly])::file-selector-button, .select2-container--default .select2-selection--single:hover:not(:disabled):not([readonly])::file-selector-button {
+.tt-hint:hover:not(:disabled):not([readonly])::file-selector-button, .select3--default .select3-selection--single .select3-search__field:hover:not(:disabled):not([readonly])::file-selector-button, .select3--default .select3-selection--single:hover:not(:disabled):not([readonly])::file-selector-button {
   background-color: var(--bs-secondary-bg);
 }
 
@@ -10613,7 +10613,7 @@ progress {
 
 textarea.form-control, textarea.typeahead,
 textarea.tt-query,
-textarea.tt-hint, .select2-container--default .select2-selection--single textarea.select2-search__field, .select2-container--default textarea.select2-selection--single {
+textarea.tt-hint, .select3--default .select3-selection--single textarea.select3-search__field, .select3--default textarea.select3-selection--single {
   min-height: 2.75rem;
 }
 textarea.form-control-sm {
@@ -10924,7 +10924,7 @@ textarea.form-control-lg {
 }
 .form-floating > .form-control, .form-floating > .typeahead,
 .form-floating > .tt-query,
-.form-floating > .tt-hint, .select2-container--default .select2-selection--single .form-floating > .select2-search__field, .select2-container--default .form-floating > .select2-selection--single,
+.form-floating > .tt-hint, .select3--default .select3-selection--single .form-floating > .select3-search__field, .select3--default .form-floating > .select3-selection--single,
 .form-floating > .form-control-plaintext,
 .form-floating > .form-select {
   height: calc(3.5rem + calc(var(--bs-border-width) * 2));
@@ -10954,21 +10954,21 @@ textarea.form-control-lg {
 }
 .form-floating > .form-control, .form-floating > .typeahead,
 .form-floating > .tt-query,
-.form-floating > .tt-hint, .select2-container--default .select2-selection--single .form-floating > .select2-search__field, .select2-container--default .form-floating > .select2-selection--single,
+.form-floating > .tt-hint, .select3--default .select3-selection--single .form-floating > .select3-search__field, .select3--default .form-floating > .select3-selection--single,
 .form-floating > .form-control-plaintext {
   padding: 1rem 0.75rem;
 }
 .form-floating > .form-control::placeholder, .form-floating > .typeahead::placeholder,
 .form-floating > .tt-query::placeholder,
-.form-floating > .tt-hint::placeholder, .select2-container--default .select2-selection--single .form-floating > .select2-search__field::placeholder, .select2-container--default .form-floating > .select2-selection--single::placeholder,
+.form-floating > .tt-hint::placeholder, .select3--default .select3-selection--single .form-floating > .select3-search__field::placeholder, .select3--default .form-floating > .select3-selection--single::placeholder,
 .form-floating > .form-control-plaintext::placeholder {
   color: transparent;
 }
 .form-floating > .form-control:focus, .form-floating > .typeahead:focus,
 .form-floating > .tt-query:focus,
-.form-floating > .tt-hint:focus, .select2-container--default .select2-selection--single .form-floating > .select2-search__field:focus, .select2-container--default .form-floating > .select2-selection--single:focus, .form-floating > .form-control:not(:placeholder-shown), .form-floating > .typeahead:not(:placeholder-shown),
+.form-floating > .tt-hint:focus, .select3--default .select3-selection--single .form-floating > .select3-search__field:focus, .select3--default .form-floating > .select3-selection--single:focus, .form-floating > .form-control:not(:placeholder-shown), .form-floating > .typeahead:not(:placeholder-shown),
 .form-floating > .tt-query:not(:placeholder-shown),
-.form-floating > .tt-hint:not(:placeholder-shown), .select2-container--default .select2-selection--single .form-floating > .select2-search__field:not(:placeholder-shown), .select2-container--default .form-floating > .select2-selection--single:not(:placeholder-shown),
+.form-floating > .tt-hint:not(:placeholder-shown), .select3--default .select3-selection--single .form-floating > .select3-search__field:not(:placeholder-shown), .select3--default .form-floating > .select3-selection--single:not(:placeholder-shown),
 .form-floating > .form-control-plaintext:focus,
 .form-floating > .form-control-plaintext:not(:placeholder-shown) {
   padding-top: 1.625rem;
@@ -10976,7 +10976,7 @@ textarea.form-control-lg {
 }
 .form-floating > .form-control:-webkit-autofill, .form-floating > .typeahead:-webkit-autofill,
 .form-floating > .tt-query:-webkit-autofill,
-.form-floating > .tt-hint:-webkit-autofill, .select2-container--default .select2-selection--single .form-floating > .select2-search__field:-webkit-autofill, .select2-container--default .form-floating > .select2-selection--single:-webkit-autofill,
+.form-floating > .tt-hint:-webkit-autofill, .select3--default .select3-selection--single .form-floating > .select3-search__field:-webkit-autofill, .select3--default .form-floating > .select3-selection--single:-webkit-autofill,
 .form-floating > .form-control-plaintext:-webkit-autofill {
   padding-top: 1.625rem;
   padding-bottom: 0.625rem;
@@ -10987,13 +10987,13 @@ textarea.form-control-lg {
 }
 .form-floating > .form-control:focus ~ label, .form-floating > .typeahead:focus ~ label,
 .form-floating > .tt-query:focus ~ label,
-.form-floating > .tt-hint:focus ~ label, .select2-container--default .select2-selection--single .form-floating > .select2-search__field:focus ~ label, .select2-container--default .form-floating > .select2-selection--single:focus ~ label,
+.form-floating > .tt-hint:focus ~ label, .select3--default .select3-selection--single .form-floating > .select3-search__field:focus ~ label, .select3--default .form-floating > .select3-selection--single:focus ~ label,
 .form-floating > .form-control:not(:placeholder-shown) ~ label,
 .form-floating > .typeahead:not(:placeholder-shown) ~ label,
 .form-floating > .tt-query:not(:placeholder-shown) ~ label,
 .form-floating > .tt-hint:not(:placeholder-shown) ~ label,
-.select2-container--default .select2-selection--single .form-floating > .select2-search__field:not(:placeholder-shown) ~ label,
-.select2-container--default .form-floating > .select2-selection--single:not(:placeholder-shown) ~ label,
+.select3--default .select3-selection--single .form-floating > .select3-search__field:not(:placeholder-shown) ~ label,
+.select3--default .form-floating > .select3-selection--single:not(:placeholder-shown) ~ label,
 .form-floating > .form-control-plaintext ~ label,
 .form-floating > .form-select ~ label {
   color: rgba(var(--bs-body-color-rgb), 0.65);
@@ -11001,13 +11001,13 @@ textarea.form-control-lg {
 }
 .form-floating > .form-control:focus ~ label::after, .form-floating > .typeahead:focus ~ label::after,
 .form-floating > .tt-query:focus ~ label::after,
-.form-floating > .tt-hint:focus ~ label::after, .select2-container--default .select2-selection--single .form-floating > .select2-search__field:focus ~ label::after, .select2-container--default .form-floating > .select2-selection--single:focus ~ label::after,
+.form-floating > .tt-hint:focus ~ label::after, .select3--default .select3-selection--single .form-floating > .select3-search__field:focus ~ label::after, .select3--default .form-floating > .select3-selection--single:focus ~ label::after,
 .form-floating > .form-control:not(:placeholder-shown) ~ label::after,
 .form-floating > .typeahead:not(:placeholder-shown) ~ label::after,
 .form-floating > .tt-query:not(:placeholder-shown) ~ label::after,
 .form-floating > .tt-hint:not(:placeholder-shown) ~ label::after,
-.select2-container--default .select2-selection--single .form-floating > .select2-search__field:not(:placeholder-shown) ~ label::after,
-.select2-container--default .form-floating > .select2-selection--single:not(:placeholder-shown) ~ label::after,
+.select3--default .select3-selection--single .form-floating > .select3-search__field:not(:placeholder-shown) ~ label::after,
+.select3--default .form-floating > .select3-selection--single:not(:placeholder-shown) ~ label::after,
 .form-floating > .form-control-plaintext ~ label::after,
 .form-floating > .form-select ~ label::after {
   position: absolute;
@@ -11020,7 +11020,7 @@ textarea.form-control-lg {
 }
 .form-floating > .form-control:-webkit-autofill ~ label, .form-floating > .typeahead:-webkit-autofill ~ label,
 .form-floating > .tt-query:-webkit-autofill ~ label,
-.form-floating > .tt-hint:-webkit-autofill ~ label, .select2-container--default .select2-selection--single .form-floating > .select2-search__field:-webkit-autofill ~ label, .select2-container--default .form-floating > .select2-selection--single:-webkit-autofill ~ label {
+.form-floating > .tt-hint:-webkit-autofill ~ label, .select3--default .select3-selection--single .form-floating > .select3-search__field:-webkit-autofill ~ label, .select3--default .form-floating > .select3-selection--single:-webkit-autofill ~ label {
   color: rgba(var(--bs-body-color-rgb), 0.65);
   transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
 }
@@ -11029,12 +11029,12 @@ textarea.form-control-lg {
 }
 .form-floating > :disabled ~ label,
 .form-floating > .form-control:disabled ~ label,
-.select2-container--default .select2-selection--single .form-floating > .select2-search__field:disabled ~ label {
+.select3--default .select3-selection--single .form-floating > .select3-search__field:disabled ~ label {
   color: #6c757d;
 }
 .form-floating > :disabled ~ label::after,
 .form-floating > .form-control:disabled ~ label::after,
-.select2-container--default .select2-selection--single .form-floating > .select2-search__field:disabled ~ label::after {
+.select3--default .select3-selection--single .form-floating > .select3-search__field:disabled ~ label::after {
   background-color: var(--bs-secondary-bg);
 }
 
@@ -11047,7 +11047,7 @@ textarea.form-control-lg {
 }
 .input-group > .form-control, .input-group > .typeahead,
 .input-group > .tt-query,
-.input-group > .tt-hint, .select2-container--default .select2-selection--single .input-group > .select2-search__field, .select2-container--default .input-group > .select2-selection--single,
+.input-group > .tt-hint, .select3--default .select3-selection--single .input-group > .select3-search__field, .select3--default .input-group > .select3-selection--single,
 .input-group > .form-select,
 .input-group > .form-floating {
   position: relative;
@@ -11057,7 +11057,7 @@ textarea.form-control-lg {
 }
 .input-group > .form-control:focus, .input-group > .typeahead:focus,
 .input-group > .tt-query:focus,
-.input-group > .tt-hint:focus, .select2-container--default .select2-selection--single .input-group > .select2-search__field:focus, .select2-container--default .input-group > .select2-selection--single:focus,
+.input-group > .tt-hint:focus, .select3--default .select3-selection--single .input-group > .select3-search__field:focus, .select3--default .input-group > .select3-selection--single:focus,
 .input-group > .form-select:focus,
 .input-group > .form-floating:focus-within {
   z-index: 5;
@@ -11087,7 +11087,7 @@ textarea.form-control-lg {
 
 .input-group-lg > .form-control, .input-group-lg > .typeahead,
 .input-group-lg > .tt-query,
-.input-group-lg > .tt-hint, .select2-container--default .select2-selection--single .input-group-lg > .select2-search__field, .select2-container--default .input-group-lg > .select2-selection--single,
+.input-group-lg > .tt-hint, .select3--default .select3-selection--single .input-group-lg > .select3-search__field, .select3--default .input-group-lg > .select3-selection--single,
 .input-group-lg > .form-select,
 .input-group-lg > .input-group-text,
 .input-group-lg > .btn {
@@ -11098,7 +11098,7 @@ textarea.form-control-lg {
 
 .input-group-sm > .form-control, .input-group-sm > .typeahead,
 .input-group-sm > .tt-query,
-.input-group-sm > .tt-hint, .select2-container--default .select2-selection--single .input-group-sm > .select2-search__field, .select2-container--default .input-group-sm > .select2-selection--single,
+.input-group-sm > .tt-hint, .select3--default .select3-selection--single .input-group-sm > .select3-search__field, .select3--default .input-group-sm > .select3-selection--single,
 .input-group-sm > .form-select,
 .input-group-sm > .input-group-text,
 .input-group-sm > .btn {
@@ -11118,8 +11118,8 @@ textarea.form-control-lg {
 .input-group:not(.has-validation) > .form-floating:not(:last-child) > .typeahead,
 .input-group:not(.has-validation) > .form-floating:not(:last-child) > .tt-query,
 .input-group:not(.has-validation) > .form-floating:not(:last-child) > .tt-hint,
-.select2-container--default .select2-selection--single .input-group:not(.has-validation) > .form-floating:not(:last-child) > .select2-search__field,
-.select2-container--default .input-group:not(.has-validation) > .form-floating:not(:last-child) > .select2-selection--single,
+.select3--default .select3-selection--single .input-group:not(.has-validation) > .form-floating:not(:last-child) > .select3-search__field,
+.select3--default .input-group:not(.has-validation) > .form-floating:not(:last-child) > .select3-selection--single,
 .input-group:not(.has-validation) > .form-floating:not(:last-child) > .form-select {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
@@ -11130,8 +11130,8 @@ textarea.form-control-lg {
 .input-group.has-validation > .form-floating:nth-last-child(n+3) > .typeahead,
 .input-group.has-validation > .form-floating:nth-last-child(n+3) > .tt-query,
 .input-group.has-validation > .form-floating:nth-last-child(n+3) > .tt-hint,
-.select2-container--default .select2-selection--single .input-group.has-validation > .form-floating:nth-last-child(n+3) > .select2-search__field,
-.select2-container--default .input-group.has-validation > .form-floating:nth-last-child(n+3) > .select2-selection--single,
+.select3--default .select3-selection--single .input-group.has-validation > .form-floating:nth-last-child(n+3) > .select3-search__field,
+.select3--default .input-group.has-validation > .form-floating:nth-last-child(n+3) > .select3-selection--single,
 .input-group.has-validation > .form-floating:nth-last-child(n+3) > .form-select {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
@@ -11143,7 +11143,7 @@ textarea.form-control-lg {
 }
 .input-group > .form-floating:not(:first-child) > .form-control, .input-group > .form-floating:not(:first-child) > .typeahead,
 .input-group > .form-floating:not(:first-child) > .tt-query,
-.input-group > .form-floating:not(:first-child) > .tt-hint, .select2-container--default .select2-selection--single .input-group > .form-floating:not(:first-child) > .select2-search__field, .select2-container--default .input-group > .form-floating:not(:first-child) > .select2-selection--single,
+.input-group > .form-floating:not(:first-child) > .tt-hint, .select3--default .select3-selection--single .input-group > .form-floating:not(:first-child) > .select3-search__field, .select3--default .input-group > .form-floating:not(:first-child) > .select3-selection--single,
 .input-group > .form-floating:not(:first-child) > .form-select {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
@@ -11180,9 +11180,9 @@ textarea.form-control-lg {
 
 .was-validated .form-control:valid, .was-validated .typeahead:valid,
 .was-validated .tt-query:valid,
-.was-validated .tt-hint:valid, .was-validated .select2-container--default .select2-selection--single .select2-search__field:valid, .select2-container--default .select2-selection--single .was-validated .select2-search__field:valid, .was-validated .select2-container--default .select2-selection--single:valid, .select2-container--default .was-validated .select2-selection--single:valid, .form-control.is-valid, .is-valid.typeahead,
+.was-validated .tt-hint:valid, .was-validated .select3--default .select3-selection--single .select3-search__field:valid, .select3--default .select3-selection--single .was-validated .select3-search__field:valid, .was-validated .select3--default .select3-selection--single:valid, .select3--default .was-validated .select3-selection--single:valid, .form-control.is-valid, .is-valid.typeahead,
 .is-valid.tt-query,
-.is-valid.tt-hint, .select2-container--default .select2-selection--single .is-valid.select2-search__field, .select2-container--default .is-valid.select2-selection--single {
+.is-valid.tt-hint, .select3--default .select3-selection--single .is-valid.select3-search__field, .select3--default .is-valid.select3-selection--single {
   border-color: var(--bs-form-valid-border-color);
   padding-right: calc(1.5em + 0.75rem);
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
@@ -11192,18 +11192,18 @@ textarea.form-control-lg {
 }
 .was-validated .form-control:valid:focus, .was-validated .typeahead:valid:focus,
 .was-validated .tt-query:valid:focus,
-.was-validated .tt-hint:valid:focus, .was-validated .select2-container--default .select2-selection--single .select2-search__field:valid:focus, .select2-container--default .select2-selection--single .was-validated .select2-search__field:valid:focus, .was-validated .select2-container--default .select2-selection--single:valid:focus, .select2-container--default .was-validated .select2-selection--single:valid:focus, .form-control.is-valid:focus, .is-valid.typeahead:focus,
+.was-validated .tt-hint:valid:focus, .was-validated .select3--default .select3-selection--single .select3-search__field:valid:focus, .select3--default .select3-selection--single .was-validated .select3-search__field:valid:focus, .was-validated .select3--default .select3-selection--single:valid:focus, .select3--default .was-validated .select3-selection--single:valid:focus, .form-control.is-valid:focus, .is-valid.typeahead:focus,
 .is-valid.tt-query:focus,
-.is-valid.tt-hint:focus, .select2-container--default .select2-selection--single .is-valid.select2-search__field:focus, .select2-container--default .is-valid.select2-selection--single:focus {
+.is-valid.tt-hint:focus, .select3--default .select3-selection--single .is-valid.select3-search__field:focus, .select3--default .is-valid.select3-selection--single:focus {
   border-color: var(--bs-form-valid-border-color);
   box-shadow: 0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25);
 }
 
 .was-validated textarea.form-control:valid, .was-validated textarea.typeahead:valid,
 .was-validated textarea.tt-query:valid,
-.was-validated textarea.tt-hint:valid, .was-validated .select2-container--default .select2-selection--single textarea.select2-search__field:valid, .select2-container--default .select2-selection--single .was-validated textarea.select2-search__field:valid, .was-validated .select2-container--default textarea.select2-selection--single:valid, .select2-container--default .was-validated textarea.select2-selection--single:valid, textarea.form-control.is-valid, textarea.is-valid.typeahead,
+.was-validated textarea.tt-hint:valid, .was-validated .select3--default .select3-selection--single textarea.select3-search__field:valid, .select3--default .select3-selection--single .was-validated textarea.select3-search__field:valid, .was-validated .select3--default textarea.select3-selection--single:valid, .select3--default .was-validated textarea.select3-selection--single:valid, textarea.form-control.is-valid, textarea.is-valid.typeahead,
 textarea.is-valid.tt-query,
-textarea.is-valid.tt-hint, .select2-container--default .select2-selection--single textarea.is-valid.select2-search__field, .select2-container--default textarea.is-valid.select2-selection--single {
+textarea.is-valid.tt-hint, .select3--default .select3-selection--single textarea.is-valid.select3-search__field, .select3--default textarea.is-valid.select3-selection--single {
   padding-right: calc(1.5em + 0.75rem);
   background-position: top calc(0.375em + 0.1875rem) right calc(0.375em + 0.1875rem);
 }
@@ -11245,9 +11245,9 @@ textarea.is-valid.tt-hint, .select2-container--default .select2-selection--singl
 
 .was-validated .input-group > .form-control:not(:focus):valid, .was-validated .input-group > .typeahead:not(:focus):valid,
 .was-validated .input-group > .tt-query:not(:focus):valid,
-.was-validated .input-group > .tt-hint:not(:focus):valid, .was-validated .select2-container--default .select2-selection--single .input-group > .select2-search__field:not(:focus):valid, .select2-container--default .select2-selection--single .was-validated .input-group > .select2-search__field:not(:focus):valid, .was-validated .select2-container--default .input-group > .select2-selection--single:not(:focus):valid, .select2-container--default .was-validated .input-group > .select2-selection--single:not(:focus):valid, .input-group > .form-control:not(:focus).is-valid, .input-group > .typeahead:not(:focus).is-valid,
+.was-validated .input-group > .tt-hint:not(:focus):valid, .was-validated .select3--default .select3-selection--single .input-group > .select3-search__field:not(:focus):valid, .select3--default .select3-selection--single .was-validated .input-group > .select3-search__field:not(:focus):valid, .was-validated .select3--default .input-group > .select3-selection--single:not(:focus):valid, .select3--default .was-validated .input-group > .select3-selection--single:not(:focus):valid, .input-group > .form-control:not(:focus).is-valid, .input-group > .typeahead:not(:focus).is-valid,
 .input-group > .tt-query:not(:focus).is-valid,
-.input-group > .tt-hint:not(:focus).is-valid, .select2-container--default .select2-selection--single .input-group > .select2-search__field:not(:focus).is-valid, .select2-container--default .input-group > .select2-selection--single:not(:focus).is-valid,
+.input-group > .tt-hint:not(:focus).is-valid, .select3--default .select3-selection--single .input-group > .select3-search__field:not(:focus).is-valid, .select3--default .input-group > .select3-selection--single:not(:focus).is-valid,
 .was-validated .input-group > .form-select:not(:focus):valid,
 .input-group > .form-select:not(:focus).is-valid,
 .was-validated .input-group > .form-floating:not(:focus-within):valid,
@@ -11286,9 +11286,9 @@ textarea.is-valid.tt-hint, .select2-container--default .select2-selection--singl
 
 .was-validated .form-control:invalid, .was-validated .typeahead:invalid,
 .was-validated .tt-query:invalid,
-.was-validated .tt-hint:invalid, .was-validated .select2-container--default .select2-selection--single .select2-search__field:invalid, .select2-container--default .select2-selection--single .was-validated .select2-search__field:invalid, .was-validated .select2-container--default .select2-selection--single:invalid, .select2-container--default .was-validated .select2-selection--single:invalid, .form-control.is-invalid, .is-invalid.typeahead,
+.was-validated .tt-hint:invalid, .was-validated .select3--default .select3-selection--single .select3-search__field:invalid, .select3--default .select3-selection--single .was-validated .select3-search__field:invalid, .was-validated .select3--default .select3-selection--single:invalid, .select3--default .was-validated .select3-selection--single:invalid, .form-control.is-invalid, .is-invalid.typeahead,
 .is-invalid.tt-query,
-.is-invalid.tt-hint, .select2-container--default .select2-selection--single .is-invalid.select2-search__field, .select2-container--default .is-invalid.select2-selection--single {
+.is-invalid.tt-hint, .select3--default .select3-selection--single .is-invalid.select3-search__field, .select3--default .is-invalid.select3-selection--single {
   border-color: var(--bs-form-invalid-border-color);
   padding-right: calc(1.5em + 0.75rem);
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
@@ -11298,18 +11298,18 @@ textarea.is-valid.tt-hint, .select2-container--default .select2-selection--singl
 }
 .was-validated .form-control:invalid:focus, .was-validated .typeahead:invalid:focus,
 .was-validated .tt-query:invalid:focus,
-.was-validated .tt-hint:invalid:focus, .was-validated .select2-container--default .select2-selection--single .select2-search__field:invalid:focus, .select2-container--default .select2-selection--single .was-validated .select2-search__field:invalid:focus, .was-validated .select2-container--default .select2-selection--single:invalid:focus, .select2-container--default .was-validated .select2-selection--single:invalid:focus, .form-control.is-invalid:focus, .is-invalid.typeahead:focus,
+.was-validated .tt-hint:invalid:focus, .was-validated .select3--default .select3-selection--single .select3-search__field:invalid:focus, .select3--default .select3-selection--single .was-validated .select3-search__field:invalid:focus, .was-validated .select3--default .select3-selection--single:invalid:focus, .select3--default .was-validated .select3-selection--single:invalid:focus, .form-control.is-invalid:focus, .is-invalid.typeahead:focus,
 .is-invalid.tt-query:focus,
-.is-invalid.tt-hint:focus, .select2-container--default .select2-selection--single .is-invalid.select2-search__field:focus, .select2-container--default .is-invalid.select2-selection--single:focus {
+.is-invalid.tt-hint:focus, .select3--default .select3-selection--single .is-invalid.select3-search__field:focus, .select3--default .is-invalid.select3-selection--single:focus {
   border-color: var(--bs-form-invalid-border-color);
   box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25);
 }
 
 .was-validated textarea.form-control:invalid, .was-validated textarea.typeahead:invalid,
 .was-validated textarea.tt-query:invalid,
-.was-validated textarea.tt-hint:invalid, .was-validated .select2-container--default .select2-selection--single textarea.select2-search__field:invalid, .select2-container--default .select2-selection--single .was-validated textarea.select2-search__field:invalid, .was-validated .select2-container--default textarea.select2-selection--single:invalid, .select2-container--default .was-validated textarea.select2-selection--single:invalid, textarea.form-control.is-invalid, textarea.is-invalid.typeahead,
+.was-validated textarea.tt-hint:invalid, .was-validated .select3--default .select3-selection--single textarea.select3-search__field:invalid, .select3--default .select3-selection--single .was-validated textarea.select3-search__field:invalid, .was-validated .select3--default textarea.select3-selection--single:invalid, .select3--default .was-validated textarea.select3-selection--single:invalid, textarea.form-control.is-invalid, textarea.is-invalid.typeahead,
 textarea.is-invalid.tt-query,
-textarea.is-invalid.tt-hint, .select2-container--default .select2-selection--single textarea.is-invalid.select2-search__field, .select2-container--default textarea.is-invalid.select2-selection--single {
+textarea.is-invalid.tt-hint, .select3--default .select3-selection--single textarea.is-invalid.select3-search__field, .select3--default textarea.is-invalid.select3-selection--single {
   padding-right: calc(1.5em + 0.75rem);
   background-position: top calc(0.375em + 0.1875rem) right calc(0.375em + 0.1875rem);
 }
@@ -11351,9 +11351,9 @@ textarea.is-invalid.tt-hint, .select2-container--default .select2-selection--sin
 
 .was-validated .input-group > .form-control:not(:focus):invalid, .was-validated .input-group > .typeahead:not(:focus):invalid,
 .was-validated .input-group > .tt-query:not(:focus):invalid,
-.was-validated .input-group > .tt-hint:not(:focus):invalid, .was-validated .select2-container--default .select2-selection--single .input-group > .select2-search__field:not(:focus):invalid, .select2-container--default .select2-selection--single .was-validated .input-group > .select2-search__field:not(:focus):invalid, .was-validated .select2-container--default .input-group > .select2-selection--single:not(:focus):invalid, .select2-container--default .was-validated .input-group > .select2-selection--single:not(:focus):invalid, .input-group > .form-control:not(:focus).is-invalid, .input-group > .typeahead:not(:focus).is-invalid,
+.was-validated .input-group > .tt-hint:not(:focus):invalid, .was-validated .select3--default .select3-selection--single .input-group > .select3-search__field:not(:focus):invalid, .select3--default .select3-selection--single .was-validated .input-group > .select3-search__field:not(:focus):invalid, .was-validated .select3--default .input-group > .select3-selection--single:not(:focus):invalid, .select3--default .was-validated .input-group > .select3-selection--single:not(:focus):invalid, .input-group > .form-control:not(:focus).is-invalid, .input-group > .typeahead:not(:focus).is-invalid,
 .input-group > .tt-query:not(:focus).is-invalid,
-.input-group > .tt-hint:not(:focus).is-invalid, .select2-container--default .select2-selection--single .input-group > .select2-search__field:not(:focus).is-invalid, .select2-container--default .input-group > .select2-selection--single:not(:focus).is-invalid,
+.input-group > .tt-hint:not(:focus).is-invalid, .select3--default .select3-selection--single .input-group > .select3-search__field:not(:focus).is-invalid, .select3--default .input-group > .select3-selection--single:not(:focus).is-invalid,
 .was-validated .input-group > .form-select:not(:focus):invalid,
 .input-group > .form-select:not(:focus).is-invalid,
 .was-validated .input-group > .form-floating:not(:focus-within):invalid,
@@ -20519,7 +20519,7 @@ body {
 
 .form-control, .typeahead,
 .tt-query,
-.tt-hint, .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single, .form-control:focus {
+.tt-hint, .select3--default .select3-selection--single .select3-search__field, .select3--default .select3-selection--single, .form-control:focus {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
@@ -20561,8 +20561,8 @@ input,
 .typeahead:focus,
 .tt-query:focus,
 .tt-hint:focus,
-.select2-container--default .select2-selection--single .select2-search__field:focus,
-.select2-container--default .select2-selection--single:focus,
+.select3--default .select3-selection--single .select3-search__field:focus,
+.select3--default .select3-selection--single:focus,
 input:focus,
 select:focus,
 textarea:focus,
@@ -25961,7 +25961,7 @@ svg {
 
 .form-control, .typeahead,
 .tt-query,
-.tt-hint, .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single,
+.tt-hint, .select3--default .select3-selection--single .select3-search__field, .select3--default .select3-selection--single,
 .form-select {
   border: 1px solid #dee2e6;
   font-weight: 400;
@@ -25971,7 +25971,7 @@ svg {
 
 select.form-control, select.typeahead,
 select.tt-query,
-select.tt-hint, .select2-container--default .select2-selection--single select.select2-search__field, .select2-container--default select.select2-selection--single {
+select.tt-hint, .select3--default .select3-selection--single select.select3-search__field, .select3--default select.select3-selection--single {
   padding: 0.4375rem 0.75rem;
   border: 0;
   outline: 1px solid #dee2e6;
@@ -25983,101 +25983,101 @@ select.tt-hint, .select2-container--default .select2-selection--single select.se
 }
 select.form-control:focus, select.typeahead:focus,
 select.tt-query:focus,
-select.tt-hint:focus, .select2-container--default .select2-selection--single select.select2-search__field:focus, .select2-container--default select.select2-selection--single:focus {
+select.tt-hint:focus, .select3--default .select3-selection--single select.select3-search__field:focus, .select3--default select.select3-selection--single:focus {
   outline: 1px solid #dee2e6;
 }
 select.form-control.border-primary, select.border-primary.typeahead,
 select.border-primary.tt-query,
-select.border-primary.tt-hint, .select2-container--default .select2-selection--single select.border-primary.select2-search__field, .select2-container--default select.border-primary.select2-selection--single {
+select.border-primary.tt-hint, .select3--default .select3-selection--single select.border-primary.select3-search__field, .select3--default select.border-primary.select3-selection--single {
   outline: 1px solid #1F3BB3;
 }
 select.form-control.border-primary:focus, select.border-primary.typeahead:focus,
 select.border-primary.tt-query:focus,
-select.border-primary.tt-hint:focus, .select2-container--default .select2-selection--single select.border-primary.select2-search__field:focus, .select2-container--default select.border-primary.select2-selection--single:focus {
+select.border-primary.tt-hint:focus, .select3--default .select3-selection--single select.border-primary.select3-search__field:focus, .select3--default select.border-primary.select3-selection--single:focus {
   outline: 1px solid #1F3BB3;
 }
 select.form-control.border-secondary, select.border-secondary.typeahead,
 select.border-secondary.tt-query,
-select.border-secondary.tt-hint, .select2-container--default .select2-selection--single select.border-secondary.select2-search__field, .select2-container--default select.border-secondary.select2-selection--single, select.form-control.loader-demo-box, select.loader-demo-box.typeahead,
+select.border-secondary.tt-hint, .select3--default .select3-selection--single select.border-secondary.select3-search__field, .select3--default select.border-secondary.select3-selection--single, select.form-control.loader-demo-box, select.loader-demo-box.typeahead,
 select.loader-demo-box.tt-query,
-select.loader-demo-box.tt-hint, .select2-container--default .select2-selection--single select.loader-demo-box.select2-search__field, .select2-container--default select.loader-demo-box.select2-selection--single {
+select.loader-demo-box.tt-hint, .select3--default .select3-selection--single select.loader-demo-box.select3-search__field, .select3--default select.loader-demo-box.select3-selection--single {
   outline: 1px solid #05C3FB;
 }
 select.form-control.border-secondary:focus, select.border-secondary.typeahead:focus,
 select.border-secondary.tt-query:focus,
-select.border-secondary.tt-hint:focus, .select2-container--default .select2-selection--single select.border-secondary.select2-search__field:focus, .select2-container--default select.border-secondary.select2-selection--single:focus, select.form-control.loader-demo-box:focus, select.loader-demo-box.typeahead:focus,
+select.border-secondary.tt-hint:focus, .select3--default .select3-selection--single select.border-secondary.select3-search__field:focus, .select3--default select.border-secondary.select3-selection--single:focus, select.form-control.loader-demo-box:focus, select.loader-demo-box.typeahead:focus,
 select.loader-demo-box.tt-query:focus,
-select.loader-demo-box.tt-hint:focus, .select2-container--default .select2-selection--single select.loader-demo-box.select2-search__field:focus, .select2-container--default select.loader-demo-box.select2-selection--single:focus {
+select.loader-demo-box.tt-hint:focus, .select3--default .select3-selection--single select.loader-demo-box.select3-search__field:focus, .select3--default select.loader-demo-box.select3-selection--single:focus {
   outline: 1px solid #05C3FB;
 }
 select.form-control.border-success, select.border-success.typeahead,
 select.border-success.tt-query,
-select.border-success.tt-hint, .select2-container--default .select2-selection--single select.border-success.select2-search__field, .select2-container--default select.border-success.select2-selection--single {
+select.border-success.tt-hint, .select3--default .select3-selection--single select.border-success.select3-search__field, .select3--default select.border-success.select3-selection--single {
   outline: 1px solid #34B1AA;
 }
 select.form-control.border-success:focus, select.border-success.typeahead:focus,
 select.border-success.tt-query:focus,
-select.border-success.tt-hint:focus, .select2-container--default .select2-selection--single select.border-success.select2-search__field:focus, .select2-container--default select.border-success.select2-selection--single:focus {
+select.border-success.tt-hint:focus, .select3--default .select3-selection--single select.border-success.select3-search__field:focus, .select3--default select.border-success.select3-selection--single:focus {
   outline: 1px solid #34B1AA;
 }
 select.form-control.border-info, select.border-info.typeahead,
 select.border-info.tt-query,
-select.border-info.tt-hint, .select2-container--default .select2-selection--single select.border-info.select2-search__field, .select2-container--default select.border-info.select2-selection--single {
+select.border-info.tt-hint, .select3--default .select3-selection--single select.border-info.select3-search__field, .select3--default select.border-info.select3-selection--single {
   outline: 1px solid #51B1E1;
 }
 select.form-control.border-info:focus, select.border-info.typeahead:focus,
 select.border-info.tt-query:focus,
-select.border-info.tt-hint:focus, .select2-container--default .select2-selection--single select.border-info.select2-search__field:focus, .select2-container--default select.border-info.select2-selection--single:focus {
+select.border-info.tt-hint:focus, .select3--default .select3-selection--single select.border-info.select3-search__field:focus, .select3--default select.border-info.select3-selection--single:focus {
   outline: 1px solid #51B1E1;
 }
 select.form-control.border-warning, select.border-warning.typeahead,
 select.border-warning.tt-query,
-select.border-warning.tt-hint, .select2-container--default .select2-selection--single select.border-warning.select2-search__field, .select2-container--default select.border-warning.select2-selection--single {
+select.border-warning.tt-hint, .select3--default .select3-selection--single select.border-warning.select3-search__field, .select3--default select.border-warning.select3-selection--single {
   outline: 1px solid #E29E09;
 }
 select.form-control.border-warning:focus, select.border-warning.typeahead:focus,
 select.border-warning.tt-query:focus,
-select.border-warning.tt-hint:focus, .select2-container--default .select2-selection--single select.border-warning.select2-search__field:focus, .select2-container--default select.border-warning.select2-selection--single:focus {
+select.border-warning.tt-hint:focus, .select3--default .select3-selection--single select.border-warning.select3-search__field:focus, .select3--default select.border-warning.select3-selection--single:focus {
   outline: 1px solid #E29E09;
 }
 select.form-control.border-danger, select.border-danger.typeahead,
 select.border-danger.tt-query,
-select.border-danger.tt-hint, .select2-container--default .select2-selection--single select.border-danger.select2-search__field, .select2-container--default select.border-danger.select2-selection--single {
+select.border-danger.tt-hint, .select3--default .select3-selection--single select.border-danger.select3-search__field, .select3--default select.border-danger.select3-selection--single {
   outline: 1px solid #F95F53;
 }
 select.form-control.border-danger:focus, select.border-danger.typeahead:focus,
 select.border-danger.tt-query:focus,
-select.border-danger.tt-hint:focus, .select2-container--default .select2-selection--single select.border-danger.select2-search__field:focus, .select2-container--default select.border-danger.select2-selection--single:focus {
+select.border-danger.tt-hint:focus, .select3--default .select3-selection--single select.border-danger.select3-search__field:focus, .select3--default select.border-danger.select3-selection--single:focus {
   outline: 1px solid #F95F53;
 }
 select.form-control.border-light, select.border-light.typeahead,
 select.border-light.tt-query,
-select.border-light.tt-hint, .select2-container--default .select2-selection--single select.border-light.select2-search__field, .select2-container--default select.border-light.select2-selection--single {
+select.border-light.tt-hint, .select3--default .select3-selection--single select.border-light.select3-search__field, .select3--default select.border-light.select3-selection--single {
   outline: 1px solid #E9E9E9;
 }
 select.form-control.border-light:focus, select.border-light.typeahead:focus,
 select.border-light.tt-query:focus,
-select.border-light.tt-hint:focus, .select2-container--default .select2-selection--single select.border-light.select2-search__field:focus, .select2-container--default select.border-light.select2-selection--single:focus {
+select.border-light.tt-hint:focus, .select3--default .select3-selection--single select.border-light.select3-search__field:focus, .select3--default select.border-light.select3-selection--single:focus {
   outline: 1px solid #E9E9E9;
 }
 select.form-control.border-dark, select.border-dark.typeahead,
 select.border-dark.tt-query,
-select.border-dark.tt-hint, .select2-container--default .select2-selection--single select.border-dark.select2-search__field, .select2-container--default select.border-dark.select2-selection--single {
+select.border-dark.tt-hint, .select3--default .select3-selection--single select.border-dark.select3-search__field, .select3--default select.border-dark.select3-selection--single {
   outline: 1px solid #1E283D;
 }
 select.form-control.border-dark:focus, select.border-dark.typeahead:focus,
 select.border-dark.tt-query:focus,
-select.border-dark.tt-hint:focus, .select2-container--default .select2-selection--single select.border-dark.select2-search__field:focus, .select2-container--default select.border-dark.select2-selection--single:focus {
+select.border-dark.tt-hint:focus, .select3--default .select3-selection--single select.border-dark.select3-search__field:focus, .select3--default select.border-dark.select3-selection--single:focus {
   outline: 1px solid #1E283D;
 }
 select.form-control.border-purple, select.border-purple.typeahead,
 select.border-purple.tt-query,
-select.border-purple.tt-hint, .select2-container--default .select2-selection--single select.border-purple.select2-search__field, .select2-container--default select.border-purple.select2-selection--single {
+select.border-purple.tt-hint, .select3--default .select3-selection--single select.border-purple.select3-search__field, .select3--default select.border-purple.select3-selection--single {
   outline: 1px solid #7B20C7;
 }
 select.form-control.border-purple:focus, select.border-purple.typeahead:focus,
 select.border-purple.tt-query:focus,
-select.border-purple.tt-hint:focus, .select2-container--default .select2-selection--single select.border-purple.select2-search__field:focus, .select2-container--default select.border-purple.select2-selection--single:focus {
+select.border-purple.tt-hint:focus, .select3--default .select3-selection--single select.border-purple.select3-search__field:focus, .select3--default select.border-purple.select3-selection--single:focus {
   outline: 1px solid #7B20C7;
 }
 
@@ -26090,7 +26090,7 @@ select.border-purple.tt-hint:focus, .select2-container--default .select2-selecti
 }
 .form-group.has-danger .form-control, .form-group.has-danger .typeahead,
 .form-group.has-danger .tt-query,
-.form-group.has-danger .tt-hint, .form-group.has-danger .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .form-group.has-danger .select2-search__field, .form-group.has-danger .select2-container--default .select2-selection--single, .select2-container--default .form-group.has-danger .select2-selection--single,
+.form-group.has-danger .tt-hint, .form-group.has-danger .select3--default .select3-selection--single .select3-search__field, .select3--default .select3-selection--single .form-group.has-danger .select3-search__field, .form-group.has-danger .select3--default .select3-selection--single, .select3--default .form-group.has-danger .select3-selection--single,
 .form-group.has-danger .form-select {
   border-color: #F95F53;
 }
@@ -28122,7 +28122,7 @@ dl li {
 }
 .datepicker.input-group .form-control, .datepicker.input-group .typeahead,
 .datepicker.input-group .tt-query,
-.datepicker.input-group .tt-hint, .datepicker.input-group .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .datepicker.input-group .select2-search__field, .datepicker.input-group .select2-container--default .select2-selection--single, .select2-container--default .datepicker.input-group .select2-selection--single {
+.datepicker.input-group .tt-hint, .datepicker.input-group .select3--default .select3-selection--single .select3-search__field, .select3--default .select3-selection--single .datepicker.input-group .select3-search__field, .datepicker.input-group .select3--default .select3-selection--single, .select3--default .datepicker.input-group .select3-selection--single {
   border: none;
 }
 
@@ -28142,33 +28142,33 @@ dl li {
   border-top-color: #dee2e6;
 }
 
-/* Select2 */
-.select2-container--default .select2-results__option--highlighted[aria-selected] {
+/* select3 */
+.select3--default .select3-results__option--highlighted[aria-selected] {
   background: #1F3BB3;
 }
-.select2-container--default .select2-selection--single,
-.select2-container--default .select2-dropdown,
-.select2-container--default .select2-selection--multiple {
+.select3--default .select3-selection--single,
+.select3--default .select3-dropdown,
+.select3--default .select3-selection--multiple {
   border-color: #dee2e6;
 }
-.select2-container--default .select2-selection--single .select2-search__field,
-.select2-container--default .select2-dropdown .select2-search__field,
-.select2-container--default .select2-selection--multiple .select2-search__field {
+.select3--default .select3-selection--single .select3-search__field,
+.select3--default .select3-dropdown .select3-search__field,
+.select3--default .select3-selection--multiple .select3-search__field {
   border-color: #dee2e6;
 }
-.select2-container--default .select2-selection--single {
+.select3--default .select3-selection--single {
   height: auto;
 }
-.select2-container--default .select2-selection--single .select2-selection__rendered {
+.select3--default .select3-selection--single .select3-selection__rendered {
   line-height: 14px;
 }
-.select2-container--default .select2-dropdown {
+.select3--default .select3-dropdown {
   font-size: 0.8125rem;
 }
-.select2-container--default.select2-container--focus .select2-selection--multiple {
+.select3--default.select3--focus .select3-selection--multiple {
   border-color: #dee2e6;
 }
-.select2-container--default .select2-selection--multiple .select2-selection__choice {
+.select3--default .select3-selection--multiple .select3-selection__choice {
   color: #ffffff;
   border: 0;
   border-radius: 3px;
@@ -28177,25 +28177,25 @@ dl li {
   font-family: inherit;
   line-height: 1;
 }
-.select2-container--default .select2-selection--multiple .select2-selection__choice .select2-selection__choice__remove {
+.select3--default .select3-selection--multiple .select3-selection__choice .select3-selection__choice__remove {
   color: #ffffff;
 }
-.select2-container--default .select2-selection--multiple .select2-selection__choice:nth-child(5n+1) {
+.select3--default .select3-selection--multiple .select3-selection__choice:nth-child(5n+1) {
   background: #1F3BB3;
 }
-.select2-container--default .select2-selection--multiple .select2-selection__choice:nth-child(5n+2) {
+.select3--default .select3-selection--multiple .select3-selection__choice:nth-child(5n+2) {
   background: #34B1AA;
 }
-.select2-container--default .select2-selection--multiple .select2-selection__choice:nth-child(5n+3) {
+.select3--default .select3-selection--multiple .select3-selection__choice:nth-child(5n+3) {
   background: #05C3FB;
 }
-.select2-container--default .select2-selection--multiple .select2-selection__choice:nth-child(5n+4) {
+.select3--default .select3-selection--multiple .select3-selection__choice:nth-child(5n+4) {
   background: #F95F53;
 }
-.select2-container--default .select2-selection--multiple .select2-selection__choice:nth-child(5n+5) {
+.select3--default .select3-selection--multiple .select3-selection__choice:nth-child(5n+5) {
   background: #E29E09;
 }
-.select2-container--default .select2-selection__arrow {
+.select3--default .select3-selection__arrow {
   padding-top: 45px;
 }
 
@@ -28893,7 +28893,7 @@ dl li {
   border-radius: 4px;
   padding: 0.75rem;
 }
-.navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single, .select2-container--default .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead,
+.navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single, .select3--default .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field, .select3--default .select3-selection--single .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead,
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query,
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint,
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .input-group-text {
@@ -28906,27 +28906,27 @@ dl li {
   font-size: 1.25rem;
   color: #6C7383;
 }
-.navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single, .select2-container--default .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead,
+.navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single, .select3--default .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field, .select3--default .select3-selection--single .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead,
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query,
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint {
   margin-left: 0.7rem;
 }
-.navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-webkit-input-placeholder, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single::-webkit-input-placeholder, .select2-container--default .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single::-webkit-input-placeholder, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field::-webkit-input-placeholder, .select2-container--default .select2-selection--single .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field::-webkit-input-placeholder, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-webkit-input-placeholder,
+.navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-webkit-input-placeholder, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single::-webkit-input-placeholder, .select3--default .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single::-webkit-input-placeholder, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field::-webkit-input-placeholder, .select3--default .select3-selection--single .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field::-webkit-input-placeholder, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-webkit-input-placeholder,
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query::-webkit-input-placeholder,
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint::-webkit-input-placeholder {
   color: #6c7383;
 }
-.navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-moz-placeholder, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single:-moz-placeholder, .select2-container--default .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single:-moz-placeholder, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field:-moz-placeholder, .select2-container--default .select2-selection--single .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field:-moz-placeholder, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-moz-placeholder,
+.navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-moz-placeholder, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single:-moz-placeholder, .select3--default .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single:-moz-placeholder, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field:-moz-placeholder, .select3--default .select3-selection--single .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field:-moz-placeholder, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-moz-placeholder,
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query:-moz-placeholder,
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint:-moz-placeholder {
   color: #6c7383;
 }
-.navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-moz-placeholder, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single::-moz-placeholder, .select2-container--default .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single::-moz-placeholder, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field::-moz-placeholder, .select2-container--default .select2-selection--single .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field::-moz-placeholder, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-moz-placeholder,
+.navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-moz-placeholder, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single::-moz-placeholder, .select3--default .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single::-moz-placeholder, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field::-moz-placeholder, .select3--default .select3-selection--single .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field::-moz-placeholder, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-moz-placeholder,
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query::-moz-placeholder,
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint::-moz-placeholder {
   color: #6c7383;
 }
-.navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-ms-input-placeholder, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single:-ms-input-placeholder, .select2-container--default .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single:-ms-input-placeholder, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field:-ms-input-placeholder, .select2-container--default .select2-selection--single .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field:-ms-input-placeholder, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-ms-input-placeholder,
+.navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-ms-input-placeholder, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single:-ms-input-placeholder, .select3--default .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single:-ms-input-placeholder, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field:-ms-input-placeholder, .select3--default .select3-selection--single .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field:-ms-input-placeholder, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-ms-input-placeholder,
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query:-ms-input-placeholder,
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint:-ms-input-placeholder {
   color: #6c7383;
@@ -29112,7 +29112,7 @@ dl li {
   background: transparent;
   height: 100%;
 }
-.navbar .navbar-menu-wrapper .navbar-nav .nav-item .navbar-date-picker .form-control, .navbar .navbar-menu-wrapper .navbar-nav .nav-item .navbar-date-picker .select2-container--default .select2-selection--single, .select2-container--default .navbar .navbar-menu-wrapper .navbar-nav .nav-item .navbar-date-picker .select2-selection--single, .navbar .navbar-menu-wrapper .navbar-nav .nav-item .navbar-date-picker .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .navbar .navbar-menu-wrapper .navbar-nav .nav-item .navbar-date-picker .select2-search__field, .navbar .navbar-menu-wrapper .navbar-nav .nav-item .navbar-date-picker .typeahead,
+.navbar .navbar-menu-wrapper .navbar-nav .nav-item .navbar-date-picker .form-control, .navbar .navbar-menu-wrapper .navbar-nav .nav-item .navbar-date-picker .select3--default .select3-selection--single, .select3--default .navbar .navbar-menu-wrapper .navbar-nav .nav-item .navbar-date-picker .select3-selection--single, .navbar .navbar-menu-wrapper .navbar-nav .nav-item .navbar-date-picker .select3--default .select3-selection--single .select3-search__field, .select3--default .select3-selection--single .navbar .navbar-menu-wrapper .navbar-nav .nav-item .navbar-date-picker .select3-search__field, .navbar .navbar-menu-wrapper .navbar-nav .nav-item .navbar-date-picker .typeahead,
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item .navbar-date-picker .tt-query,
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item .navbar-date-picker .tt-hint {
   font-style: normal;
@@ -29196,27 +29196,27 @@ dl li {
 .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item .nav-link.count-indicator i {
   color: #ffffff;
 }
-.navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control, .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single, .select2-container--default .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single, .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field, .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead,
+.navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control, .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single, .select3--default .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single, .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field, .select3--default .select3-selection--single .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field, .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead,
 .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query,
 .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint {
   color: #ffffff;
 }
-.navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-webkit-input-placeholder, .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single::-webkit-input-placeholder, .select2-container--default .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single::-webkit-input-placeholder, .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field::-webkit-input-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field::-webkit-input-placeholder, .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-webkit-input-placeholder,
+.navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-webkit-input-placeholder, .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single::-webkit-input-placeholder, .select3--default .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single::-webkit-input-placeholder, .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field::-webkit-input-placeholder, .select3--default .select3-selection--single .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field::-webkit-input-placeholder, .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-webkit-input-placeholder,
 .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query::-webkit-input-placeholder,
 .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint::-webkit-input-placeholder {
   color: #ffffff;
 }
-.navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-moz-placeholder, .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single:-moz-placeholder, .select2-container--default .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single:-moz-placeholder, .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field:-moz-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field:-moz-placeholder, .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-moz-placeholder,
+.navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-moz-placeholder, .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single:-moz-placeholder, .select3--default .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single:-moz-placeholder, .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field:-moz-placeholder, .select3--default .select3-selection--single .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field:-moz-placeholder, .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-moz-placeholder,
 .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query:-moz-placeholder,
 .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint:-moz-placeholder {
   color: #ffffff;
 }
-.navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-moz-placeholder, .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single::-moz-placeholder, .select2-container--default .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single::-moz-placeholder, .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field::-moz-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field::-moz-placeholder, .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-moz-placeholder,
+.navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-moz-placeholder, .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single::-moz-placeholder, .select3--default .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single::-moz-placeholder, .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field::-moz-placeholder, .select3--default .select3-selection--single .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field::-moz-placeholder, .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-moz-placeholder,
 .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query::-moz-placeholder,
 .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint::-moz-placeholder {
   color: #ffffff;
 }
-.navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-ms-input-placeholder, .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single:-ms-input-placeholder, .select2-container--default .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single:-ms-input-placeholder, .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field:-ms-input-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field:-ms-input-placeholder, .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-ms-input-placeholder,
+.navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-ms-input-placeholder, .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single:-ms-input-placeholder, .select3--default .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single:-ms-input-placeholder, .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field:-ms-input-placeholder, .select3--default .select3-selection--single .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field:-ms-input-placeholder, .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-ms-input-placeholder,
 .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query:-ms-input-placeholder,
 .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint:-ms-input-placeholder {
   color: #ffffff;
@@ -29268,27 +29268,27 @@ dl li {
 .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item .nav-link.count-indicator i {
   color: #ffffff;
 }
-.navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control, .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single, .select2-container--default .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single, .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field, .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead,
+.navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control, .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single, .select3--default .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single, .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field, .select3--default .select3-selection--single .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field, .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead,
 .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query,
 .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint {
   color: #ffffff;
 }
-.navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-webkit-input-placeholder, .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single::-webkit-input-placeholder, .select2-container--default .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single::-webkit-input-placeholder, .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field::-webkit-input-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field::-webkit-input-placeholder, .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-webkit-input-placeholder,
+.navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-webkit-input-placeholder, .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single::-webkit-input-placeholder, .select3--default .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single::-webkit-input-placeholder, .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field::-webkit-input-placeholder, .select3--default .select3-selection--single .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field::-webkit-input-placeholder, .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-webkit-input-placeholder,
 .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query::-webkit-input-placeholder,
 .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint::-webkit-input-placeholder {
   color: #ffffff;
 }
-.navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-moz-placeholder, .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single:-moz-placeholder, .select2-container--default .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single:-moz-placeholder, .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field:-moz-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field:-moz-placeholder, .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-moz-placeholder,
+.navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-moz-placeholder, .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single:-moz-placeholder, .select3--default .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single:-moz-placeholder, .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field:-moz-placeholder, .select3--default .select3-selection--single .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field:-moz-placeholder, .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-moz-placeholder,
 .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query:-moz-placeholder,
 .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint:-moz-placeholder {
   color: #ffffff;
 }
-.navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-moz-placeholder, .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single::-moz-placeholder, .select2-container--default .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single::-moz-placeholder, .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field::-moz-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field::-moz-placeholder, .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-moz-placeholder,
+.navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-moz-placeholder, .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single::-moz-placeholder, .select3--default .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single::-moz-placeholder, .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field::-moz-placeholder, .select3--default .select3-selection--single .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field::-moz-placeholder, .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-moz-placeholder,
 .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query::-moz-placeholder,
 .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint::-moz-placeholder {
   color: #ffffff;
 }
-.navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-ms-input-placeholder, .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single:-ms-input-placeholder, .select2-container--default .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single:-ms-input-placeholder, .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field:-ms-input-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field:-ms-input-placeholder, .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-ms-input-placeholder,
+.navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-ms-input-placeholder, .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single:-ms-input-placeholder, .select3--default .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single:-ms-input-placeholder, .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field:-ms-input-placeholder, .select3--default .select3-selection--single .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field:-ms-input-placeholder, .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-ms-input-placeholder,
 .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query:-ms-input-placeholder,
 .navbar.navbar-secondary:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint:-ms-input-placeholder {
   color: #ffffff;
@@ -29340,27 +29340,27 @@ dl li {
 .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item .nav-link.count-indicator i {
   color: #ffffff;
 }
-.navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control, .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single, .select2-container--default .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single, .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field, .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead,
+.navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control, .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single, .select3--default .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single, .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field, .select3--default .select3-selection--single .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field, .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead,
 .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query,
 .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint {
   color: #ffffff;
 }
-.navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-webkit-input-placeholder, .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single::-webkit-input-placeholder, .select2-container--default .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single::-webkit-input-placeholder, .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field::-webkit-input-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field::-webkit-input-placeholder, .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-webkit-input-placeholder,
+.navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-webkit-input-placeholder, .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single::-webkit-input-placeholder, .select3--default .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single::-webkit-input-placeholder, .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field::-webkit-input-placeholder, .select3--default .select3-selection--single .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field::-webkit-input-placeholder, .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-webkit-input-placeholder,
 .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query::-webkit-input-placeholder,
 .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint::-webkit-input-placeholder {
   color: #ffffff;
 }
-.navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-moz-placeholder, .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single:-moz-placeholder, .select2-container--default .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single:-moz-placeholder, .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field:-moz-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field:-moz-placeholder, .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-moz-placeholder,
+.navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-moz-placeholder, .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single:-moz-placeholder, .select3--default .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single:-moz-placeholder, .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field:-moz-placeholder, .select3--default .select3-selection--single .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field:-moz-placeholder, .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-moz-placeholder,
 .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query:-moz-placeholder,
 .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint:-moz-placeholder {
   color: #ffffff;
 }
-.navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-moz-placeholder, .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single::-moz-placeholder, .select2-container--default .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single::-moz-placeholder, .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field::-moz-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field::-moz-placeholder, .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-moz-placeholder,
+.navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-moz-placeholder, .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single::-moz-placeholder, .select3--default .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single::-moz-placeholder, .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field::-moz-placeholder, .select3--default .select3-selection--single .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field::-moz-placeholder, .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-moz-placeholder,
 .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query::-moz-placeholder,
 .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint::-moz-placeholder {
   color: #ffffff;
 }
-.navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-ms-input-placeholder, .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single:-ms-input-placeholder, .select2-container--default .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single:-ms-input-placeholder, .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field:-ms-input-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field:-ms-input-placeholder, .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-ms-input-placeholder,
+.navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-ms-input-placeholder, .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single:-ms-input-placeholder, .select3--default .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single:-ms-input-placeholder, .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field:-ms-input-placeholder, .select3--default .select3-selection--single .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field:-ms-input-placeholder, .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-ms-input-placeholder,
 .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query:-ms-input-placeholder,
 .navbar.navbar-success:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint:-ms-input-placeholder {
   color: #ffffff;
@@ -29412,27 +29412,27 @@ dl li {
 .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item .nav-link.count-indicator i {
   color: #ffffff;
 }
-.navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control, .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single, .select2-container--default .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single, .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field, .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead,
+.navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control, .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single, .select3--default .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single, .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field, .select3--default .select3-selection--single .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field, .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead,
 .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query,
 .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint {
   color: #ffffff;
 }
-.navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-webkit-input-placeholder, .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single::-webkit-input-placeholder, .select2-container--default .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single::-webkit-input-placeholder, .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field::-webkit-input-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field::-webkit-input-placeholder, .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-webkit-input-placeholder,
+.navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-webkit-input-placeholder, .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single::-webkit-input-placeholder, .select3--default .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single::-webkit-input-placeholder, .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field::-webkit-input-placeholder, .select3--default .select3-selection--single .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field::-webkit-input-placeholder, .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-webkit-input-placeholder,
 .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query::-webkit-input-placeholder,
 .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint::-webkit-input-placeholder {
   color: #ffffff;
 }
-.navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-moz-placeholder, .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single:-moz-placeholder, .select2-container--default .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single:-moz-placeholder, .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field:-moz-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field:-moz-placeholder, .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-moz-placeholder,
+.navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-moz-placeholder, .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single:-moz-placeholder, .select3--default .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single:-moz-placeholder, .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field:-moz-placeholder, .select3--default .select3-selection--single .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field:-moz-placeholder, .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-moz-placeholder,
 .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query:-moz-placeholder,
 .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint:-moz-placeholder {
   color: #ffffff;
 }
-.navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-moz-placeholder, .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single::-moz-placeholder, .select2-container--default .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single::-moz-placeholder, .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field::-moz-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field::-moz-placeholder, .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-moz-placeholder,
+.navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-moz-placeholder, .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single::-moz-placeholder, .select3--default .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single::-moz-placeholder, .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field::-moz-placeholder, .select3--default .select3-selection--single .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field::-moz-placeholder, .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-moz-placeholder,
 .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query::-moz-placeholder,
 .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint::-moz-placeholder {
   color: #ffffff;
 }
-.navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-ms-input-placeholder, .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single:-ms-input-placeholder, .select2-container--default .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single:-ms-input-placeholder, .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field:-ms-input-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field:-ms-input-placeholder, .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-ms-input-placeholder,
+.navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-ms-input-placeholder, .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single:-ms-input-placeholder, .select3--default .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single:-ms-input-placeholder, .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field:-ms-input-placeholder, .select3--default .select3-selection--single .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field:-ms-input-placeholder, .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-ms-input-placeholder,
 .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query:-ms-input-placeholder,
 .navbar.navbar-info:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint:-ms-input-placeholder {
   color: #ffffff;
@@ -29484,27 +29484,27 @@ dl li {
 .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item .nav-link.count-indicator i {
   color: #ffffff;
 }
-.navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control, .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single, .select2-container--default .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single, .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field, .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead,
+.navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control, .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single, .select3--default .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single, .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field, .select3--default .select3-selection--single .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field, .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead,
 .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query,
 .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint {
   color: #ffffff;
 }
-.navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-webkit-input-placeholder, .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single::-webkit-input-placeholder, .select2-container--default .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single::-webkit-input-placeholder, .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field::-webkit-input-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field::-webkit-input-placeholder, .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-webkit-input-placeholder,
+.navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-webkit-input-placeholder, .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single::-webkit-input-placeholder, .select3--default .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single::-webkit-input-placeholder, .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field::-webkit-input-placeholder, .select3--default .select3-selection--single .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field::-webkit-input-placeholder, .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-webkit-input-placeholder,
 .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query::-webkit-input-placeholder,
 .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint::-webkit-input-placeholder {
   color: #ffffff;
 }
-.navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-moz-placeholder, .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single:-moz-placeholder, .select2-container--default .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single:-moz-placeholder, .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field:-moz-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field:-moz-placeholder, .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-moz-placeholder,
+.navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-moz-placeholder, .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single:-moz-placeholder, .select3--default .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single:-moz-placeholder, .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field:-moz-placeholder, .select3--default .select3-selection--single .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field:-moz-placeholder, .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-moz-placeholder,
 .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query:-moz-placeholder,
 .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint:-moz-placeholder {
   color: #ffffff;
 }
-.navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-moz-placeholder, .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single::-moz-placeholder, .select2-container--default .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single::-moz-placeholder, .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field::-moz-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field::-moz-placeholder, .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-moz-placeholder,
+.navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-moz-placeholder, .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single::-moz-placeholder, .select3--default .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single::-moz-placeholder, .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field::-moz-placeholder, .select3--default .select3-selection--single .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field::-moz-placeholder, .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-moz-placeholder,
 .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query::-moz-placeholder,
 .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint::-moz-placeholder {
   color: #ffffff;
 }
-.navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-ms-input-placeholder, .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single:-ms-input-placeholder, .select2-container--default .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single:-ms-input-placeholder, .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field:-ms-input-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field:-ms-input-placeholder, .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-ms-input-placeholder,
+.navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-ms-input-placeholder, .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single:-ms-input-placeholder, .select3--default .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single:-ms-input-placeholder, .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field:-ms-input-placeholder, .select3--default .select3-selection--single .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field:-ms-input-placeholder, .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-ms-input-placeholder,
 .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query:-ms-input-placeholder,
 .navbar.navbar-warning:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint:-ms-input-placeholder {
   color: #ffffff;
@@ -29556,27 +29556,27 @@ dl li {
 .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item .nav-link.count-indicator i {
   color: #ffffff;
 }
-.navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control, .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single, .select2-container--default .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single, .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field, .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead,
+.navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control, .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single, .select3--default .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single, .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field, .select3--default .select3-selection--single .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field, .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead,
 .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query,
 .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint {
   color: #ffffff;
 }
-.navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-webkit-input-placeholder, .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single::-webkit-input-placeholder, .select2-container--default .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single::-webkit-input-placeholder, .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field::-webkit-input-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field::-webkit-input-placeholder, .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-webkit-input-placeholder,
+.navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-webkit-input-placeholder, .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single::-webkit-input-placeholder, .select3--default .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single::-webkit-input-placeholder, .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field::-webkit-input-placeholder, .select3--default .select3-selection--single .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field::-webkit-input-placeholder, .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-webkit-input-placeholder,
 .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query::-webkit-input-placeholder,
 .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint::-webkit-input-placeholder {
   color: #ffffff;
 }
-.navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-moz-placeholder, .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single:-moz-placeholder, .select2-container--default .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single:-moz-placeholder, .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field:-moz-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field:-moz-placeholder, .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-moz-placeholder,
+.navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-moz-placeholder, .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single:-moz-placeholder, .select3--default .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single:-moz-placeholder, .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field:-moz-placeholder, .select3--default .select3-selection--single .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field:-moz-placeholder, .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-moz-placeholder,
 .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query:-moz-placeholder,
 .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint:-moz-placeholder {
   color: #ffffff;
 }
-.navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-moz-placeholder, .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single::-moz-placeholder, .select2-container--default .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single::-moz-placeholder, .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field::-moz-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field::-moz-placeholder, .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-moz-placeholder,
+.navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-moz-placeholder, .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single::-moz-placeholder, .select3--default .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single::-moz-placeholder, .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field::-moz-placeholder, .select3--default .select3-selection--single .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field::-moz-placeholder, .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-moz-placeholder,
 .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query::-moz-placeholder,
 .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint::-moz-placeholder {
   color: #ffffff;
 }
-.navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-ms-input-placeholder, .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single:-ms-input-placeholder, .select2-container--default .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single:-ms-input-placeholder, .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field:-ms-input-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field:-ms-input-placeholder, .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-ms-input-placeholder,
+.navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-ms-input-placeholder, .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single:-ms-input-placeholder, .select3--default .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single:-ms-input-placeholder, .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field:-ms-input-placeholder, .select3--default .select3-selection--single .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field:-ms-input-placeholder, .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-ms-input-placeholder,
 .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query:-ms-input-placeholder,
 .navbar.navbar-danger:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint:-ms-input-placeholder {
   color: #ffffff;
@@ -29628,27 +29628,27 @@ dl li {
 .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item .nav-link.count-indicator i {
   color: #ffffff;
 }
-.navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control, .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single, .select2-container--default .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single, .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field, .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead,
+.navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control, .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single, .select3--default .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single, .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field, .select3--default .select3-selection--single .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field, .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead,
 .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query,
 .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint {
   color: #ffffff;
 }
-.navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-webkit-input-placeholder, .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single::-webkit-input-placeholder, .select2-container--default .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single::-webkit-input-placeholder, .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field::-webkit-input-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field::-webkit-input-placeholder, .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-webkit-input-placeholder,
+.navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-webkit-input-placeholder, .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single::-webkit-input-placeholder, .select3--default .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single::-webkit-input-placeholder, .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field::-webkit-input-placeholder, .select3--default .select3-selection--single .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field::-webkit-input-placeholder, .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-webkit-input-placeholder,
 .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query::-webkit-input-placeholder,
 .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint::-webkit-input-placeholder {
   color: #ffffff;
 }
-.navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-moz-placeholder, .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single:-moz-placeholder, .select2-container--default .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single:-moz-placeholder, .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field:-moz-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field:-moz-placeholder, .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-moz-placeholder,
+.navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-moz-placeholder, .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single:-moz-placeholder, .select3--default .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single:-moz-placeholder, .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field:-moz-placeholder, .select3--default .select3-selection--single .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field:-moz-placeholder, .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-moz-placeholder,
 .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query:-moz-placeholder,
 .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint:-moz-placeholder {
   color: #ffffff;
 }
-.navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-moz-placeholder, .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single::-moz-placeholder, .select2-container--default .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single::-moz-placeholder, .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field::-moz-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field::-moz-placeholder, .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-moz-placeholder,
+.navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-moz-placeholder, .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single::-moz-placeholder, .select3--default .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single::-moz-placeholder, .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field::-moz-placeholder, .select3--default .select3-selection--single .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field::-moz-placeholder, .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-moz-placeholder,
 .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query::-moz-placeholder,
 .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint::-moz-placeholder {
   color: #ffffff;
 }
-.navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-ms-input-placeholder, .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single:-ms-input-placeholder, .select2-container--default .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single:-ms-input-placeholder, .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field:-ms-input-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field:-ms-input-placeholder, .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-ms-input-placeholder,
+.navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-ms-input-placeholder, .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single:-ms-input-placeholder, .select3--default .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single:-ms-input-placeholder, .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field:-ms-input-placeholder, .select3--default .select3-selection--single .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field:-ms-input-placeholder, .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-ms-input-placeholder,
 .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query:-ms-input-placeholder,
 .navbar.navbar-light:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint:-ms-input-placeholder {
   color: #ffffff;
@@ -29700,27 +29700,27 @@ dl li {
 .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item .nav-link.count-indicator i {
   color: #ffffff;
 }
-.navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control, .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single, .select2-container--default .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single, .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field, .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead,
+.navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control, .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single, .select3--default .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single, .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field, .select3--default .select3-selection--single .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field, .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead,
 .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query,
 .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint {
   color: #ffffff;
 }
-.navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-webkit-input-placeholder, .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single::-webkit-input-placeholder, .select2-container--default .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single::-webkit-input-placeholder, .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field::-webkit-input-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field::-webkit-input-placeholder, .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-webkit-input-placeholder,
+.navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-webkit-input-placeholder, .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single::-webkit-input-placeholder, .select3--default .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single::-webkit-input-placeholder, .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field::-webkit-input-placeholder, .select3--default .select3-selection--single .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field::-webkit-input-placeholder, .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-webkit-input-placeholder,
 .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query::-webkit-input-placeholder,
 .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint::-webkit-input-placeholder {
   color: #ffffff;
 }
-.navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-moz-placeholder, .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single:-moz-placeholder, .select2-container--default .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single:-moz-placeholder, .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field:-moz-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field:-moz-placeholder, .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-moz-placeholder,
+.navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-moz-placeholder, .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single:-moz-placeholder, .select3--default .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single:-moz-placeholder, .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field:-moz-placeholder, .select3--default .select3-selection--single .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field:-moz-placeholder, .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-moz-placeholder,
 .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query:-moz-placeholder,
 .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint:-moz-placeholder {
   color: #ffffff;
 }
-.navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-moz-placeholder, .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single::-moz-placeholder, .select2-container--default .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single::-moz-placeholder, .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field::-moz-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field::-moz-placeholder, .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-moz-placeholder,
+.navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-moz-placeholder, .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single::-moz-placeholder, .select3--default .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single::-moz-placeholder, .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field::-moz-placeholder, .select3--default .select3-selection--single .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field::-moz-placeholder, .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-moz-placeholder,
 .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query::-moz-placeholder,
 .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint::-moz-placeholder {
   color: #ffffff;
 }
-.navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-ms-input-placeholder, .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single:-ms-input-placeholder, .select2-container--default .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single:-ms-input-placeholder, .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field:-ms-input-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field:-ms-input-placeholder, .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-ms-input-placeholder,
+.navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-ms-input-placeholder, .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single:-ms-input-placeholder, .select3--default .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single:-ms-input-placeholder, .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field:-ms-input-placeholder, .select3--default .select3-selection--single .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field:-ms-input-placeholder, .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-ms-input-placeholder,
 .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query:-ms-input-placeholder,
 .navbar.navbar-dark:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint:-ms-input-placeholder {
   color: #ffffff;
@@ -29772,27 +29772,27 @@ dl li {
 .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item .nav-link.count-indicator i {
   color: #ffffff;
 }
-.navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single, .select2-container--default .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead,
+.navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single, .select3--default .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field, .select3--default .select3-selection--single .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead,
 .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query,
 .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint {
   color: #ffffff;
 }
-.navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-webkit-input-placeholder, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single::-webkit-input-placeholder, .select2-container--default .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single::-webkit-input-placeholder, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field::-webkit-input-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field::-webkit-input-placeholder, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-webkit-input-placeholder,
+.navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-webkit-input-placeholder, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single::-webkit-input-placeholder, .select3--default .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single::-webkit-input-placeholder, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field::-webkit-input-placeholder, .select3--default .select3-selection--single .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field::-webkit-input-placeholder, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-webkit-input-placeholder,
 .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query::-webkit-input-placeholder,
 .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint::-webkit-input-placeholder {
   color: #ffffff;
 }
-.navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-moz-placeholder, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single:-moz-placeholder, .select2-container--default .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single:-moz-placeholder, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field:-moz-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field:-moz-placeholder, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-moz-placeholder,
+.navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-moz-placeholder, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single:-moz-placeholder, .select3--default .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single:-moz-placeholder, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field:-moz-placeholder, .select3--default .select3-selection--single .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field:-moz-placeholder, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-moz-placeholder,
 .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query:-moz-placeholder,
 .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint:-moz-placeholder {
   color: #ffffff;
 }
-.navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-moz-placeholder, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single::-moz-placeholder, .select2-container--default .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single::-moz-placeholder, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field::-moz-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field::-moz-placeholder, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-moz-placeholder,
+.navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control::-moz-placeholder, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single::-moz-placeholder, .select3--default .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single::-moz-placeholder, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field::-moz-placeholder, .select3--default .select3-selection--single .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field::-moz-placeholder, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead::-moz-placeholder,
 .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query::-moz-placeholder,
 .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint::-moz-placeholder {
   color: #ffffff;
 }
-.navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-ms-input-placeholder, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single:-ms-input-placeholder, .select2-container--default .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single:-ms-input-placeholder, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field:-ms-input-placeholder, .select2-container--default .select2-selection--single .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field:-ms-input-placeholder, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-ms-input-placeholder,
+.navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-ms-input-placeholder, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single:-ms-input-placeholder, .select3--default .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single:-ms-input-placeholder, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field:-ms-input-placeholder, .select3--default .select3-selection--single .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field:-ms-input-placeholder, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-ms-input-placeholder,
 .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query:-ms-input-placeholder,
 .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint:-ms-input-placeholder {
   color: #ffffff;

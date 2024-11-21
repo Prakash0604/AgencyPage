@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('site_datas', function (Blueprint $table) {
+        Schema::create('working_days', function (Blueprint $table) {
             $table->id();
-            $table->string('site_name');
-            $table->string('site_image');
+            $table->unsignedBigInteger('setting_id');
+            $table->json('day');
+            $table->string('starting_date');
+            $table->string('ending_date');
+            $table->foreign('setting_id')->references('id')->on('settings')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('site_datas');
+        Schema::dropIfExists('working_days');
     }
 };

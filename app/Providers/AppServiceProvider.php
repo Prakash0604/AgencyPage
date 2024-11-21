@@ -2,9 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\Setting;
 use App\Models\frontend;
 use Illuminate\Pagination\Paginator;
+// use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -22,14 +25,28 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::composer(['header','footer','contact'],function($view){
-            $setting=frontend::first();
+        View::composer(['header', 'footer', 'contact', 'about'], function ($view) {
+            $setting = Setting::first();
             $view->with([
-                'email'=>$setting->contact_us_email ?? '',
-                'address'=>$setting->contact_us_address ?? '',
-                'contact'=>$setting->contact_us_number ?? '',
+                'email' => $setting->email ?? '',
+                'address' => $setting->address ?? '',
+                'contact' => $setting->contact ?? '',
+                'description' => $setting->description ?? '',
+                'logo' => $setting->logo ?? '',
+                'work_description' => $setting->work_description ?? '',
+                'facebook' => $setting->facebook_url ?? '',
+                'twitter' => $setting->twitter_url ?? '',
+                'instagram' => $setting->instagram_url ?? '',
+                'github' => $setting->github_url ?? ''
             ]);
         });
+
+        // View::composer('*',  function ($view) {
+        //     $routeName = Route::currentRouteName();
+        //     $scripts = config('js-map.' . $routeName, []);
+
+        //     $view->with('scripts', $scripts);
+        // });
 
         Paginator::useBootstrapFive();
     }

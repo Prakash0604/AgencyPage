@@ -23,6 +23,9 @@
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ asset('admin/images/favicon.png') }}" />
 </head>
+@php
+    logger(Route::currentRouteName());
+@endphp
 
 <body>
     <div class="container-scroller">

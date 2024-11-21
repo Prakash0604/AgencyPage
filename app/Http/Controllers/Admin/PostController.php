@@ -55,8 +55,18 @@ class PostController extends Controller
                 ->rawColumns(['action', 'image', 'comment', 'status'])
                 ->make(true);
         }
+
+        $extraJs=array_merge(
+            config('js-map.admin.datatable.script'),
+            config('js-map.admin.summernote.script'),
+        );
+
+        $extraCs=array_merge(
+            config('js-map.admin.datatable.style'),
+            config('js-map.admin.summernote.style'),
+        );
         $categories = Category::pluck('title', 'id');
-        return view('Admin.pages.Post.post', compact('categories'));
+        return view('Admin.pages.Post.post', compact('categories','extraJs','extraCs'));
     }
 
     public function store(PostRequest $postRequest)

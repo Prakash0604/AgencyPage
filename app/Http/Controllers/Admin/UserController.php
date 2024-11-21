@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Arr;
 
 class UserController extends Controller
 {
@@ -22,12 +23,12 @@ class UserController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('image', function ($item) {
-                    if($item->image!=null){
+                    if ($item->image != null) {
                         $url = asset('storage/' . $item->image); // Get image URL
                         return ' <td class="py-1"><img src="' . $url . '" width="50" height="50"/></td>';
-                    }else{
-                        $url=asset('defaultImage/defaultimage.webp');
-                        return ' <td class="py-1"><img src="'.$url.'" width="50" height="50"/></td>';
+                    } else {
+                        $url = asset('defaultImage/defaultimage.webp');
+                        return ' <td class="py-1"><img src="' . $url . '" width="50" height="50"/></td>';
                     }
                 })
                 ->addColumn('action', function ($data) {
@@ -36,8 +37,29 @@ class UserController extends Controller
                 ->rawColumns(['action', 'image'])
                 ->make(true);
         }
+        // $extraJs = [];
+        // $extraCs = [];
 
-        return view('Admin.pages.User.users');
+        // $extraJs = array_merge(
+        //     config('js-map.admin.summernote.script'),
+        //     config('js-map.admin.datatable.script'),
+        // );
+
+        // $extraCs = array_merge(
+        //     config('js-map.admin.summmernote.style'),
+        //     config('js-map.admin.datatable.style')
+        // );
+        $extraJs = array_merge(
+            config('js-map.admin.summernote.script'),
+            config('js-map.admin.datatable.script'),
+        );
+
+        $extraCs = array_merge(
+            config('js-map.admin.datatable.style'),
+            config('js-map.admin.summernote.style'),
+        );
+
+        return view('Admin.pages.User.users', ['extraJs' => $extraJs, 'extraCs' => $extraCs]);
     }
 
     public function store(UserRequest $request)
@@ -96,7 +118,7 @@ class UserController extends Controller
         try {
             $user = User::find($id);
             // dd($user);
-            $data=$request->all();
+            $data = $request->all();
 
             $folder = 'images/users/';
             if ($request->hasFile('image')) {
@@ -110,7 +132,7 @@ class UserController extends Controller
 
             $user->update($data);
             DB::commit();
-            return response()->json(['success' => true],200);
+            return response()->json(['success' => true], 200);
         } catch (\Exception $e) {
             dd($e);
             DB::rollBack();
@@ -119,21 +141,22 @@ class UserController extends Controller
     }
 
 
-    public function passwordReset(Request $request,$id){
-        try{
+    public function passwordReset(Request $request, $id)
+    {
+        try {
             $request->validate([
-                'newPassword'=>'required',
-                'confirmPassword'=>'same:newPassword',
+                'newPassword' => 'required',
+                'confirmPassword' => 'same:newPassword',
             ]);
-            $userid=User::find($id);
-            if(!Hash::check($request->currentPassword,$userid->password)){
-                return response()->json(['success'=>false,'message'=>"Current Password does not match ?"]);
+            $userid = User::find($id);
+            if (!Hash::check($request->currentPassword, $userid->password)) {
+                return response()->json(['success' => false, 'message' => "Current Password does not match ?"]);
             }
-            $userid->password=$request->newPassword;
+            $userid->password = $request->newPassword;
             $userid->save();
-            return response()->json(['success'=>true,'message'=>'Password Changed Successfully!']);
-        }catch(\Exception $e){
-            return response()->json(['success'=>false,'message'=>$e->getMessage()]);
+            return response()->json(['success' => true, 'message' => 'Password Changed Successfully!']);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
     }
 
@@ -143,9 +166,9 @@ class UserController extends Controller
         DB::beginTransaction();
         try {
             $user = User::find($id);
-            if($user->image){
+            if ($user->image) {
                 Storage::disk('public')->delete($user->image);
-               }
+            }
             $user->delete();
             DB::commit();
             return response()->json(['success' => true]);

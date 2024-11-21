@@ -28,7 +28,15 @@ class CategoryController extends Controller
             ->rawColumns(['action','status'])
             ->make(true);
         }
-        return view('Admin.pages.Category.category');
+
+        $extraJs=array_merge(
+            config('js-map.admin.datatable.script'),
+        );
+
+        $extraCs=array_merge(
+            config('js-map.admin.datatable.style'),
+        );
+        return view('Admin.pages.Category.category',['extraJs'=>$extraJs,'extraCs'=>$extraCs]);
     }
 
 

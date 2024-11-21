@@ -40,7 +40,19 @@ class TestimonialController extends Controller
                 ->rawColumns(['action', 'image','status'])
                 ->make(true);
         }
-        return view('Admin.pages.TestiMonial.testimonial');
+        $extraJs = array_merge(
+            config('js-map.admin.datatable.script'),
+            config('js-map.admin.summernote.script'),
+        );
+
+
+
+
+        $extraCs = array_merge(
+            config('js-map.admin.datatable.style'),
+            config('js-map.admin.summernote.style'),
+        );
+        return view('Admin.pages.TestiMonial.testimonial',['extraJs'=>$extraJs,'extraCs'=>$extraCs]);
     }
 
     public function store(TestimonalRequest $request)

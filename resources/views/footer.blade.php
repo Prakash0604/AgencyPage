@@ -4,21 +4,19 @@
             <div class="row justify-content-between">
                 <div class="col-lg-4 col-md-6 footer-widget footer-about">
                     <h3 class="widget-title">About Us</h3>
-                    <img loading="lazy" width="200px" class="footer-logo" src="{{ asset('front/images/footer-logo.png') }}"
+                    <img loading="lazy" width="200px" class="footer-logo" src="{{ asset('storage/'.$logo) }}"
                         alt="Constra">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor inci done
-                        idunt ut
-                        labore et dolore magna aliqua.</p>
+                    <p>{!! $description !!}</p>
                     <div class="footer-social">
                         <ul>
-                            <li><a href="https://facebook.com/themefisher" aria-label="Facebook"><i
+                            <li><a href="{{ $facebook }}" aria-label="Facebook"><i
                                         class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="https://twitter.com/themefisher" aria-label="Twitter"><i
+                            <li><a href="{{ $twitter }}" aria-label="Twitter"><i
                                         class="fab fa-twitter"></i></a>
                             </li>
-                            <li><a href="https://instagram.com/themefisher" aria-label="Instagram"><i
+                            <li><a href="{{ $instagram }}" aria-label="Instagram"><i
                                         class="fab fa-instagram"></i></a></li>
-                            <li><a href="https://github.com/themefisher" aria-label="Github"><i
+                            <li><a href="{{ $github }}" aria-label="Github"><i
                                         class="fab fa-github"></i></a></li>
                         </ul>
                     </div><!-- Footer social end -->
@@ -27,9 +25,7 @@
                 <div class="col-lg-4 col-md-6 footer-widget mt-5 mt-md-0">
                     <h3 class="widget-title">Working Hours</h3>
                     <div class="working-hours">
-                        We work 7 days a week, every day excluding major holidays. Contact us if you have an
-                        emergency, with our
-                        Hotline and Contact form.
+                       {!! $work_description !!}
                         <br><br> Monday - Friday: <span class="text-right">10:00 - 16:00 </span>
                         <br> Saturday: <span class="text-right">12:00 - 15:00</span>
                         <br> Sunday and holidays: <span class="text-right">09:00 - 12:00</span>

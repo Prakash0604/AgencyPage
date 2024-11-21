@@ -1,4 +1,4 @@
-@extends('Admin.index')
+@extends('Admin.layout.master')
 @section('content')
     {{-- <h1 class="text-center">Hello world</h1> --}}
     <div class="container-fluid">

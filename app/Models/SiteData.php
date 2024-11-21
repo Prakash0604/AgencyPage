@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class SiteData extends Model
 {
     use HasFactory;
-    protected $fillable=['site_name','site_image'];
+
+    protected $table="site_datas";
+    protected $fillable=['site_title','site_logo','site_description'];
     public function sheduleTime(){
         return $this->hasMany(SiteData_SheduleTime::class,'site_data_id','id');
     }
