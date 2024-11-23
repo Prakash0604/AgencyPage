@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('setting_id');
             $table->json('day');
-            $table->string('starting_date');
-            $table->string('ending_date');
+            $table->string('starting_time');
+            $table->string('ending_time');
             $table->foreign('setting_id')->references('id')->on('settings')->onUpdate('cascade');
             $table->timestamps();
         });

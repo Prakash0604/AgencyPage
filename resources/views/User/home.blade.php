@@ -1,6 +1,6 @@
-@extends('index')
+@extends('User.layout.main')
 @section('content')
-    @include('crousal')
+    @include('User.crousal')
     <section id="ts-features" class="ts-features">
         <div class="container">
             <div class="row">
@@ -10,7 +10,6 @@
                         <h3 class="into-sub-title">{{ $frontend->about_us_title ?? ''}}</h3>
                         <p>{{ $frontend->about_us_description  ?? ''}}</p>
                     </div><!-- Intro box end -->
-
                     <div class="gap-20"></div>
 
                     <div class="row">
@@ -124,7 +123,7 @@
         <!--/ Container end -->
     </section><!-- Facts end -->
 
-    @include('testimonial')
+    @include('User.testimonial')
     {{-- <section id="ts-service-area" class="ts-service-area pb-0">
         <div class="container">
             <div class="row text-center">

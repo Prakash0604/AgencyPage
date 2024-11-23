@@ -29792,6 +29792,10 @@ dl li {
 .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint::-moz-placeholder {
   color: #ffffff;
 }
+.select2-container--default .select2-selection--multiple {
+    min-height: 38px;
+    padding-bottom: 19px !important;
+}
 .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control:-ms-input-placeholder, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single:-ms-input-placeholder, .select3--default .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-selection--single:-ms-input-placeholder, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3--default .select3-selection--single .select3-search__field:-ms-input-placeholder, .select3--default .select3-selection--single .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select3-search__field:-ms-input-placeholder, .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead:-ms-input-placeholder,
 .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query:-ms-input-placeholder,
 .navbar.navbar-purple:not(.navbar-light) .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint:-ms-input-placeholder {

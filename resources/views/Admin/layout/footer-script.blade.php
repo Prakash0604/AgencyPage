@@ -31,6 +31,7 @@
             }
             // Move to the next element
             $directory->next();
+            // dd($directory->next());
         }
     }
 @endphp

@@ -23,7 +23,7 @@ class SettingRequest extends FormRequest
     {
         return [
             'title'=>'required|min:3',
-            'logo'=>'required|mimes:png,jpg,webp,jpeg',
+            'logo'=>'mimes:png,jpg,webp,jpeg',
             'description'=>'nullable|string',
             'work_description'=>'nullable|string',
             'contact'=>'nullable|numeric|min:7',

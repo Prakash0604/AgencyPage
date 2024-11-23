@@ -1,5 +1,45 @@
 @extends('Admin.layout.master')
 @section('content')
+    <style>
+        <style>
+
+        /* Match Select2 with Bootstrap's form-select */
+        .select2-container .select2-selection--multiple {
+            border: 1px solid #ced4da;
+            border-radius: 0.375rem;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            height: auto;
+            background-color: #fff;
+        }
+
+        .select2-container .select2-selection--multiple .select2-selection__choice {
+            background-color: #0d6efd;
+            border: none;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.375rem;
+            margin-right: 0.25rem;
+        }
+
+        .select2-container .select2-selection--multiple .select2-selection__choice__remove {
+            color: white;
+            margin-right: 0.25rem;
+            cursor: pointer;
+        }
+
+        .select2-container--default .select2-selection--multiple .select2-selection__choice:hover {
+            background-color: #0056b3;
+        }
+
+        .select2-container--default .select2-results>.select2-results__options {
+            max-height: 300px;
+            /* Optional: Limit dropdown height */
+            overflow-y: auto;
+        }
+    </style>
+
+    </style>
     <div class="container-fluid">
         <div class="card p-3">
             @if (session()->has('success'))
@@ -123,10 +163,10 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <label for="" class="form-label">Days</label>
-                                    <select multiple class="form-select form-select-lg multiple-days" name="day"
-                                        id="multiple-days">
+                                    <select multiple class="form-select p-4 form-select-lg multiple-days"
+                                        id="select-days-data" name="days[]" id="multiple-days">
                                         <option value="Sunday">Sunday</option>
-                                        <option value="Monday">Istanbul</option>
+                                        <option value="Monday">Monday</option>
                                         <option value="Tuesday">Tuesday</option>
                                         <option value="Wednesday">Wednesday</option>
                                         <option value="Thursday">Thrusday</option>
@@ -137,12 +177,12 @@
 
                                 <div class="col-md-4">
                                     <label for="" class="form-label">Starting Date</label>
-                                    <input type="date" name="starting_date" id="" class="form-control"
+                                    <input type="time" name="starting_times[]" id="" class="form-control"
                                         placeholder="" aria-describedby="helpId" />
                                 </div>
                                 <div class="col-md-4">
                                     <label for="" class="form-label">Ending Date</label>
-                                    <input type="date" name="ending_date" id="" class="form-control"
+                                    <input type="time" name="ending_times[]" id="" class="form-control"
                                         placeholder="" aria-describedby="helpId" />
                                 </div>
                                 <div class="col-md-2 mt-4">
@@ -158,72 +198,5 @@
                 </form>
         </div>
     </div>
-    <script>
-        $(document).ready(function() {
-            $(".description").summernote({
-                height: 300,
-            });
-            // Multiple Select
-            $(".multiple-days").select2({
-                placeholder: "Please Select the days"
-            });
-
-            $(document).on("click", ".addMoreBtn", function() {
-                $(".fetch-multiple-columns").append(`
-                    <div class="row fetchExtraColumn">
-                            <div class="col-md-2">
-                                    <label for="" class="form-label">Days</label>
-                                    <select
-                                        multiple
-                                        class="form-select form-select-lg multiple-days"
-                                        name="day"
-                                    >
-                                        <option value="Sunday">Sunday</option>
-                                        <option value="Monday">Istanbul</option>
-                                        <option value="Tuesday">Tuesday</option>
-                                        <option value="Wednesday">Wednesday</option>
-                                        <option value="Thursday">Thrusday</option>
-                                        <option value="Friday">Friday</option>
-                                        <option value="Saturday">Saturday</option>
-                                    </select>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <label for="" class="form-label">Starting Date</label>
-                                    <input
-                                        type="date"
-                                        name="starting_date"
-                                        id=""
-                                        class="form-control"
-                                        placeholder=""
-                                        aria-describedby="helpId"
-                                    />
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="" class="form-label">Ending Date</label>
-                                    <input
-                                        type="date"
-                                        name="ending_date"
-                                        id=""
-                                        class="form-control"
-                                        placeholder=""
-                                        aria-describedby="helpId"
-                                    />
-                                </div>
-                                <div class="col-md-2 mt-4">
-                                    <button type="button" class="btn btn-primary addMoreBtn">Add More</button>
-                                    <button type="button" class="btn btn-danger removeColumnBtn">Remove</button>
-                                </div>
-
-
-                            </div>
-
-                `);
-            })
-            $(document).on("click",".removeColumnBtn",function(){
-                $(this).closest(".fetchExtraColumn").remove();
-            })
-
-        })
-    </script>
+    <script></script>
 @endsection

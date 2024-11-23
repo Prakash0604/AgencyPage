@@ -65,6 +65,9 @@ class PostController extends Controller
             config('js-map.admin.datatable.style'),
             config('js-map.admin.summernote.style'),
         );
+
+
+
         $categories = Category::pluck('title', 'id');
         return view('Admin.pages.Post.post', compact('categories','extraJs','extraCs'));
     }

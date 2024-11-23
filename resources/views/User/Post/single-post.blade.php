@@ -1,4 +1,4 @@
-@extends('index')
+@extends('User.layout.main')
 @section('content')
     <div id="banner-area" class="banner-area" style="background-image:url({{ asset('front/images/banner/banner1.jpg') }})">
         <div class="banner-text">

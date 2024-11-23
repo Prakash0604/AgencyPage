@@ -49,6 +49,17 @@ class SettingController extends Controller
             }
             // dd($data);
             $setting->update($data);
+
+            foreach($request->days as $index=>$day){
+                Setting::create([
+                    'setting_id'=>$setting->id,
+                    'day'=>$day,
+                    'starting_time'=>$request->starting_time[$index],
+                    'ending_time'=>$request->ending_time[$index]
+                ]);
+
+            }
+
             return back()->with(['success' => 'Setting Updated Successfully']);
         } catch (\Exception $e) {
             return back()->with(['error' => $e->getMessage()]);
