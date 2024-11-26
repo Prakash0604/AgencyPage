@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Setting;
 use App\Models\frontend;
+use App\Models\WorkingDay;
 use Illuminate\Pagination\Paginator;
 // use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\View;
@@ -27,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer(['User.layout.header', 'User.layout.footer', 'User.contact', 'User.about'], function ($view) {
             $setting = Setting::first();
+            
             $view->with([
                 'email' => $setting->email ?? '',
                 'address' => $setting->address ?? '',
@@ -37,7 +39,8 @@ class AppServiceProvider extends ServiceProvider
                 'facebook' => $setting->facebook_url ?? '',
                 'twitter' => $setting->twitter_url ?? '',
                 'instagram' => $setting->instagram_url ?? '',
-                'github' => $setting->github_url ?? ''
+                'github' => $setting->github_url ?? '',
+                'workdesc'=>WorkingDay::all(),
                 
             ]);
         });

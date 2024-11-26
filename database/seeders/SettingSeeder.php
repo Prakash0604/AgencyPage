@@ -14,16 +14,16 @@ class SettingSeeder extends Seeder
     public function run(): void
     {
         $setting=new Setting();
-        $setting->title=fake()->title();
+        $setting->title="Midas Technologies";
         $setting->description=fake()->paragraph();
         $setting->work_description=fake()->paragraph();
-        $setting->email=fake()->email();
-        $setting->address=fake()->address();
-        $setting->contact=fake()->phoneNumber();
-        $setting->facebook_url=fake()->url();
-        $setting->twitter_url=fake()->url();
-        $setting->github_url=fake()->url();
-        $setting->instagram_url=fake()->url();
+        $setting->email="jprakashchaudhary858@gmail.com";
+        $setting->address="Kupondole";
+        $setting->contact="9823681753";
+        $setting->facebook_url="facebook.com";
+        $setting->twitter_url="twitter.com";
+        $setting->github_url="github.com";
+        $setting->instagram_url="instagram.com";
         $setting->save();
     }
 }

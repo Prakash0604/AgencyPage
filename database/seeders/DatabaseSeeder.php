@@ -21,7 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             // frontendseeder::class,
             UserSeeder::class,
-            SiteDataSeeder::class,
             SettingSeeder::class
         ]);
     }

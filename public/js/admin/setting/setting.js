@@ -8,6 +8,27 @@ $(document).ready(function () {
         allowClear: true,
     });
 
+     var table=$("#fetch-working-details").DataTable({
+        processing:true,
+        serverSide:true,
+        searching:false,
+        ordering:false,
+        paging:false,
+        info:false,
+        ajax:"/admin/setting",
+        columns:[
+            {
+                data:"days", name:"days"
+            },{
+                data:"starting_time", name:"starting_time"
+            },{
+                data:"ending_time", name:"ending_time"
+            },{
+                data:"action", name:"action"
+            }
+        ]
+    })
+
     // Initialize selected days array
     let selectedDays = [];
 
@@ -39,63 +60,7 @@ $(document).ready(function () {
         });
     }
 
-    $(document).on("click", ".addMoreBtn", function () {
-        $(".fetch-multiple-columns").append(`
-            <div class="row fetchExtraColumn">
-                    <div class="col-md-2">
-                            <label for="" class="form-label">Days</label>
-                            <select
-                                multiple
-                                class="form-select form-select-lg multiple-days"
-                                name="days[]"
-                            >
-                                <option value="Sunday">Sunday</option>
-                                <option value="Monday">Monday</option>
-                                <option value="Tuesday">Tuesday</option>
-                                <option value="Wednesday">Wednesday</option>
-                                <option value="Thursday">Thrusday</option>
-                                <option value="Friday">Friday</option>
-                                <option value="Saturday">Saturday</option>
-                            </select>
-                        </div>
-
-                        <div class="col-md-4">
-                            <label for="" class="form-label">Starting Time</label>
-                            <input
-                                type="time"
-                                name="starting_time[]"
-                                id=""
-                                class="form-control"
-                                placeholder=""
-                                aria-describedby="helpId"
-                            />
-                        </div>
-                        <div class="col-md-4">
-                            <label for="" class="form-label">Ending Time</label>
-                            <input
-                                type="time"
-                                name="ending_time[]"
-                                id=""
-                                class="form-control"
-                                placeholder=""
-                                aria-describedby="helpId"
-                            />
-                        </div>
-                        <div class="col-md-2 mt-4">
-                            <button type="button" class="btn btn-primary addMoreBtn">Add More</button>
-                            <button type="button" class="btn btn-danger removeColumnBtn">Remove</button>
-                        </div>
-
-
-                    </div>
-
-        `);
-        updateDropdownOptions();
-        $(".multiple-days").select2({
-            placeholder: "Please Select the days",
-            allowClear: true,
-        });
-    });
+   
 
     $(".fetch-multiple-columns").on("click", ".removeColumnBtn", function () {
         const $row = $(this).closest(".fetchExtraColumn");
@@ -129,5 +94,67 @@ $(document).ready(function () {
         updateDropdownOptions();
     });
     
-
+    // Create Working 
+    $(document).on("submit","#addWorkingForm",function(event){
+        event.preventDefault();
+        let formdata=new FormData(this);
+        $(".addWorkingBtn").prop("disabled",true);
+        $.ajax({
+            url:"/admin/setting/working",
+            type:"post",
+            data:formdata,
+            processData:false,
+            contentType:false,
+            success:function(){
+                table.draw();
+                $("#addWorkingForm").trigger("reset");
+                $(".multiple-days").val([]).trigger("change");
+            },
+            error:function(xhr){
+                console.log(xhr);
+            },
+            complete:function(){
+                $(".addWorkingBtn").prop("disabled",false);
+            }
+        })
+    })
+    $(document).on("click",".deleteWorkingBtn",function(){
+        let id=$(this).attr("data-id");
+        Swal.fire({
+            icon:"warning",
+            title:"Are you Sure ?",
+            text:"You,won't be able to revert this!",
+            showCancelButton:true,
+            confirmButtonColor:"#3085d3",
+            confirmButtonText:"Yes,Delete it!",
+            cancelButtonColor:"#d33"
+        }).then((result)=>{
+            if(result.isConfirmed){
+                $.ajax({
+                    type:"get",
+                    url:"/admin/setting/working/"+id,
+                    success:function(response){
+                        if(response.success ==true ){
+                            Swal.fire({
+                                icon:"success",
+                                title:"Success",
+                                text:"Working Days Deleted",
+                                showConfirmButton:false,
+                                timer:1000,
+                            });
+                            table.draw();
+                        }
+                    },
+                    error:function(xhr){
+                        console.log(xhr);
+                        Swal.fire({
+                            icon:"warning",
+                            title:"Warning",
+                            text:"Something went wrong!",
+                        });
+                    }
+                })
+            }
+        })
+    })
 });

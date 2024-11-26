@@ -158,72 +158,69 @@
                                 <small id="helpId" class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                        <div class="mt-4 fetch-multiple-columns">
-
-                            <h4 class="mt-3 mb-3">Working Hour</h4>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <label for="" class="form-label">Days</label>
-                                    <select multiple class="form-select p-4 form-select-lg multiple-days"
-                                        id="select-days-data" name="days[]" id="multiple-days">
-                                        <option value="Sunday">Sunday</option>
-                                        <option value="Monday">Monday</option>
-                                        <option value="Tuesday">Tuesday</option>
-                                        <option value="Wednesday">Wednesday</option>
-                                        <option value="Thursday">Thrusday</option>
-                                        <option value="Friday">Friday</option>
-                                        <option value="Saturday">Saturday</option>
-                                    </select>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <label for="" class="form-label">Starting Date</label>
-                                    <input type="time" name="starting_time" id="" class="form-control"
-                                        placeholder="" aria-describedby="helpId" />
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="" class="form-label">Ending Date</label>
-                                    <input type="time" name="ending_time" id="" class="form-control"
-                                        placeholder="" aria-describedby="helpId" />
-                                </div>
-                                <div class="col-md-2 mt-4">
-                                    <button type="button" class="btn btn-primary addMoreBtn">Add More</button>
-                                    <button type="button" class="btn btn-danger">Remove</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mt-4">
-                            @foreach ($workingHours as $workingHour)
-                                <div class="col-md-12">
-                                    <div class="working-hour-entry">
-                                        @php
-                                            $daysArray = json_decode($workingHour->days, true); // Decode JSON to array
-                                        @endphp
-
-                                        @if (is_array($daysArray))
-                                            <span><strong>Days:</strong> {{ implode(', ', $daysArray) }}</span><br>
-                                        @else
-                                            <span><strong>Days:</strong> {{ $workingHour->days }}</span><br>
-                                        @endif
-
-                                        <span><strong>Starting Time:</strong> {{ $workingHour->starting_time }}</span><br>
-                                        <span><strong>Ending Time:</strong> {{ $workingHour->ending_time }}</span><br>
-
-                                        <button type="button" class="btn btn-warning editBtn"
-                                            data-id="{{ $workingHour->id }}">Edit</button>
-                                        <button type="button" class="btn btn-danger deleteBtn"
-                                            data-id="{{ $workingHour->id }}">Delete</button>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-
                     </div>
                     <button class="btn btn-success mt-3 mb-3">Submit</button>
                 </form>
         </div>
+        <div class="card p-2">
+            <div class="mt-4 fetch-multiple-columns">
 
+                <h4 class="mt-3 mb-3">Working Hour</h4>
+                <form id="addWorkingForm">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="" class="form-label">Days</label>
+                            <select multiple class="form-select p-4 form-select-lg multiple-days" id="select-days-data"
+                                name="days[]" id="multiple-days">
+                                <option value="Sunday">Sunday</option>
+                                <option value="Monday">Monday</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thrusday</option>
+                                <option value="Friday">Friday</option>
+                                <option value="Saturday">Saturday</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="" class="form-label">Starting Date</label>
+                            <input type="time" name="starting_time" id="" class="form-control"
+                                placeholder="" aria-describedby="helpId" />
+                        </div>
+                        <div class="col-md-3">
+                            <label for="" class="form-label">Ending Date</label>
+                            <input type="time" name="ending_time" id="" class="form-control" placeholder=""
+                                aria-describedby="helpId" />
+                        </div>
+                        <div class="col-md-3 mt-4">
+                            <button type="submit" class="btn btn-primary mt-1 addWorkingBtn">Add</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="row mt-4">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped" id="fetch-working-details">
+                        <thead>
+                            <tr>
+                                <th scope="col">Days</th>
+                                <th scope="col">Starting Time</th>
+                                <th scope="col">End Time</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+
+                    </table>
+                </div>
+
+            </div>
+        </div>
     </div>
-    {{-- <script></script> --}}
 @endsection
+
+
+<tbody>
+
+</tbody>
