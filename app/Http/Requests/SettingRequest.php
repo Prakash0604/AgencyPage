@@ -32,7 +32,10 @@ class SettingRequest extends FormRequest
             'facebook_url'=>'nullable|url',
             'github_url'=>'nullable|url',
             'twitter_url'=>'nullable|url',
-            'instagram_url'=>'nullable|url'
+            'instagram_url'=>'nullable|url',
+            'starting_time'=>'nullable|date_format:H:i',
+            'ending_time'=>'nullable|date_format:H:i',
+            'days'=>'nullable|in:Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday|array',
         ];
     }
 

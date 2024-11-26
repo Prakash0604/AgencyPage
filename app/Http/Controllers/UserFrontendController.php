@@ -23,7 +23,7 @@ class UserFrontendController extends Controller
     }
     public function aboutUs(){
         $users=User::where('role','Admin')->get();
-        $frontend=frontend::first();
+        $frontend=Setting::first();
         return view('User.about',compact('users','frontend'));
     }
 

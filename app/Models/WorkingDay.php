@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class WorkingDay extends Model
 {
     use HasFactory;
-    protected $fillable=['day','starting_time','ending_time','setting_id'];
+    protected $table="working_days";
+    protected $fillable=['days','starting_time','ending_time','setting_id'];
 
     public function setting(){
         return $this->belongsTo(Setting::class);

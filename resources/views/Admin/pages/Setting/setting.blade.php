@@ -62,7 +62,7 @@
                             <label for="" class="form-label">Title</label>
                             <input type="text" name="title" id=""
                                 class="form-control @error('title') is-invalid @enderror" placeholder=""
-                                value="{{ $setting->title }}" aria-describedby="helpId" />
+                                value="{{ $setting->title ?? '' }}" aria-describedby="helpId" />
                             @error('title')
                                 <small id="helpId" class="text-danger">{{ $message }}</small>
                             @enderror
@@ -76,7 +76,8 @@
                             @error('logo')
                                 <small id="helpId" class="text-danger">{{ $message }}</small>
                             @enderror
-                            @if ($setting->logo != null)
+
+                            @if ($setting->logo !== null)
                                 <div>
                                     <img src="/storage/{{ $setting->logo }}" alt="" srcset="" width="100"
                                         height="100">
@@ -177,26 +178,52 @@
 
                                 <div class="col-md-4">
                                     <label for="" class="form-label">Starting Date</label>
-                                    <input type="time" name="starting_times[]" id="" class="form-control"
+                                    <input type="time" name="starting_time" id="" class="form-control"
                                         placeholder="" aria-describedby="helpId" />
                                 </div>
                                 <div class="col-md-4">
                                     <label for="" class="form-label">Ending Date</label>
-                                    <input type="time" name="ending_times[]" id="" class="form-control"
+                                    <input type="time" name="ending_time" id="" class="form-control"
                                         placeholder="" aria-describedby="helpId" />
                                 </div>
                                 <div class="col-md-2 mt-4">
                                     <button type="button" class="btn btn-primary addMoreBtn">Add More</button>
                                     <button type="button" class="btn btn-danger">Remove</button>
                                 </div>
-
-
                             </div>
                         </div>
+
+                        <div class="row mt-4">
+                            @foreach ($workingHours as $workingHour)
+                                <div class="col-md-12">
+                                    <div class="working-hour-entry">
+                                        @php
+                                            $daysArray = json_decode($workingHour->days, true); // Decode JSON to array
+                                        @endphp
+
+                                        @if (is_array($daysArray))
+                                            <span><strong>Days:</strong> {{ implode(', ', $daysArray) }}</span><br>
+                                        @else
+                                            <span><strong>Days:</strong> {{ $workingHour->days }}</span><br>
+                                        @endif
+
+                                        <span><strong>Starting Time:</strong> {{ $workingHour->starting_time }}</span><br>
+                                        <span><strong>Ending Time:</strong> {{ $workingHour->ending_time }}</span><br>
+
+                                        <button type="button" class="btn btn-warning editBtn"
+                                            data-id="{{ $workingHour->id }}">Edit</button>
+                                        <button type="button" class="btn btn-danger deleteBtn"
+                                            data-id="{{ $workingHour->id }}">Delete</button>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+
                     </div>
                     <button class="btn btn-success mt-3 mb-3">Submit</button>
                 </form>
         </div>
+
     </div>
-    <script></script>
+    {{-- <script></script> --}}
 @endsection

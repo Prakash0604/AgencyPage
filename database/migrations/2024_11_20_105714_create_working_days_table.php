@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('working_days', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('setting_id');
-            $table->json('day');
-            $table->string('starting_time');
-            $table->string('ending_time');
+            $table->json('days');
+            $table->time('starting_time');
+            $table->time('ending_time');
             $table->foreign('setting_id')->references('id')->on('settings')->onUpdate('cascade');
             $table->timestamps();
         });

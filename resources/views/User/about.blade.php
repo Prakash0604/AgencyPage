@@ -25,8 +25,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="column-title">{{ $frontend->about_us_title }}</h3>
-                    <p>{!! $frontend->about_us_description !!}</p>
+                    <h3 class="column-title">{{ $frontend->title }}</h3>
+                    <p>{!! $frontend->description !!}</p>
                 </div><!-- Col end -->
 
             </div><!-- Content row end -->

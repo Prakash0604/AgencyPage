@@ -38,6 +38,7 @@ class AppServiceProvider extends ServiceProvider
                 'twitter' => $setting->twitter_url ?? '',
                 'instagram' => $setting->instagram_url ?? '',
                 'github' => $setting->github_url ?? ''
+                
             ]);
         });
 

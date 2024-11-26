@@ -7,10 +7,11 @@
                 <div class="col-lg-6">
                     <div class="ts-intro">
                         <h2 class="into-title">About Us</h2>
-                        <h3 class="into-sub-title">{{ $frontend->about_us_title ?? ''}}</h3>
-                        <p>{{ $frontend->about_us_description  ?? ''}}</p>
+                        <h3 class="into-sub-title">{{ $frontend->title ?? ''}}</h3>
+                        <p>{!! $frontend->description  ?? '' !!}</p>
                     </div><!-- Intro box end -->
                     <div class="gap-20"></div>
+
 
                     <div class="row">
                         <div class="col-md-6">
@@ -62,8 +63,8 @@
                 </div><!-- Col end -->
 
                 <div class="col-lg-6 mt-4 mt-lg-0">
-                    <h3 class="into-sub-title">{{ $frontend->about_us_value ?? '' }}</h3>
-                    <p>{{ $frontend->about_us_value_description  ?? ''}}</p>
+                    <h3 class="into-sub-title">{{ $frontend->title ?? '' }}</h3>
+                    <p>{{ $frontend->description  ?? ''}}</p>
 
 
                     <!--/ Accordion end -->

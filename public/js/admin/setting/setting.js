@@ -63,7 +63,7 @@ $(document).ready(function () {
                             <label for="" class="form-label">Starting Time</label>
                             <input
                                 type="time"
-                                name="starting_times[]"
+                                name="starting_time[]"
                                 id=""
                                 class="form-control"
                                 placeholder=""
@@ -74,7 +74,7 @@ $(document).ready(function () {
                             <label for="" class="form-label">Ending Time</label>
                             <input
                                 type="time"
-                                name="ending_times[]"
+                                name="ending_time[]"
                                 id=""
                                 class="form-control"
                                 placeholder=""
@@ -128,5 +128,6 @@ $(document).ready(function () {
         // Update the dropdown options
         updateDropdownOptions();
     });
+    
 
 });
