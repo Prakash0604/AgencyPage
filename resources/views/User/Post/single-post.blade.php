@@ -188,9 +188,10 @@
                         console.log(response);
                         if (response.auth === null) {
                             window.location.href = "/register";
+                        }else{
+                            location.reload();
                         }
 
-                        location.reload();
                     },
                     error: function(response) {
                         if (response.status === 422) {
@@ -277,6 +278,6 @@
                 })
 
             });
-        })
+        });
     </script>
 @endsection

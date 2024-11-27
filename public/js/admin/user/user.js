@@ -215,7 +215,6 @@ $(document).ready(function () {
             //     autocorrect: "off"
             // },
             html: `
-            @csrf
                    <input id="swal-input1"  type="password" placeholder="Current Password" class=" swal2-input">
                    <input id="swal-input2"  type="password" placeholder="New Password" class=" swal2-input">
                    <input id="swal-input3"  type="password" placeholder="Confirm Password" class="swal2-input">
