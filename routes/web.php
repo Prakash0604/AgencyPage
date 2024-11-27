@@ -76,7 +76,7 @@ Route::middleware('admin')->group(function () {
     Route::get('/admin/setting',[SettingController::class,'index'])->name('admin.setting');
     Route::post('/admin/setting',[SettingController::class,'store'])->name('admin.store.setting');
     Route::get('/admin/setting/working/{id}',[SettingController::class,'destroyWorking']);
-    Route::post('/admin/setting/working/',[SettingController::class,'addWorking']);
+    Route::post('/admin/setting/working',[SettingController::class,'addWorking']);
     // Route::resource('users',UserController::class);
 
     // Testimonial

@@ -112,11 +112,22 @@ $(document).ready(function () {
             },
             error:function(xhr){
                 console.log(xhr);
+                if(xhr.status == 422){
+                    let error=xhr.responseJSON.errors;
+                    $.each(error,function(data,message){
+                        $("#"+data+"-error").text(message[0]);
+                    })
+                }
             },
             complete:function(){
                 $(".addWorkingBtn").prop("disabled",false);
             }
         })
+    })
+
+    // Edit Update
+    $(document).on("click",".editWorkingBtn",function(){
+        $("#formModal").modal("show");
     })
     $(document).on("click",".deleteWorkingBtn",function(){
         let id=$(this).attr("data-id");
@@ -157,4 +168,5 @@ $(document).ready(function () {
             }
         })
     })
+
 });

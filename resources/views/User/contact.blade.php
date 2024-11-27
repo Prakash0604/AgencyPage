@@ -68,6 +68,7 @@
             <h4>Call Us</h4>
             <p>{{ $contact }}</p>
           </div>
+          
         </div>
       </div><!-- Col 3 end -->
 

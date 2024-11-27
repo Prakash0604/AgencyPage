@@ -181,17 +181,20 @@
                                 <option value="Friday">Friday</option>
                                 <option value="Saturday">Saturday</option>
                             </select>
+                            <p id="days-error" class="text-danger workingHourAlert"></p>
                         </div>
 
                         <div class="col-md-3">
                             <label for="" class="form-label">Starting Date</label>
                             <input type="time" name="starting_time" id="" class="form-control"
                                 placeholder="" aria-describedby="helpId" />
+                                <p id="starting_time-error" class="text-danger workingHourAlert"></p>
                         </div>
                         <div class="col-md-3">
                             <label for="" class="form-label">Ending Date</label>
                             <input type="time" name="ending_time" id="" class="form-control" placeholder=""
                                 aria-describedby="helpId" />
+                                <p id="ending_time-error" class="text-danger workingHourAlert"></p>
                         </div>
                         <div class="col-md-3 mt-4">
                             <button type="submit" class="btn btn-primary mt-1 addWorkingBtn">Add</button>
@@ -217,6 +220,7 @@
 
             </div>
         </div>
+        @include('Admin.pages.Setting.settingmodal')
     </div>
 @endsection
 
