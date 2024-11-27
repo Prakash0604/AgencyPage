@@ -24,6 +24,7 @@
                     <h3 class="widget-title">Working Hours</h3>
                     <div class="working-hours">
                         {!! $work_description !!}
+                        <br>
                         @foreach ($workdesc as $work)
                         @php
                             $workArray=json_decode($work->days);

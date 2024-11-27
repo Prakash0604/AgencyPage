@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Validation\Rule;
+use App\Rules\UniqueCaseInsensitive;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CategoryRequest extends FormRequest
@@ -23,15 +24,20 @@ class CategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'=>['required',Rule::unique('categories')->ignore($this->route('id'))],
-            'status'=>$this->route('id') ? 'nullable' :'required',
+            // 'title' => ['required', Rule::unique('categories')->ignore($this->route('id'))],
+            // new UniqueCaseInsensitive('table_name', 'column_name', $ignoreId = $request->id),
+            'title' => [
+                'required',
+                new UniqueCaseInsensitive('categories', 'title', $this->id ?? null),
+            ],
         ];
     }
 
-    public function messages(){
+    public function messages()
+    {
         return [
-            'title.required'=>'Please Enter the title',
-            'title.unique'=>'Title Already Taken'
+            'title.required' => 'Please Enter the title',
+            'title.unique' => 'Title Already Taken'
         ];
     }
 }

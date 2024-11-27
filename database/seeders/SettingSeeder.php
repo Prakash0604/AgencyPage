@@ -20,10 +20,10 @@ class SettingSeeder extends Seeder
         $setting->email="jprakashchaudhary858@gmail.com";
         $setting->address="Kupondole";
         $setting->contact="9823681753";
-        $setting->facebook_url="facebook.com";
-        $setting->twitter_url="twitter.com";
-        $setting->github_url="github.com";
-        $setting->instagram_url="instagram.com";
+        $setting->facebook_url="https://www.facebook.com/";
+        $setting->twitter_url="https://en.wikipedia.org/wiki/Twitter";
+        $setting->github_url="https://github.com/prakash0604";
+        $setting->instagram_url="https://instagram.com";
         $setting->save();
     }
 }
