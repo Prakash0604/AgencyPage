@@ -26,8 +26,8 @@ class SettingController extends Controller
                     return implode(',', $daysArray);
                 })
                 ->addColumn('action', function ($item) {
-                    $btn = '<button type="button" class="btn btn-info editWorkingBtn" data-id=' . $item->id . '>Edit</button>';
-                    $btn .= '<button type="button" class="btn btn-danger deleteWorkingBtn" data-id=' . $item->id . '>Delete</button>';
+                    // $btn = '<button type="button" class="btn btn-info editWorkingBtn" data-id=' . $item->id . '>Edit</button>';
+                    $btn= '<button type="button" class="btn btn-danger deleteWorkingBtn" data-id=' . $item->id . '>Delete</button>';
                     return $btn;
                 })
                 ->make(true);

@@ -31,8 +31,11 @@ class WorkingRequest extends FormRequest
     public function messages()
     {
         return [
+            'starting_time.required'=>'Please Enter Starting Time',
             'starting_time.date_format'=>'Invalid time Format',
+            'ending_time.required'=>'Please Enter Ending Time',
             'ending_time.date_format'=>'Invalid time format',
+            'days.required'=>'Please Select the days',
             'days.in'=>'Please Select from dropdown options only',
             'days.array'=>'Days must be a type of Array'
         ];

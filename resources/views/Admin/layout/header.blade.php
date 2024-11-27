@@ -28,6 +28,6 @@
     @isset($extraCs)
         @foreach ($extraCs as $css)
             {{-- <script src="{{ asset($cs) }}?v=0.3.1"></script> --}}
-           <link rel="stylesheet" href="{{ $css }}?v=0.3.1">
+           <link rel="stylesheet" href="{{ $css }}">
         @endforeach
     @endisset

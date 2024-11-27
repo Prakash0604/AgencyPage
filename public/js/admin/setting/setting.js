@@ -2,12 +2,12 @@ $(document).ready(function () {
     $(".description").summernote({
         height: 300,
     });
-    // Multiple Select
-    $(".multiple-days").select2({
+   
+    $('#multiple-days').select2({
         placeholder: "Please Select the days",
-        allowClear: true,
+        allowClear: true
     });
-
+   
      var table=$("#fetch-working-details").DataTable({
         processing:true,
         serverSide:true,
@@ -111,7 +111,7 @@ $(document).ready(function () {
                 $(".multiple-days").val([]).trigger("change");
             },
             error:function(xhr){
-                console.log(xhr);
+                // console.log(xhr);
                 if(xhr.status == 422){
                     let error=xhr.responseJSON.errors;
                     $.each(error,function(data,message){
@@ -125,10 +125,7 @@ $(document).ready(function () {
         })
     })
 
-    // Edit Update
-    $(document).on("click",".editWorkingBtn",function(){
-        $("#formModal").modal("show");
-    })
+   
     $(document).on("click",".deleteWorkingBtn",function(){
         let id=$(this).attr("data-id");
         Swal.fire({

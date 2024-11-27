@@ -12,7 +12,7 @@
 
  @isset($extraJs)
     @foreach ($extraJs as $js)
-        <script src="{{ $js }}?v=0.3.1"></script>
+        <script src="{{ $js }}"></script>
 
     @endforeach
 @endisset

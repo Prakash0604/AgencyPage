@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::composer(['User.layout.header', 'User.layout.footer', 'User.contact', 'User.about'], function ($view) {
+        View::composer(['User.layout.header', 'User.layout.main', 'User.layout.footer', 'User.contact', 'User.about'], function ($view) {
             $setting = Setting::first();
             
             $view->with([

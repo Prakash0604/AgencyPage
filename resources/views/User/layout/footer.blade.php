@@ -9,13 +9,13 @@
                     <p>{!! $description !!}</p>
                     <div class="footer-social">
                         <ul>
-                            <li><a href="https://{{ $facebook }}" aria-label="Facebook" target="blank"><i
+                            <li><a href="{{ $facebook }}" aria-label="Facebook" target="blank"><i
                                         class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="https://{{ $twitter }}" target="blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <li><a href="{{ $twitter }}" target="blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                             </li>
-                            <li><a href="https://{{ $instagram }}" target="blank" aria-label="Instagram"><i
+                            <li><a href="{{ $instagram }}" target="blank" aria-label="Instagram"><i
                                         class="fab fa-instagram"></i></a></li>
-                            <li><a href="https://{{ $github }}" aria-label="Github" target="blank"><i class="fab fa-github"></i></a></li>
+                            <li><a href="{{ $github }}" aria-label="Github" target="blank"><i class="fab fa-github"></i></a></li>
                         </ul>
                     </div><!-- Footer social end -->
                 </div><!-- Col end -->

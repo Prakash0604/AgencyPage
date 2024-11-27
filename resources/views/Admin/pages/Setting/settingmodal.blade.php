@@ -11,22 +11,31 @@
                     <p id="validationErrors" class="alert alert-danger d-none"></p>
                     <div class="row">
                         <span class="mt-2 mb-4"><span class="text-danger">Note:</span> (<span class="text-danger">*</span>) symbol represent that the field is required</span>
-                        <div class="col-md-4">
-                            <label for="" class="form-label">Name<span class="text-danger">*</span></label>
-                            <input type="text" name="name" id="name" class="form-control" placeholder=""
-                                aria-describedby="helpId" />
-                                <p id="validationErrors" class="alert alert-danger d-none"></p>
+                       
+                        <div class="form-group col-md-4">
+                            <label for="days">DaysDays<span class="text-danger">*</span></label>
+                            <select id="select-multiple-days-edit" class="form-control multiple-days" multiple>
+                                <option value="Sunday">Sunday</option>
+                                <option value="Monday">Monday</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thrusday</option>
+                                <option value="Friday">Friday</option>
+                                <option value="Saturday">Saturday</option>
+                            </select>
+                            <p id="days-error" class="text-danger workingHourEditAlert"></p>
                         </div>
-
                         <div class="col-md-4">
-                            <label for="" class="form-label">Designation<span class="text-danger">*</span></label>
+                            <label for="" class="form-label">Starting Time<span class="text-danger">*</span></label>
                             <input type="time" name="starting_time" id="starting_time" class="form-control" placeholder=""
                                 aria-describedby="helpId" />
+                                <p id="starting_time-error" class="text-danger workingHourEditAlert"></p>
                         </div>
                         <div class="col-md-4">
-                            <label for="" class="form-label">Address<span class="text-danger">*</span></label>
+                            <label for="" class="form-label">Ending Time<span class="text-danger">*</span></label>
                             <input type="time" name="ending_time" id="ending_time" class="form-control" placeholder=""
                                 aria-describedby="helpId" />
+                                <p id="ending_time-error" class="text-danger workingHourEditAlert"></p>
                         </div>
                        
                     </div>

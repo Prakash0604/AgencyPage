@@ -41,6 +41,7 @@
 
     </style>
     <div class="container-fluid">
+        <span class="mt-2 mb-4"><span class="text-danger">Note:</span> (<span class="text-danger">*</span>) symbol represent that the field is required</span>
         <div class="card p-3">
             @if (session()->has('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -59,7 +60,7 @@
                     <div class="row">
                         @csrf
                         <div class="col-md-6">
-                            <label for="" class="form-label">Title</label>
+                            <label for="" class="form-label">Title<span class="text-danger">*</span></label>
                             <input type="text" name="title" id=""
                                 class="form-control @error('title') is-invalid @enderror" placeholder=""
                                 value="{{ $setting->title ?? '' }}" aria-describedby="helpId" />
@@ -86,7 +87,7 @@
                         </div>
 
                         <div class="col-md-4 mt-3 mb-3">
-                            <label for="" class="form-label">Contact</label>
+                            <label for="" class="form-label">Contact<span class="text-danger">*</span></label>
                             <input type="number" name="contact" id=""
                                 class="form-control @error('contact') is-invalid @enderror" placeholder=""
                                 value="{{ $setting->contact ?? '' }}" aria-describedby="helpId" />
@@ -95,7 +96,7 @@
                             @enderror
                         </div>
                         <div class="col-md-4 mt-3 mb-3">
-                            <label for="" class="form-label">Email</label>
+                            <label for="" class="form-label">Email<span class="text-danger">*</span></label>
                             <input type="email" name="email" id=""
                                 class="form-control @error('email') is-invalid @enderror" placeholder=""
                                 value="{{ $setting->email ?? '' }}" aria-describedby="helpId" />
@@ -104,7 +105,7 @@
                             @enderror
                         </div>
                         <div class="col-md-4 mt-3 mb-3">
-                            <label for="" class="form-label">Address</label>
+                            <label for="" class="form-label">Address<span class="text-danger">*</span></label>
                             <input type="text" name="address" id=""
                                 class="form-control @error('address') is-invalid @enderror" placeholder=""
                                 value="{{ $setting->address ?? '' }}" aria-describedby="helpId" />
@@ -170,8 +171,8 @@
                     @csrf
                     <div class="row">
                         <div class="col-md-3">
-                            <label for="" class="form-label">Days</label>
-                            <select multiple class="form-select p-4 form-select-lg multiple-days" id="select-days-data"
+                            <label for="" class="form-label">Days<span class="text-danger">*</span></label>
+                            <select multiple class="form-select p-4 form-select-lg multiple-days-select" 
                                 name="days[]" id="multiple-days">
                                 <option value="Sunday">Sunday</option>
                                 <option value="Monday">Monday</option>
@@ -183,15 +184,14 @@
                             </select>
                             <p id="days-error" class="text-danger workingHourAlert"></p>
                         </div>
-
                         <div class="col-md-3">
-                            <label for="" class="form-label">Starting Date</label>
+                            <label for="" class="form-label">Starting Date<span class="text-danger">*</span></label>
                             <input type="time" name="starting_time" id="" class="form-control"
                                 placeholder="" aria-describedby="helpId" />
                                 <p id="starting_time-error" class="text-danger workingHourAlert"></p>
                         </div>
                         <div class="col-md-3">
-                            <label for="" class="form-label">Ending Date</label>
+                            <label for="" class="form-label">Ending Date<span class="text-danger">*</span></label>
                             <input type="time" name="ending_time" id="" class="form-control" placeholder=""
                                 aria-describedby="helpId" />
                                 <p id="ending_time-error" class="text-danger workingHourAlert"></p>

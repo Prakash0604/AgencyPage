@@ -18,7 +18,7 @@
 
     <!-- Favicon
 ================================================== -->
-    <link rel="icon" type="image/png" href="{{ asset('front/images/favicon.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('storage/'. $logo) }}">
 
     <!-- CSS
 ================================================== -->
