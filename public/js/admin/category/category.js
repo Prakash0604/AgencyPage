@@ -169,7 +169,7 @@ $(document).ready(function() {
                     type: "get",
                     url: "/admin/category/delete/" + id,
                     success: function(response) {
-                        if (response.message == true) {
+                        if (response.success == true) {
 
                             Swal.fire({
                                 icon: "success",
@@ -179,11 +179,11 @@ $(document).ready(function() {
                                 timer: 1500
                             });
                             table.draw();
-                        } else {
+                        } else{
                             Swal.fire({
                                 icon: "warning",
-                                title: "Unable to Delete",
-                                text: "Already Tagged in another menu",
+                                title: "Already Tagged!",
+                                text: "Unable to delete!",
                             });
                         }
                     },
