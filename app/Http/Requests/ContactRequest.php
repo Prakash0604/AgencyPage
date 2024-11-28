@@ -25,7 +25,7 @@ class ContactRequest extends FormRequest
             'name' => 'required',
             'email' => 'required|email',
             'subject' => 'required',
-            'message' => 'required',
+            'message' => 'required|max:1000',
         ];
     }
 
@@ -35,8 +35,10 @@ class ContactRequest extends FormRequest
             'name.required' => 'Please Enter your name',
             'email.required' => 'Please Enter your email',
             'email.email' => 'Please Enter valid email address',
-            'subject.requried'=>'Please Enter the Subject',
-            'message' => 'Please Enter the message'
+            'subject.required'=>'Please Enter the Subject',
+            'message.required' => 'Please Enter the message',
+            'message.max' => 'Max limit for message is 1000',
+
         ];
     }
 }

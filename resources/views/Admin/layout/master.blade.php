@@ -89,7 +89,7 @@
                     </li>
                      <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.contact') }}">
-                            <i class="mdi mdi-cog  menu-icon"></i>
+                            <i class="mdi mdi-contacts menu-icon"></i>
                             <span class="menu-title">Contact </span>
                         </a>
                     </li>

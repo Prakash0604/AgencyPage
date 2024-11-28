@@ -22,11 +22,6 @@
   </div><!-- Banner text end -->
 </div><!-- Banner area end -->
 
-@if ($errors)
-    @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-    @endforeach
-@endif
 <section id="main-container" class="main-container">
   <div class="container">
 
@@ -101,7 +96,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label>Name <span class="text-danger">*</span></label>
-                <input class="form-control form-control-name" name="name" id="name" placeholder="" type="text">
+                <input class="form-control form-control-name" name="name" id="name" placeholder="" value="{{ old('name') }}" type="text">
                 @error('name')
                 <span class="text-danger">{{ $message }}</span>
                 @enderror
@@ -110,7 +105,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label>Email<span class="text-danger">*</span></label>
-                <input class="form-control form-control-email" name="email" id="email" placeholder="" type="email"
+                <input class="form-control form-control-email" name="email" id="email" placeholder="" value="{{ old('email') }}" type="email"
                   >
                   @error('email')
                   <span class="text-danger">{{ $message }}</span>
@@ -120,7 +115,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label>Subject<span class="text-danger">*</span></label>
-                <input class="form-control form-control-subject" name="subject" id="subject" placeholder="">
+                <input class="form-control form-control-subject" name="subject" id="subject" value="{{ old('subject') }}" placeholder="">
                 @error('subject')
                 <span class="text-danger">{{ $message }}</span>
                 @enderror
@@ -130,7 +125,7 @@
           <div class="form-group">
             <label>Message<span class="text-danger">*</span></label>
             <textarea class="form-control form-control-message" name="message" id="message" placeholder="" rows="10"
-              ></textarea>
+              >{{ old('message') }}</textarea>
               @error('message')
               <span class="text-danger">{{ $message }}</span>
               @enderror

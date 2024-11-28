@@ -43,6 +43,7 @@
                                         <div class="col-sm-12">
                                             <div
                                                 class="statistics-details d-flex align-items-center justify-content-between">
+                                                
                                                 <div>
                                                     <p class="statistics-title">Total User</p>
                                                     <h3 class="rate-percentage">{{ $totaluser }}</h3>

@@ -2,7 +2,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="table-responsive">
-            <table class="table align-middle table-striped table-hover" id="fetch-contact-data">
+            <table class="table align-middle table-striped table-bordered table-hover" id="fetch-contact-data">
                 <thead>
                     <tr>
                         <th>S.N</th>
