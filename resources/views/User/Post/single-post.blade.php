@@ -1,7 +1,10 @@
 @extends('User.layout.main')
 @section('content')
     <div id="banner-area" class="banner-area" style="background-image:url({{ asset('front/images/banner/banner1.jpg') }})">
+
+
         <div class="banner-text">
+
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -30,45 +33,15 @@
 
                     <div class="post-content post-single">
                         <div class="post-media post-image d-flex">
-                            {{-- <div class="banner-carousel banner-carousel-1 mb-0">
-                                @foreach ($post->postImages as $image)
-                                    <div class="banner-carousel-item" style="background-image:url({{ asset('storage/' . $image->image) }})">
-                                        <div class="slider-content">
-                                            <div class="container h-100">
-                                                <div class="row align-items-center h-100">
-                                                    <div class="col-md-12 text-center">
-                                                        <h3 class="slide-sub-title" data-animation-in="slideInRight">
-                                                        </h3>
-                                                        <p></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div> --}}
-
-                            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-                                <div class="carousel-inner">
-                                    @foreach ($post->postImages as $image)
-                                        <div class="carousel-item active">
-                                            <img src="/storage/{{ $image->image }}" class="d-block w-100" alt="...">
-                                        </div>
-                                    @endforeach
+                            @foreach ($post->postImages as $image)
+                                <div class="banner-carousel-item"
+                                    style="background-image:url({{ asset('storage/' . $image->image) }});
+                                       background-size: cover; 
+                                       background-position: center; 
+                                       height: 400px; 
+                                       width: 100%;">
                                 </div>
-                                <button class="carousel-control-prev" type="button"
-                                    data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button"
-                                    data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
-                            </div>
-
-
+                                @endforeach
                         </div>
 
                         <div class="post-body">
@@ -109,7 +82,7 @@
                             <li>
                                 @foreach ($comments as $comment)
                                     <div class="comment">
-                                        @if ($comment->user->image !=null)
+                                        @if ($comment->user->image != null)
                                             <img loading="lazy" class="comment-avatar mx-auto"
                                                 alt="author"src="{{ asset('storage/' . $comment->user->image) }}">
                                         @else
@@ -188,7 +161,7 @@
                         console.log(response);
                         if (response.auth === null) {
                             window.location.href = "/register";
-                        }else{
+                        } else {
                             location.reload();
                         }
 
@@ -259,8 +232,6 @@
                     })
                 })
             });
-
-
 
             // Delete Comment
             $(document).on("click", ".btnDeletePost", function() {

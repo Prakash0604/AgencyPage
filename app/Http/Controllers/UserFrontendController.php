@@ -52,9 +52,12 @@ class UserFrontendController extends Controller
 
     public function singlePost($id)
     {
+        $images = Post::with(['postImages' => function($query) use ($id) {
+            $query->where('post_id', $id);
+        }])->findOrFail($id);
         $post = Post::with(['createdBy', 'category','postImages','comments'])->find($id);
         $comments = Comment::with('user')->where('commentable_id',$id )->get();
-        return view('User.Post.single-post', compact('post','comments'));
+        return view('User.Post.single-post', compact('post','comments','images'));
     }
 
 
