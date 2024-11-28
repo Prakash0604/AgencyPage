@@ -22,6 +22,11 @@
   </div><!-- Banner text end -->
 </div><!-- Banner area end -->
 
+@if ($errors)
+    @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+    @endforeach
+@endif
 <section id="main-container" class="main-container">
   <div class="container">
 
@@ -81,35 +86,54 @@
     <div class="row">
       <div class="col-md-12">
         <h3 class="column-title">We love to hear</h3>
-        <!-- contact form works with formspree.io  -->
-        <!-- contact form activation doc: https://docs.themefisher.com/constra/contact-form/ -->
-        <form id="contact-form" action="#" method="post" role="form">
-          <div class="error-container"></div>
+        @if (session()->has('message'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+          </button>
+          <strong>{{ session()->get('message') }}</strong>
+        </div>
+        @endif
+        <form method="post">
+          @csrf
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
-                <label>Name</label>
-                <input class="form-control form-control-name" name="name" id="name" placeholder="" type="text" required>
+                <label>Name <span class="text-danger">*</span></label>
+                <input class="form-control form-control-name" name="name" id="name" placeholder="" type="text">
+                @error('name')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <label>Email</label>
+                <label>Email<span class="text-danger">*</span></label>
                 <input class="form-control form-control-email" name="email" id="email" placeholder="" type="email"
-                  required>
+                  >
+                  @error('email')
+                  <span class="text-danger">{{ $message }}</span>
+                  @enderror
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <label>Subject</label>
-                <input class="form-control form-control-subject" name="subject" id="subject" placeholder="" required>
+                <label>Subject<span class="text-danger">*</span></label>
+                <input class="form-control form-control-subject" name="subject" id="subject" placeholder="">
+                @error('subject')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
               </div>
             </div>
           </div>
           <div class="form-group">
-            <label>Message</label>
+            <label>Message<span class="text-danger">*</span></label>
             <textarea class="form-control form-control-message" name="message" id="message" placeholder="" rows="10"
-              required></textarea>
+              ></textarea>
+              @error('message')
+              <span class="text-danger">{{ $message }}</span>
+              @enderror
           </div>
           <div class="text-right"><br>
             <button class="btn btn-primary solid blank" type="submit">Send Message</button>

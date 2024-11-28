@@ -1,21 +1,18 @@
 <?php
 
-use App\Http\Controllers\AboutUsController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\HomeSliderController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\FrontendController as AdminFrontendController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
-use App\Http\Controllers\ContactController;
 use App\Http\Controllers\UserFrontendController;
-use App\Http\Controllers\UserPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -107,6 +104,10 @@ Route::middleware('admin')->group(function () {
     Route::get('/admin/post/status/{id}', [PostController::class, 'statusToggle'])->name('admin.post.status');
     Route::get('/admin/post/comment/detail/{id}', [PostController::class, 'postComment'])->name('admin.post.comment');
 
+    Route::get('/admin/contact',[ContactController::class,'index'])->name('admin.contact');
+    Route::get('/admin/contact/detail/{id}',[ContactController::class,'showDetail'])->name('admin.contact.detail');
+    Route::get('/admin/contact/delete/{id}',[ContactController::class,'destroy'])->name('admin.contact.delete');
+
 
     Route::get('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
 });
@@ -114,6 +115,7 @@ Route::middleware('admin')->group(function () {
 
 Route::get('/', [UserFrontendController::class, 'home'])->name('first.index');
 Route::get('/contact-us', [UserFrontendController::class, 'contactUs'])->name('contact-us');
+Route::post('/contact-us', [UserFrontendController::class, 'storeContactUs'])->name('store.contact-us');
 Route::get('/about-us', [UserFrontendController::class, 'aboutUs'])->name('about-us');
 
 Route::get('/post', [UserFrontendController::class, 'post'])->name('post');

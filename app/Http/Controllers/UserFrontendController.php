@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactRequest;
 use Illuminate\Http\Request;
 use App\Models\frontend;
 use App\Models\User;
 use App\Models\Comment;
+use App\Models\Contact;
 use App\Models\Post;
 use App\Models\HomeSlide;
 use App\Models\Setting;
@@ -31,6 +33,15 @@ class UserFrontendController extends Controller
         return view('User.contact',);
     }
 
+    public function storeContactUs(ContactRequest $request){
+        try{
+            Contact::create($request->validated());
+            return back()->with(['message'=>'Message has been Submited']);
+        }catch(\Exception $e){
+            return back()->with(['error'=>'Something Went Wrong!']);
+        }
+    }
+
 
     public function post()
     {
@@ -45,4 +56,6 @@ class UserFrontendController extends Controller
         $comments = Comment::with('user')->where('commentable_id',$id )->get();
         return view('User.Post.single-post', compact('post','comments'));
     }
+
+
 }
