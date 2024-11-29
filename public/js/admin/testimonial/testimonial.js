@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     $(".summernote").summernote({
         height: 300
     });
@@ -8,31 +8,31 @@ $(document).ready(function() {
         serverSide: true,
         ajax: "/admin/testimonial",
         columns: [{
-                data: "DT_RowIndex",
-                name: "DT_RowIndex",
-            }, {
-                data: "image",
-                name: "image"
-            }, {
-                data: "name",
-                name: "name"
-            }, {
-                data: "address",
-                name: "address"
-            }, {
-                data: "designation",
-                name: "designation",
-            }, {
-                data: "description",
-                name: "description"
-            },
-            {
-                data: "status",
-                name: "status",
-            }, {
-                data: "action",
-                name: "action"
-            }
+            data: "DT_RowIndex",
+            name: "DT_RowIndex",
+        }, {
+            data: "image",
+            name: "image"
+        }, {
+            data: "name",
+            name: "name"
+        }, {
+            data: "address",
+            name: "address"
+        }, {
+            data: "designation",
+            name: "designation",
+        }, {
+            data: "description",
+            name: "description"
+        },
+        {
+            data: "status",
+            name: "status",
+        }, {
+            data: "action",
+            name: "action"
+        }
         ]
     })
 
@@ -41,7 +41,7 @@ $(document).ready(function() {
         $("#validationErrors").addClass("d-none").html("");
         $("#testimonialDescription").summernote("code", "");
     }
-    $(document).on("click", ".addTestimonialBtn", function() {
+    $(document).on("click", ".addTestimonialBtn", function () {
         clearModal();
         $("#formModal").modal("show");
         $(".submitBtn").show();
@@ -50,7 +50,7 @@ $(document).ready(function() {
         $("#addForm")[0].reset();
     });
 
-    $(document).off("submit", "#addForm").on("submit", "#addForm", function(event) {
+    $(document).off("submit", "#addForm").on("submit", "#addForm", function (event) {
         event.preventDefault();
         $(".submitBtn").prop("disabled", true);
         let formdata = new FormData(this);
@@ -60,24 +60,32 @@ $(document).ready(function() {
             data: formdata,
             contentType: false,
             processData: false,
-            success: function(response) {
-                Swal.fire({
-                    icon: "success",
-                    position: "top-end",
-                    title: "Success",
-                    text: "Testimonial Created Successfully",
-                    showConfirmButton: false,
-                    timer: 1000
-                });
-                table.draw();
-                $("#addForm")[0].reset();
-                $("#formModal").modal("hide");
+            success: function (response) {
+                if (response.success == true) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Success",
+                        text: "Testimonial Created Successfully",
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                    table.draw();
+                    $("#addForm")[0].reset();
+                    $("#formModal").modal("hide");
+                }else{
+                    Swal.fire({
+                        icon: "warning",
+                        title: "warning",
+                        text: "Something went wrong!",
+                    });
+                }
+
             },
-            error: function(xhr) {
+            error: function (xhr) {
                 if (xhr.status === 422) {
                     let errors = xhr.responseJSON.errors;
                     let errorMessages = '<ul>';
-                    $.each(errors, function(key, value) {
+                    $.each(errors, function (key, value) {
                         errorMessages += '<li>' + value[0] +
                             '</li>'; // Display the first error for each field
                     });
@@ -86,14 +94,14 @@ $(document).ready(function() {
                         errorMessages);
                 }
             },
-            complete: function() {
+            complete: function () {
                 $(".submitBtn").prop("disabled", false);
             }
         })
     })
 
     // Edit and Update
-    $(document).on("click", ".editUserButton", function() {
+    $(document).on("click", ".editUserButton", function () {
         clearModal();
         $("#formModal").modal("show");
         $(".submitBtn").hide();
@@ -105,7 +113,7 @@ $(document).ready(function() {
         $.ajax({
             type: "get",
             url: "/admin/testimonial/detail/" + id,
-            success: function(response) {
+            success: function (response) {
                 console.log(response);
                 $("#name").val(response.message.name);
                 $("#designation").val(response.message.designation);
@@ -121,7 +129,7 @@ $(document).ready(function() {
             }
         });
 
-        $("#updateForm").off("submit").on("submit", function(event) {
+        $("#updateForm").off("submit").on("submit", function (event) {
             event.preventDefault();
             $(".updateBtn").prop("disabled", true);
             let formdata = new FormData(this);
@@ -131,18 +139,20 @@ $(document).ready(function() {
                 data: formdata,
                 processData: false,
                 contentType: false,
-                success: function(response) {
-                    Swal.fire({
-                        icon: "success",
-                        title: "Success",
-                        text: "Testimonial Updated Successfully",
-                        showConfirmButton: false,
-                        timer: 1000
-                    });
-                    table.draw();
-                    $("#formModal").modal("hide");
+                success: function (response) {
+                    if(response.success == true){
+                        Swal.fire({
+                            icon: "success",
+                            title: "Success",
+                            text: "Testimonial Updated Successfully",
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
+                        table.draw();
+                        $("#formModal").modal("hide");
+                    }
                 },
-                error: function(xhr) {
+                error: function (xhr) {
                     console.log(xhr);
                     Swal.fire({
                         icon: "warning",
@@ -152,7 +162,7 @@ $(document).ready(function() {
                     });
                     $(".updateBtn").prop("disabled", false);
                 },
-                complete: function() {
+                complete: function () {
                     $(".updateBtn").prop("disabled", false);
                 }
             })
@@ -160,24 +170,24 @@ $(document).ready(function() {
     })
 
     // Status Update Toggle Button
-    $(document).on("change", ".statusIdData", function() {
+    $(document).on("change", ".statusIdData", function () {
         let id = $(this).data("id");
         // console.log(id);
         $.ajax({
             type: "get",
             url: "/admin/testimonial/status/" + id,
-            success: function() {
+            success: function () {
                 // console.log(response);
                 table.draw();
             },
-            error: function(xhr) {
+            error: function (xhr) {
                 console.log(xhr.responseJSON.message);
             }
         })
 
     })
 
-    $(document).on("click", ".deleteData", function() {
+    $(document).on("click", ".deleteData", function () {
         let id = $(this).attr("data-id");
         Swal.fire({
             icon: "warning",
@@ -192,7 +202,7 @@ $(document).ready(function() {
                 $.ajax({
                     type: "get",
                     url: "/admin/testimonial/delete/" + id,
-                    success: function(response) {
+                    success: function (response) {
                         Swal.fire({
                             icon: "success",
                             title: "Testimonial Deleted Successfully",
@@ -201,7 +211,7 @@ $(document).ready(function() {
                         })
                         table.draw();
                     },
-                    error: function(response) {
+                    error: function (response) {
                         console.log(response);
                         Swal.fire({
                             icon: "warning",

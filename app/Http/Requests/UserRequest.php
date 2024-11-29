@@ -27,7 +27,7 @@ class UserRequest extends FormRequest
             'full_name'=>'required|min:3',
             'email'=>['required','email',$this->route('id') ?  Rule::unique('users')->ignore($this->route('id')) : 'unique:users,email'],
             'position'=>'required',
-            'phonenumber'=>'required|min:7',
+            'phonenumber'=>'required|min:7|max:11',
             'password'=>$this->route('id') ? 'nullable': ['required',Password::min(8)->mixedCase()->numbers()->symbols()],
             'image'=>'image|mimes:png,jpg,jpeg,webp',
 
@@ -47,7 +47,8 @@ class UserRequest extends FormRequest
             'password.numbers'=>'Please Enter at least One number',
             'password.symbols'=>'Please Enter at least One Symbol',
             'phonenumber.required'=>'Please Enter your Phone number',
-            'phonenumber.min'=>'Phone Number must be of 7 digits',
+            'phonenumber.min'=>'Phone Number must be at least of 7 digits',
+            'phonenumber.max'=>'Phone Number must be of 11 digits only',
             'image.image'=>'Image must be a type of JPG,PNG,JPEG',
             'image.mimes'=>'Image must be a type of JPG,PNG,JPEG',
         ];

@@ -37,7 +37,7 @@
                         </div>
 
                         <div class="col-md-12 mt-4 mb-2">
-                            <label for="" class="form-label">Description</label>
+                            <label for="" class="form-label">Description<span class="text-danger">*</span></label>
                             <textarea class="form-control summernote" id="testimonialDescription" name="description" rows="4"></textarea>
                         </div>
 

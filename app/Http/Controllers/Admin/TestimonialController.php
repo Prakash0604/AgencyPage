@@ -94,7 +94,6 @@ class TestimonialController extends Controller
             $testimonial->name = $request->input('name');
             $testimonial->designation = $request->input('designation');
             $testimonial->description = $request->input('description');
-            $testimonial->status = $request->input('status');
             if ($request->hasFile('image')) {
                 $filepath = '/images/testimonial/';
                 if ($testimonial->image !== null) {

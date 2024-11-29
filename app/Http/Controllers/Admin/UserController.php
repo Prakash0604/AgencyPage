@@ -149,9 +149,6 @@ class UserController extends Controller
                 'confirmPassword' => 'same:newPassword',
             ]);
             $userid = User::find($id);
-            if (!Hash::check($request->currentPassword, $userid->password)) {
-                return response()->json(['success' => false, 'message' => "Current Password does not match ?"]);
-            }
             $userid->password = $request->newPassword;
             $userid->save();
             return response()->json(['success' => true, 'message' => 'Password Changed Successfully!']);

@@ -73,9 +73,7 @@ $(document).ready(function () {
     });
 
     // Add and Store User Data
-    $(document)
-        .off("submit", "#storeForm")
-        .on("submit", "#storeForm", function (event) {
+    $(document).off("submit", "#storeForm").on("submit", "#storeForm", function (event) {
             event.preventDefault();
             $(".submitBtn").prop("disabled", true);
             $("#validationErrors").addClass("d-none").html("");
@@ -92,8 +90,8 @@ $(document).ready(function () {
                             icon: "success",
                             title: "Success",
                             text: "User Added Successfully",
-                            showConfirmButton:false,
-                            timer:1000
+                            showConfirmButton: false,
+                            timer: 1000
                         });
 
                         table.draw();
@@ -173,15 +171,17 @@ $(document).ready(function () {
                     contentType: false,
                     processData: false,
                     success: function (response) {
-                        Swal.fire({
-                            icon: "success",
-                            title: "Updated",
-                            text: "User Updated Successfully",
-                            showConfirmButton:false,
-                            timer:1000
-                        });
-                        $("#formModal").modal("hide");
-                        table.draw();
+                        if (response.success == true) {
+                            Swal.fire({
+                                icon: "success",
+                                title: "Updated",
+                                text: "User Updated Successfully",
+                                showConfirmButton: false,
+                                timer: 1000
+                            });
+                            $("#formModal").modal("hide");
+                            table.draw();
+                        }
                     },
                     error: function (response) {
                         if (response.status === 422) {
@@ -215,7 +215,6 @@ $(document).ready(function () {
             //     autocorrect: "off"
             // },
             html: `
-                   <input id="swal-input1"  type="password" placeholder="Current Password" class=" swal2-input">
                    <input id="swal-input2"  type="password" placeholder="New Password" class=" swal2-input">
                    <input id="swal-input3"  type="password" placeholder="Confirm Password" class="swal2-input">
                  `,
@@ -224,24 +223,15 @@ $(document).ready(function () {
             confirmButtonText: "Reset Password",
         }).then((result) => {
             if (result.isConfirmed) {
-                let currentPassword = $("#swal-input1").val();
                 let newPassword = $("#swal-input2").val();
                 let confirmPassword = $("#swal-input3").val();
 
-                if (newPassword !== confirmPassword) {
-                    Swal.fire({
-                        icon: "warning",
-                        title: "Password Not Match",
-                        text: "Confirm Password does not Match",
-                    });
-                }
                 $.ajax({
                     type: "post",
                     url: "/admin/user/reset-password/" + id,
                     data: {
                         _token: $('meta[name="csrf-token"]').attr("content"),
                         // _token: $('meta[name="csrf-token"]').attr('content'),
-                        currentPassword: currentPassword,
                         newPassword: newPassword,
                         confirmPassword: confirmPassword,
                     },
@@ -252,6 +242,7 @@ $(document).ready(function () {
                                 title: "Success",
                                 text: response.message,
                                 showConfirmButton: false,
+                                timer: 1000
                             });
                             table.draw();
                         } else {
