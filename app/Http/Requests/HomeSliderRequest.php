@@ -23,7 +23,7 @@ class HomeSliderRequest extends FormRequest
     {
         return [
             'title'=>'required|min:3',
-            'image'=>$this->route('id') ? 'nullable|image' : 'required|image',
+            'image'=>$this->route('id') ? 'nullable|image|dimensions:min_width=1300 height=500' : 'required|image|dimensions:min_width=1300 height=500',
         ];
     }
 
@@ -33,7 +33,8 @@ class HomeSliderRequest extends FormRequest
             'title.required'=>'Please Enter the Title Name',
             'title.min'=>'Title must be at least 3 character long',
             'image.required'=>'Please Insert Image',
-            'image.image'=>'Image must be the type of png,jpeg,jpg'
+            'image.image'=>'Image must be the type of png,jpeg,jpg',
+            'image.dimensions'=>'Image must be of min 1300 px and max 500 px'
         ];
     }
 }

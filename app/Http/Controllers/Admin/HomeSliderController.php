@@ -15,21 +15,51 @@ class HomeSliderController extends Controller
 {
     public function index(Request $request)
     {
+
         if ($request->ajax()) {
-            $data = HomeSlide::orderBy('id', 'desc')->get();
+            $search = $request->input('search.value');
+            $columns = $request->get('columns');
+
+            $pageSize = $request->input('length'); // Number of records per page
+            $start = $request->input('start'); // Offset for pagination
+            $orderColumnIndex = $request->input('order')[0]['column']; // Column to sort by
+            $orderBy = $request->input('order')[0]['dir']; // Sort direction
+
+            // Default column for sorting (if no order is specified, default to 'title')
+            $orderColumn = $columns[$orderColumnIndex]['data'] ?? 'title';
+            $orderBy = $orderBy ?? 'asc';
+
+            // Total records without filtering
+            $countTotal = HomeSlide::count();
+
+            // Total records with filtering
+            $countFilter = HomeSlide::query()
+                ->when($search, function ($query) use ($search) {
+                    $query->where('title', 'LIKE', "%$search%")
+                        ->orWhere('shortdesc', 'LIKE', "%$search%");
+                })
+                ->count();
+
+            // Fetch paginated and filtered data
+            $data = HomeSlide::query()
+                ->when($search, function ($query) use ($search) {
+                    $query->where('title', 'LIKE', "%$search%")
+                        ->orWhere('shortdesc', 'LIKE', "%$search%");
+                })
+                ->orderBy($orderColumn, $orderBy)
+                ->skip($start)
+                ->take($pageSize)
+                ->get();
+
             return DataTables::of($data)
-                ->addIndexColumn()
+                ->with(['recordsTotal' => $countTotal, 'recordsFiltered' => $countFilter])
+                ->addIndexColumn() // Adds DT_RowIndex
                 ->addColumn('action', function ($data) {
-                    return view('Admin.Button.button', compact('data'));
+                    return view('Admin.Button.button', compact('data'))->render();
                 })
                 ->addColumn('image', function ($item) {
-                    if ($item->image != null) {
-                        $url = asset('storage/' . $item->image); // Get image URL
-                        return ' <td class="py-1"><img src="' . $url . '" width="50" height="50"/></td>';
-                    } else {
-                        $url = asset('defaultImage/defaultimage.webp');
-                        return ' <td class="py-1"><img src="' . $url . '" width="50" height="50"/></td>';
-                    }
+                    $url = $item->image ? asset('storage/' . $item->image) : asset('defaultImage/defaultimage.webp');
+                    return '<img src="' . $url . '" width="50" height="50" alt="Image"/>';
                 })
                 ->addColumn('shortdesc', function ($desc) {
                     return Str::limit(strip_tags($desc->shortdesc), 70);
@@ -37,23 +67,24 @@ class HomeSliderController extends Controller
                 ->addColumn('status', function ($status) {
                     $checked = $status->status == 'Active' ? 'checked' : '';
                     return '<div class="form-check form-switch">
-                    <input class="form-check-input statusIdData d-flex mx-auto" type="checkbox" data-id="'.$status->id.'" role="switch" id="flexSwitchCheckChecked" '.$checked.'>
-                    </div>';
+                                <input class="form-check-input statusIdData" type="checkbox" data-id="' . $status->id . '" role="switch" id="flexSwitchCheckChecked" ' . $checked . '>
+                            </div>';
                 })
                 ->rawColumns(['action', 'image', 'status'])
                 ->make(true);
         }
 
-        $extraJs=array_merge(
+
+        $extraJs = array_merge(
             config('js-map.admin.datatable.script'),
             config('js-map.admin.summernote.script')
         );
 
-        $extraCs=array_merge(
+        $extraCs = array_merge(
             config('js-map.admin.datatable.style'),
             config('js-map.admin.summernote.style')
         );
-        return view('Admin.pages.HomeSlide.homeslide',['extraJs'=>$extraJs,'extraCs'=>$extraCs]);
+        return view('Admin.pages.HomeSlide.homeslide', ['extraJs' => $extraJs, 'extraCs' => $extraCs]);
     }
 
 

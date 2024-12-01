@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     $(".summernote").summernote({
         height: 300
     });
@@ -8,48 +8,53 @@ $(document).ready(function() {
     var table = $("#data-post-show").DataTable({
         processing: true,
         serverSide: true,
-        ajax: "/admin/post",
+        ajax: {
+            url: "/admin/post/get-data",
+            type: "GET",
+            cache: false
+        },
+        // "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, 'All']],
+        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, 'All']],
+        order: [[2, 'asc']],
         columns: [{
-                data: "DT_RowIndex",
-                name: "DT_RowIndex"
-            },
-            {
-                data: "image",
-                name: "image"
-            },
-            {
-                data: "title",
-                name: "title"
-            },
-            {
-                data: "category",
-                name: "category"
-            },
-            {
-                data: "description",
-                name: "description"
-            },
-            {
-                data: "created_by",
-                name: "created_by"
-            },
-            {
-                data: "status",
-                name: "status",
-            }, {
-                data: "comment",
-                name: "comment",
-                orderable: false,
-                searchable: false
-            }, {
-                data: "action",
-                name: "action",
-                orderable: false,
-                searchable: false
-            },
+            data: "DT_RowIndex",
+            name: "DT_RowIndex"
+        },
+        {
+            data: "image",
+            name: "image"
+        },
+        {
+            data: "title",
+            name: "title"
+        },
+        {
+            data: "category",
+            name: "category"
+        },
+        {
+            data: "description",
+            name: "description"
+        },
+        {
+            data: "created_by",
+            name: "created_by"
+        },
+        {
+            data: "status",
+            name: "status",
+        }, {
+            data: "comment",
+            name: "comment",
+            orderable: false,
+            searchable: false
+        }, {
+            data: "action",
+            name: "action",
+            orderable: false,
+            searchable: false
+        },
         ],
-        pageLength: 10, // Set default limit
-        lengthMenu: [5, 10, 25, 50],
     })
 
     function clearModal() {
@@ -59,7 +64,7 @@ $(document).ready(function() {
     }
 
     // Show Multiple Image Modal
-    $(document).on("click", ".imageListPopup", function() {
+    $(document).on("click", ".imageListPopup", function () {
         $("#imageModal").modal("show");
         $("#postImageTitle").text("Image List");
         let id = $(this).data('id');
@@ -67,7 +72,7 @@ $(document).ready(function() {
         $.ajax({
             tyoe: "get",
             url: "/admin/post/detail/" + id,
-            success: function(response) {
+            success: function (response) {
                 $(".fetch-post-image-data").html("");
                 if (response.images && response.images.length > 0) {
 
@@ -75,7 +80,7 @@ $(document).ready(function() {
                         let imagePath = '/storage/' + image.path.replace('//',
                             '/');
                         $(".fetch-post-image-data").append(`
-                         <div class="carousel-item ${index === 0 ? 'active':''} ">
+                         <div class="carousel-item ${index === 0 ? 'active' : ''} ">
                          <img src="${imagePath}" class="d-block w-100" alt="...">
                          </div>
                         `);
@@ -87,7 +92,7 @@ $(document).ready(function() {
     })
 
     // Add Post
-    $(document).on("click", ".addPostBtn", function() {
+    $(document).on("click", ".addPostBtn", function () {
         clearModal();
         $("#formModal").modal("show");
         $(".submitBtn").show();
@@ -97,7 +102,7 @@ $(document).ready(function() {
         $("#addForm")[0].reset();
     });
 
-    $(document).off("submit", "#addForm").on("submit", "#addForm", function(event) {
+    $(document).off("submit", "#addForm").on("submit", "#addForm", function (event) {
         event.preventDefault();
         $(".submitBtn").prop("disabled", true);
         let formdata = new FormData(this);
@@ -107,7 +112,7 @@ $(document).ready(function() {
             data: formdata,
             processData: false,
             contentType: false,
-            success: function(response) {
+            success: function (response) {
                 Swal.fire({
                     icon: "success",
                     title: "Success",
@@ -120,11 +125,11 @@ $(document).ready(function() {
                 $("#addForm")[0].reset();
                 $("#post_description").summernote("code", "");
             },
-            error: function(xhr) {
+            error: function (xhr) {
                 if (xhr.status === 422) {
                     let errors = xhr.responseJSON.errors;
                     let errorMessages = '<ul>';
-                    $.each(errors, function(key, value) {
+                    $.each(errors, function (key, value) {
                         errorMessages += '<li>' + value[0] +
                             '</li>'; // Display the first error for each field
                     });
@@ -133,7 +138,7 @@ $(document).ready(function() {
                         errorMessages);
                 }
             },
-            complete: function() {
+            complete: function () {
                 $(".submitBtn").prop("disabled", false);
             }
         })
@@ -141,7 +146,7 @@ $(document).ready(function() {
 
     // Edit Post
 
-    $(document).on("click", ".editUserButton", function() {
+    $(document).on("click", ".editUserButton", function () {
         clearModal();
         let id = $(this).attr("data-id");
         $("#formModal").modal("show");
@@ -154,7 +159,7 @@ $(document).ready(function() {
         $.ajax({
             url: "/admin/post/detail/" + id,
             type: "get",
-            success: function(response) {
+            success: function (response) {
                 // console.log(response);
                 $("#posttitleData").val(response.message.title);
                 $("#category_id").val(response.message.category_id);
@@ -176,7 +181,7 @@ $(document).ready(function() {
             }
         });
 
-        $(document).off("submit", "#updateForm").on("submit", "#updateForm", function(event) {
+        $(document).off("submit", "#updateForm").on("submit", "#updateForm", function (event) {
             event.preventDefault();
             // $("#post_image").prop("disabled", true);
             $(".updateBtn").prop("disabled", true);
@@ -187,7 +192,7 @@ $(document).ready(function() {
                 data: formdata,
                 processData: false,
                 contentType: false,
-                success: function(response) {
+                success: function (response) {
                     Swal.fire({
                         icon: "success",
                         title: "Updated",
@@ -198,11 +203,11 @@ $(document).ready(function() {
                     $("#formModal").modal("hide");
                     table.draw();
                 },
-                error: function(response) {
+                error: function (response) {
                     if (response.status === 422) {
                         let errors = response.responseJSON.errors;
                         let errorMessages = '<ul>';
-                        $.each(errors, function(key, value) {
+                        $.each(errors, function (key, value) {
                             errorMessages += '<li>' + value[0] +
                                 '</li>';
                         });
@@ -211,7 +216,7 @@ $(document).ready(function() {
                             errorMessages);
                     }
                 },
-                complete: function() {
+                complete: function () {
                     $("#post_image").prop("disabled", false);
                     $(".updateBtn").prop("disabled", false);
                 }
@@ -220,7 +225,7 @@ $(document).ready(function() {
     })
 
     // Image Delete
-    $(document).on("click", ".remove-image", function() {
+    $(document).on("click", ".remove-image", function () {
         let imageId = $(this).data("image-id");
         // console.log(id);
 
@@ -231,13 +236,13 @@ $(document).ready(function() {
                 // _token: $('meta[name="csrf-token"]').attr('content'),
                 image_id: imageId
             },
-            success: function(response) {
+            success: function (response) {
                 if (response.success) {
                     $(this).parent(".image-item").remove();
                     table.draw();
                 }
             }.bind(this),
-            error: function(response) {
+            error: function (response) {
                 console.error("Failed to delete image.");
             }
         });
@@ -245,18 +250,37 @@ $(document).ready(function() {
 
 
     // Status Toggle
-    $(document).on("change", ".statusIdData", function() {
+    $(document).on("change", ".statusIdData", function () {
         let id = $(this).data("id");
+        let checkbox = $(this);
         // console.log(id);
-        $.ajax({
-            type: "get",
-            url: "/admin/post/status/" + id,
-            success: function(response) {
-                // console.log(response);
-                table.draw();
-            },
-            error: function(xhr) {
-                console.log(xhr.responseJSON.message);
+        checkbox.prop("disabled", true);
+        Swal.fire({
+            icon: "warning",
+            title: "Are you Sure ?",
+            showCancelButton: true,
+            cancelButtonColor: "#d33",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "Yes, Change it !"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "get",
+                    url: "/admin/post/status/" + id,
+                    success: function () {
+                        // console.log(response);
+                        checkbox.prop("disabled", false);
+                        // checkbox.prop("checked", checkbox.prop("checked") ? false : true); 
+                        table.draw();
+                    },
+                    error: function (xhr) {
+                        checkbox.prop("disabled", false);
+                        console.log(xhr.responseJSON.message);
+                    }
+                })
+            } {
+                checkbox.prop("disabled", false);
+                checkbox.prop("checked", !checkbox.prop("checked"));
             }
         })
 
@@ -264,7 +288,7 @@ $(document).ready(function() {
 
     // Delete Post
 
-    $(document).on("click", ".deleteData", function() {
+    $(document).on("click", ".deleteData", function () {
         let id = $(this).attr("data-id");
         Swal.fire({
             icon: "warning",
@@ -279,7 +303,7 @@ $(document).ready(function() {
                 $.ajax({
                     type: "get",
                     url: "/admin/post/delete/" + id,
-                    success: function(response) {
+                    success: function (response) {
                         if (response.success == true) {
                             Swal.fire({
                                 icon: "success",
@@ -298,7 +322,7 @@ $(document).ready(function() {
 
                         table.draw();
                     },
-                    error: function() {
+                    error: function () {
                         Swal.fire({
                             icon: "warning",
                             title: "Unable to Delete",
@@ -312,7 +336,7 @@ $(document).ready(function() {
 
 
     // Comment of Post
-    $(document).on("click", ".commentinfoBtn", function() {
+    $(document).on("click", ".commentinfoBtn", function () {
         let id = $(this).attr("data-id");
         // console.log(id);
 
@@ -322,7 +346,7 @@ $(document).ready(function() {
         $.ajax({
             type: "get",
             url: "/admin/post/comment/detail/" + id,
-            success: function(response) {
+            success: function (response) {
 
                 if (response.images && response.images.length > 0) {
                     $(".fetch-comment-data").empty();
@@ -343,7 +367,7 @@ $(document).ready(function() {
                             </div>
                         `);
                     });
-                }else{
+                } else {
                     $(".fetch-comment-data").html(
                         `
                         <div>

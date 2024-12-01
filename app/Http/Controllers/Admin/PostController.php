@@ -18,60 +18,67 @@ class PostController extends Controller
 {
     public function index(Request $request)
     {
-        if ($request->ajax()) {
 
-            $data = Post::with('postImages')->orderBy('id', 'desc')->get();
-            // dd($data);
-            return DataTables::of($data)
-                // ->setTotalRecords($totalRecords)
-                ->addIndexColumn()
-                ->addColumn('image', function ($item) {
-                    return "<a type='button' data-id='" . $item->id . "' class='imageListPopup'><span class='badge badge-primary'>" . $item->postImages->count() . "</span></a>";
-                })
-                ->addColumn('title', function ($title) {
-                    return $title->title ?? '';
-                })
-                ->addColumn('category', function ($category) {
-                    return $category->category->title ?? '';
-                })
-                ->addColumn('description', function ($desc) {
-                    return Str::limit(strip_tags($desc->description), 20) ?? '';
-                })
-                ->addColumn('created_by', function ($created) {
-                    return $created->createdBy->full_name ?? '';
-                })
-                ->addColumn('action', function ($data) {
-                    return view('Admin.Button.button', compact('data'));
-                })
-                ->addColumn('comment', function ($data) {
-                    return '<button class="btn btn-info commentinfoBtn" data-id="'.$data->id.'" type="button">View Comment</button>';
-                })
-                ->addColumn('status', function ($status) {
-                    $checked = $status->status == 'Active' ? 'checked' : '';
-                    return '<div class="form-check form-switch">
-                    <input class="form-check-input statusIdData d-flex mx-auto" type="checkbox" data-id="'.$status->id.'" role="switch" id="flexSwitchCheckChecked" '.$checked.'>
-                    </div>';
-                })
-                ->rawColumns(['action', 'image', 'comment', 'status'])
-                ->make(true);
-        }
-
-        $extraJs=array_merge(
+        $extraJs = array_merge(
             config('js-map.admin.datatable.script'),
             config('js-map.admin.summernote.script'),
         );
 
-        $extraCs=array_merge(
+        $extraCs = array_merge(
             config('js-map.admin.datatable.style'),
             config('js-map.admin.summernote.style'),
         );
 
-
-
         $categories = Category::pluck('title', 'id');
-        return view('Admin.pages.Post.post', compact('categories','extraJs','extraCs'));
+        return view('Admin.pages.Post.post', compact('categories', 'extraJs', 'extraCs'));
     }
 
+
+    public function getPostData(Request $request)
+    {
+        if ($request->ajax()) {
+            $search = $request->input('search.value');
+            $columns = $request->input('columns');
+            $pageSize = $request->input('length');
+            $order = $request->input(['order'])[0];
+            $orderIndexColumn = $order['column'];
+            $start = $request->input('start');
+            $orderBy = $order['dir'];
+
+            $posts = Post::with(['createdBy', 'category']);
+            $totalCount = $posts->count();
+
+            $filterData = $posts->when($search, function ($query) use ($search) {
+                $query->where('title', 'LIKE', "%$search%")
+                    ->orWhere('description', 'LIKE', "%$search%")
+                    ->orWhereHas('category', fn($q) => $q->where('title', 'LIKE', "%$search%"))
+                    ->orWhereHas('createdBy', fn($q) => $q->where('full_name', 'LIKE', "%$search%"));
+            });
+
+            $filterCount = $filterData->count();
+
+            $records = $filterData->orderBy($columns[$orderIndexColumn]['data'], $orderBy)
+                ->offset($start)
+                ->limit($pageSize);
+
+            return DataTables::of($records)
+                ->addIndexColumn()
+                ->addColumn('image', fn($item) => "<a type='button' data-id='" . $item->id . "' class='imageListPopup'><span class='badge badge-primary'>" . $item->postImages->count() . "</span></a>")
+                ->addColumn('title', fn($tit) => Str::limit($tit->title, 20) ?? '')
+                ->addColumn('category', fn($cat) => $cat->category->title ?? '')
+                ->addColumn('description', fn($desc) => Str::limit(strip_tags($desc->description), 20) ?? '')
+                ->addColumn('created_by', fn($creator) => $creator->createdBy->full_name ?? '')
+                ->addColumn('action', fn($data) => view('Admin.Button.button', compact('data')))
+                ->addColumn('comment', fn($data) => '<button class="btn btn-info commentinfoBtn" data-id="' . $data->id . '" type="button">View Comment</button>')
+                ->addColumn('status', fn($status) => '<div class="form-check form-switch">
+                    <input class="form-check-input statusIdData d-flex mx-auto" type="checkbox" data-id="' . $status->id . '" role="switch" id="flexSwitchCheckChecked" ' . ($status->status == 'Active' ? 'checked' : '') . '>
+                    </div>')
+                ->rawColumns(['action', 'image', 'comment', 'status'])
+                ->with('recordsTotal', $totalCount)
+                ->with('recordsFiltered', $filterCount)
+                ->make(true);
+        }
+    }
     public function store(PostRequest $postRequest)
     {
         DB::beginTransaction();
@@ -194,15 +201,16 @@ class PostController extends Controller
     }
 
 
-    public function postComment($id){
+    public function postComment($id)
+    {
         try {
             $data = Post::with(['comments'])->find($id);
             $images = $data->comments->map(function ($comment) {
                 return [
                     'id' => $comment->id,
                     'content' => $comment->content,
-                    'image'=>$comment->user->image,
-                    'name'=>$comment->user->full_name
+                    'image' => $comment->user->image,
+                    'name' => $comment->user->full_name
                 ];
             });
             // dd($images);

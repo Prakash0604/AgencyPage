@@ -6,7 +6,7 @@
         @include('Admin.pages.HomeSlide.homeSlideModal')
 
         <div class="table-responsive">
-            <table class="table table-striped" id="show-homeSlide-data">
+            <table class="table table-striped align-middle" id="show-homeSlide-data">
                 <thead>
                     <tr>
                         <th scope="col">S.N</th>

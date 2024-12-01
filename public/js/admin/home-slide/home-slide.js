@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     $(".summernote").summernote({
 
         height: 300
@@ -8,30 +8,47 @@ $(document).ready(function() {
     var table = $("#show-homeSlide-data").DataTable({
         processing: true,
         serverSide: true,
-        ajax: "/admin/home-slide",
-        columns: [{
-                data: "DT_RowIndex",
-                name: "DT_RowIndex",
-            }, {
-                data: "image",
-                name: "image",
-            }, {
-                data: "title",
-                name: "title",
-            }, {
-                data: "shortdesc",
-                name: "shortdesc"
-            },
+        ajax: {
+            url: "/admin/home-slide",
+            type:"get"
+        },
+        order:[[1,'desc']],
+        columns: [
             {
-                data: "status",
-                name: "status",
-            },
+            data: "DT_RowIndex", orderable:false,searchable:false,
+            name: "DT_RowIndex",
+        },
+        // {
+        //     data:"id", name:"id"
+        // },
+        
+        {
+            data: "image",
+            name: "image",
+        }, {
+            data: "title",
+            name: "title",
+        }, {
+            data: "shortdesc",
+            name: "shortdesc"
+        },
+        {
+            data: "status",
+            name: "status",
+            searchable:false,
+            orderable:false
+        },
 
-            {
-                data: "action",
-                name: "action"
-            }
-        ]
+        {
+            data: "action",
+            name: "action",
+            searchable:false,
+            orderable:false,
+        }
+        ],
+        responsive: true,
+        dom: 'Bfrtip',
+        buttons: ['copy', 'excel', 'pdf', 'csv']
     })
 
     function clearModal() {
@@ -40,7 +57,7 @@ $(document).ready(function() {
         $("#validationErrors").addClass("d-none").html('');
     }
 
-    $(document).on("click", ".addHomeSlideBtn", function() {
+    $(document).on("click", ".addHomeSlideBtn", function () {
         clearModal();
         $("#formModal").modal("show");
         $(".updateBtn").hide();
@@ -49,7 +66,7 @@ $(document).ready(function() {
         $('#addForm')[0].reset();
     });
 
-    $(document).off("submit", "#addForm").on("submit", "#addForm", function(event) {
+    $(document).off("submit", "#addForm").on("submit", "#addForm", function (event) {
         event.preventDefault();
         $(".submitBtn").prop("disabled", true);
         let formdata = new FormData(this);
@@ -59,7 +76,7 @@ $(document).ready(function() {
             data: formdata,
             processData: false,
             contentType: false,
-            success: function(response) {
+            success: function (response) {
                 // console.log(response);
                 Swal.fire({
                     icon: "success",
@@ -73,11 +90,11 @@ $(document).ready(function() {
                 $("#formModal").modal("hide");
 
             },
-            error: function(xhr) {
+            error: function (xhr) {
                 if (xhr.status === 422) {
                     let errors = xhr.responseJSON.errors;
                     let errorMessages = '<ul>';
-                    $.each(errors, function(key, value) {
+                    $.each(errors, function (key, value) {
                         errorMessages += '<li>' + value[0] +
                             '</li>'; // Display the first error for each field
                     });
@@ -86,7 +103,7 @@ $(document).ready(function() {
                         errorMessages);
                 }
             },
-            complete: function() {
+            complete: function () {
                 $(".submitBtn").prop("disabled", false);
             }
         })
@@ -94,7 +111,7 @@ $(document).ready(function() {
 
 
     // Edit
-    $(document).on("click", ".editUserButton", function() {
+    $(document).on("click", ".editUserButton", function () {
         clearModal();
         let id = $(this).attr("data-id");
         $("#formModal").modal("show");
@@ -107,7 +124,7 @@ $(document).ready(function() {
         $.ajax({
             type: "get",
             url: "/admin/home-slide/detail/" + id,
-            success: function(response) {
+            success: function (response) {
                 console.log(response);
                 $("#title_home").val(response.message.title);
                 if (response.message.image != null) {
@@ -122,7 +139,7 @@ $(document).ready(function() {
         });
 
         // Update
-        $(document).off("submit", "#updateForm").on("submit", "#updateForm", function(event) {
+        $(document).off("submit", "#updateForm").on("submit", "#updateForm", function (event) {
             event.preventDefault();
             // clearModal();
             let formdata = new FormData(this);
@@ -133,7 +150,7 @@ $(document).ready(function() {
                 data: formdata,
                 processData: false,
                 contentType: false,
-                success: function(response) {
+                success: function (response) {
                     Swal.fire({
                         icon: "success",
                         title: "Success",
@@ -144,7 +161,7 @@ $(document).ready(function() {
                     table.draw();
                     $("#formModal").modal('hide');
                 },
-                error: function(xhr) {
+                error: function (xhr) {
                     Swal.fire({
                         icon: "warning",
                         title: "Something went wrong",
@@ -153,7 +170,7 @@ $(document).ready(function() {
                     });
                     $(".updateBtn").prop("disabled", false);
                 },
-                complete: function() {
+                complete: function () {
                     $(".updateBtn").prop("disabled", false);
                 }
             });
@@ -164,7 +181,7 @@ $(document).ready(function() {
 
     // Delete Record
 
-    $(document).on("click", ".deleteData", function() {
+    $(document).on("click", ".deleteData", function () {
         let id = $(this).attr("data-id");
         Swal.fire({
             icon: "warning",
@@ -179,7 +196,7 @@ $(document).ready(function() {
                 $.ajax({
                     type: "get",
                     url: "/admin/home-slide/delete/" + id,
-                    success: function(response) {
+                    success: function (response) {
                         Swal.fire({
                             icon: "success",
                             title: "Home Slide Deleted Successfully",
@@ -188,7 +205,7 @@ $(document).ready(function() {
                         });
                         table.draw();
                     },
-                    error: function(response) {
+                    error: function (response) {
                         Swal.fire({
                             icon: "warning",
                             title: "Something went wrong!",
@@ -202,17 +219,17 @@ $(document).ready(function() {
     })
 
     // Status Update Toggle Button
-    $(document).on("change", ".statusIdData", function() {
+    $(document).on("change", ".statusIdData", function () {
         let id = $(this).data("id");
         console.log(id);
         $.ajax({
             type: "get",
             url: "/admin/home-slide/status/" + id,
-            success: function(response) {
+            success: function (response) {
                 // console.log(response);
                 table.draw();
             },
-            error: function(xhr) {
+            error: function (xhr) {
                 console.log(xhr.responseJSON.message);
             }
         })

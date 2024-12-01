@@ -96,6 +96,7 @@ Route::middleware('admin')->group(function () {
 
     // Post
     Route::get('/admin/post', [PostController::class, 'index'])->name('admin.post');
+    Route::get('/admin/post/get-data', [PostController::class, 'getPostData'])->name('admin.post.data');
     Route::post('/admin/post/store', [PostController::class, 'store'])->name('admin.post.store');
     Route::get('/admin/post/detail/{id}', [PostController::class, 'getDetail'])->name('admin.post.detail');
     Route::post('/admin/post/edit/{id}', [PostController::class, 'update'])->name('admin.post.update');
@@ -105,6 +106,7 @@ Route::middleware('admin')->group(function () {
     Route::get('/admin/post/comment/detail/{id}', [PostController::class, 'postComment'])->name('admin.post.comment');
 
     Route::get('/admin/contact',[ContactController::class,'index'])->name('admin.contact');
+    Route::get('/admin/contact/get-data',[ContactController::class,'getContact'])->name('admin.contact.get-data');
     Route::get('/admin/contact/detail/{id}',[ContactController::class,'showDetail'])->name('admin.contact.detail');
     Route::get('/admin/contact/delete/{id}',[ContactController::class,'destroy'])->name('admin.contact.delete');
 
