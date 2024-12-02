@@ -45,33 +45,53 @@ class PostController extends Controller
             $start = $request->input('start');
             $orderBy = $order['dir'];
 
-            $posts = Post::with(['createdBy', 'category']);
+            $posts = Post::query();
             $totalCount = $posts->count();
 
-            $filterData = $posts->when($search, function ($query) use ($search) {
-                $query->where('title', 'LIKE', "%$search%")
-                    ->orWhere('description', 'LIKE', "%$search%")
-                    ->orWhereHas('category', fn($q) => $q->where('title', 'LIKE', "%$search%"))
-                    ->orWhereHas('createdBy', fn($q) => $q->where('full_name', 'LIKE', "%$search%"));
-            });
+
+            $filterData = $posts
+                ->join('categories', 'categories.id', '=', 'posts.category_id')
+                ->join('users', 'users.id', '=', 'posts.created_by')
+                ->leftJoin('post_images', 'post_images.id', 'posts.id')
+                ->leftJoin('comments', 'comments.id', 'posts.id')
+                ->select(['posts.id as post_id','posts.title as post_title', 'categories.title as category_title', 'posts.description', 'users.full_name', 'posts.status'])
+                ->withCount('postImages')
+                ->when($search, function ($query) use ($search) {
+                    $query->where('posts.title', 'LIKE', "%$search%")
+                        ->orWhere('posts.description', 'LIKE', "%$search%")
+                        ->orWhere('categories.title', 'LIKE', "%$search%")
+                        ->orWhere('users.full_name', 'LIKE', "%$search%");
+                });
 
             $filterCount = $filterData->count();
 
-            $records = $filterData->orderBy($columns[$orderIndexColumn]['data'], $orderBy)
+            $columnMap = [
+                'title' => 'posts.title',
+                'category' => 'categories.title',
+                'description' => 'posts.description',
+                // 'created_by' => 'users.full_name',
+            ];
+            $orderByColumn = $columnMap[$columns[$orderIndexColumn]['data']];
+
+            $records = $filterData->orderBy($orderByColumn, $orderBy)
                 ->offset($start)
                 ->limit($pageSize);
 
             return DataTables::of($records)
                 ->addIndexColumn()
-                ->addColumn('image', fn($item) => "<a type='button' data-id='" . $item->id . "' class='imageListPopup'><span class='badge badge-primary'>" . $item->postImages->count() . "</span></a>")
-                ->addColumn('title', fn($tit) => Str::limit($tit->title, 20) ?? '')
-                ->addColumn('category', fn($cat) => $cat->category->title ?? '')
+                ->addColumn('image', function ($item) {
+                    return  "<a type='button' data-id='" . $item->post_id . "' class='imageListPopup'><span class='badge badge-primary'>" . $item->post_images_count . "</span></a>";
+                })
+                ->addColumn('title', function ($tit) {
+                    return  Str::limit($tit->post_title, 20) ?? '';
+                })
+                ->addColumn('category', fn($cat) => $cat->category_title ?? '')
                 ->addColumn('description', fn($desc) => Str::limit(strip_tags($desc->description), 20) ?? '')
-                ->addColumn('created_by', fn($creator) => $creator->createdBy->full_name ?? '')
-                ->addColumn('action', fn($data) => view('Admin.Button.button', compact('data')))
-                ->addColumn('comment', fn($data) => '<button class="btn btn-info commentinfoBtn" data-id="' . $data->id . '" type="button">View Comment</button>')
+                ->addColumn('created_by', fn($creator) => $creator->full_name ?? '')
+                ->addColumn('action', fn($data) => '<button class="btn btn-secondary  editUserButton" data-id="' . $data->post_id . '" type="button">Edit</button><button class="btn btn-danger deleteData" data-id="' . $data->post_id . '" type="button">Delete </button>')
+                ->addColumn('comment', fn($data) => '<button class="btn btn-info commentinfoBtn" data-id="' . $data->post_id . '" type="button">View Comment</button>')
                 ->addColumn('status', fn($status) => '<div class="form-check form-switch">
-                    <input class="form-check-input statusIdData d-flex mx-auto" type="checkbox" data-id="' . $status->id . '" role="switch" id="flexSwitchCheckChecked" ' . ($status->status == 'Active' ? 'checked' : '') . '>
+                    <input class="form-check-input statusIdData d-flex mx-auto" type="checkbox" data-id="' . $status->post_id . '" role="switch" id="flexSwitchCheckChecked" ' . ($status->status == 'Active' ? 'checked' : '') . '>
                     </div>')
                 ->rawColumns(['action', 'image', 'comment', 'status'])
                 ->with('recordsTotal', $totalCount)

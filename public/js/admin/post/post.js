@@ -17,12 +17,19 @@ $(document).ready(function () {
         "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, 'All']],
         order: [[2, 'asc']],
         columns: [{
+            target:0,
             data: "DT_RowIndex",
-            name: "DT_RowIndex"
+            name: "DT_RowIndex",
+            searchable:false,
+            orderable:false
+
+
         },
         {
             data: "image",
-            name: "image"
+            name: "image",
+            orderable:false,
+            searchable:false
         },
         {
             data: "title",
@@ -38,11 +45,15 @@ $(document).ready(function () {
         },
         {
             data: "created_by",
-            name: "created_by"
+            name: "created_by",
+            orderable:false,
+            searchable:false
         },
         {
             data: "status",
             name: "status",
+            orderable:false,
+            searchable:false,
         }, {
             data: "comment",
             name: "comment",
