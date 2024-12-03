@@ -1,33 +1,39 @@
-$(document).ready(function() {
+$(document).ready(function () {
     // Data Table
 
     var table = $("#show-category-data").DataTable({
         processing: true,
         serverSide: true,
         ajax: "/admin/category",
+        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+        order: [1, 'asc'],
         columns: [{
-                data: "DT_RowIndex",
-                name: "DT_RowIndex"
-            }, {
-                data: "title",
-                name: "title"
-            },
-            {
-                data: "status",
-                name: "status",
-            },
-            {
-                data: "action",
-                name: "action",
-                orderable: false,
-                searchable: false
-            }
+            data: "DT_RowIndex",
+            name: "DT_RowIndex",
+            orderable: false,
+            searchable: false
+        }, {
+            data: "title",
+            name: "title"
+        },
+        {
+            data: "status",
+            name: "status",
+            orderable: false,
+            searchable: false
+        },
+        {
+            data: "action",
+            name: "action",
+            orderable: false,
+            searchable: false
+        }
         ]
     });
 
 
     // Add Category
-    $(document).on("click", ".addCategoryBtn", function() {
+    $(document).on("click", ".addCategoryBtn", function () {
         $("#formModal").modal("show");
         $(".updateBtn").hide();
         $(".submitBtn").show();
@@ -35,7 +41,7 @@ $(document).ready(function() {
         $("#addForm")[0].reset();
 
         // unbinding using off submit
-        $(document).off('submit').on("submit", "#addForm", function(event) {
+        $(document).off('submit').on("submit", "#addForm", function (event) {
             event.preventDefault();
             $(".submitBtn").prop("disabled", true);
             let formdata = new FormData(this);
@@ -45,7 +51,7 @@ $(document).ready(function() {
                 data: formdata,
                 processData: false,
                 contentType: false,
-                success: function(response) {
+                success: function (response) {
                     Swal.fire({
                         icon: "success",
                         title: "Success",
@@ -57,7 +63,7 @@ $(document).ready(function() {
                     $("#addForm")[0].reset();
                     $("#formModal").modal("hide");
                 },
-                error: function(xhr) {
+                error: function (xhr) {
                     Swal.fire({
                         icon: "warning",
                         title: "Warning!",
@@ -67,7 +73,7 @@ $(document).ready(function() {
                     });
 
                 },
-                complete: function() {
+                complete: function () {
                     $(".submitBtn").prop("disabled", false);
                 }
             })
@@ -75,7 +81,7 @@ $(document).ready(function() {
     });
 
     // Edit Category
-    $(document).on("click", ".editUserButton", function() {
+    $(document).on("click", ".editUserButton", function () {
         let id = $(this).attr("data-id");
         $("#formModal").modal("show");
         $(".updateBtn").show();
@@ -87,16 +93,16 @@ $(document).ready(function() {
         $.ajax({
             type: "get",
             url: "/admin/category/detail/" + id,
-            success: function(response) {
+            success: function (response) {
                 $("#categorytitleData").val(response.message.title);
                 $("#categoryStatus").val(response.message.status);
             },
-            error: function(xhr) {
+            error: function (xhr) {
                 console.log(xhr);
             }
         });
 
-        $(document).off("submit").on("submit", "#updateForm", function(event) {
+        $(document).off("submit").on("submit", "#updateForm", function (event) {
             event.preventDefault();
             $(".updateBtn").prop("disabled", true);
             let formdata = new FormData(this);
@@ -106,18 +112,27 @@ $(document).ready(function() {
                 data: formdata,
                 processData: false,
                 contentType: false,
-                success: function(response) {
-                    Swal.fire({
-                        icon: "success",
-                        title: "Success",
-                        text: "Category Updated Successfully",
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                    table.draw();
-                    $("#formModal").modal("hide");
+                success: function (response) {
+                    if (response.success == true) {
+
+                        Swal.fire({
+                            icon: "success",
+                            title: "Success",
+                            text: "Category Updated Successfully",
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        table.draw();
+                        $("#formModal").modal("hide");
+                    } else {
+                        Swal.fire({
+                            icon: "warning",
+                            title: "Something Went Wrong !",
+                            text: "Please try again !",
+                        })
+                    }
                 },
-                error: function(xhr) {
+                error: function (xhr) {
                     Swal.fire({
                         icon: "warning",
                         title: "Warning",
@@ -126,7 +141,7 @@ $(document).ready(function() {
                         timer: 1500
                     });
                 },
-                complete: function() {
+                complete: function () {
                     $(".updateBtn").prop("disabled", false);
                 }
             })
@@ -135,25 +150,44 @@ $(document).ready(function() {
     });
 
     // Status Toggle
-    $(document).on("change", ".statusIdData", function() {
+    $(document).on("change", ".statusIdData", function () {
+
         let id = $(this).data("id");
+        let checkbox = $(this);
+        checkbox.prop("disabled", true);
         // console.log(id);
-        $.ajax({
-            type: "get",
-            url: "/admin/category/status/" + id,
-            success: function() {
-                // console.log(response);
-                table.draw();
-            },
-            error: function(xhr) {
-                console.log(xhr.responseJSON.message);
+        Swal.fire({
+            icon: "warning",
+            title: "Are you sure ?",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "Yes, Change it!",
+            cancelButtonColor: "#d33",
+        }).then((response) => {
+            if (response.isConfirmed) {
+                $.ajax({
+                    type: "get",
+                    url: "/admin/category/status/" + id,
+                    success: function () {
+                        // console.log(response);
+                        checkbox.prop("disabled", false);
+                        table.draw();
+                    },
+                    error: function (xhr) {
+                        checkbox.prop("disabled",false);
+                        console.log(xhr.responseJSON.message);
+                    }
+                })
+            } else {
+                checkbox.prop("disabled",false);
+                checkbox.prop("checked",!checkbox.prop("checked"));
             }
         })
 
     })
 
     // Delete Category
-    $(document).on("click", ".deleteData", function() {
+    $(document).on("click", ".deleteData", function () {
         let id = $(this).attr("data-id");
         Swal.fire({
             icon: "warning",
@@ -168,7 +202,7 @@ $(document).ready(function() {
                 $.ajax({
                     type: "get",
                     url: "/admin/category/delete/" + id,
-                    success: function(response) {
+                    success: function (response) {
                         if (response.success == true) {
 
                             Swal.fire({
@@ -179,7 +213,7 @@ $(document).ready(function() {
                                 timer: 1500
                             });
                             table.draw();
-                        } else{
+                        } else {
                             Swal.fire({
                                 icon: "warning",
                                 title: "Already Tagged!",
@@ -187,7 +221,7 @@ $(document).ready(function() {
                             });
                         }
                     },
-                    error: function() {
+                    error: function () {
                         Swal.fire({
                             icon: "warning",
                             title: "Warning",

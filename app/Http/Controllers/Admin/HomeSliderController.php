@@ -20,54 +20,45 @@ class HomeSliderController extends Controller
             $search = $request->input('search.value');
             $columns = $request->get('columns');
 
-            $pageSize = $request->input('length'); // Number of records per page
-            $start = $request->input('start'); // Offset for pagination
-            $orderColumnIndex = $request->input('order')[0]['column']; // Column to sort by
-            $orderBy = $request->input('order')[0]['dir']; // Sort direction
+            $pageSize = $request->input('length');
+            $start = $request->input('start');
+            $orderColumnIndex = $request->input('order')[0]['column'];
+            $orderBy = $request->input('order')[0]['dir'];
 
-            // Default column for sorting (if no order is specified, default to 'title')
-            $orderColumn = $columns[$orderColumnIndex]['data'] ?? 'title';
-            $orderBy = $orderBy ?? 'asc';
+            $homeSlide = HomeSlide::query();
 
-            // Total records without filtering
-            $countTotal = HomeSlide::count();
+            $countTotal = $homeSlide->count();
 
-            // Total records with filtering
-            $countFilter = HomeSlide::query()
-                ->when($search, function ($query) use ($search) {
-                    $query->where('title', 'LIKE', "%$search%")
-                        ->orWhere('shortdesc', 'LIKE', "%$search%");
-                })
-                ->count();
+            $searchHomeSlide = $homeSlide->when($search, function ($query) use ($search) {
+                $query->where('title', 'LIKE', "%$search%")
+                    ->orWhere('shortdesc', 'LIKE', "%$search%");
+            });
 
-            // Fetch paginated and filtered data
-            $data = HomeSlide::query()
-                ->when($search, function ($query) use ($search) {
-                    $query->where('title', 'LIKE', "%$search%")
-                        ->orWhere('shortdesc', 'LIKE', "%$search%");
-                })
-                ->orderBy($orderColumn, $orderBy)
-                ->skip($start)
-                ->take($pageSize)
-                ->get();
+            $countSearch = $searchHomeSlide->count();
 
-            return DataTables::of($data)
-                ->with(['recordsTotal' => $countTotal, 'recordsFiltered' => $countFilter])
-                ->addIndexColumn() // Adds DT_RowIndex
+
+            $records = $searchHomeSlide->orderBy($columns[$orderColumnIndex]['data'], $orderBy)
+                ->offset($start)
+                ->limit($pageSize);
+
+            return DataTables::of($records)
+                ->with(['recordsTotal' => $countTotal, 'recordsFiltered' => $countSearch])
+                ->addIndexColumn()
                 ->addColumn('action', function ($data) {
                     return view('Admin.Button.button', compact('data'))->render();
                 })
                 ->addColumn('image', function ($item) {
                     $url = $item->image ? asset('storage/' . $item->image) : asset('defaultImage/defaultimage.webp');
-                    return '<img src="' . $url . '" width="50" height="50" alt="Image"/>';
+                    $defaultImage = asset('defaultImage/defaultimage.webp');
+                    return '<img src="' . $url . '" width="50" height="50" alt="Image" onerror="this.src=\'' . $defaultImage . '\'" />';
                 })
                 ->addColumn('shortdesc', function ($desc) {
                     return Str::limit(strip_tags($desc->shortdesc), 70);
                 })
                 ->addColumn('status', function ($status) {
                     $checked = $status->status == 'Active' ? 'checked' : '';
-                    return '<div class="form-check form-switch">
-                                <input class="form-check-input statusIdData" type="checkbox" data-id="' . $status->id . '" role="switch" id="flexSwitchCheckChecked" ' . $checked . '>
+                    return '<div class="form-check form-switch d-flex">
+                                <input class="form-check-input statusIdData mx-auto" type="checkbox" data-id="' . $status->id . '" role="switch" id="flexSwitchCheckChecked" ' . $checked . '>
                             </div>';
                 })
                 ->rawColumns(['action', 'image', 'status'])
@@ -77,12 +68,14 @@ class HomeSliderController extends Controller
 
         $extraJs = array_merge(
             config('js-map.admin.datatable.script'),
-            config('js-map.admin.summernote.script')
+            config('js-map.admin.summernote.script'),
+            config('js-map.admin.buttons.script'),
         );
 
         $extraCs = array_merge(
             config('js-map.admin.datatable.style'),
-            config('js-map.admin.summernote.style')
+            config('js-map.admin.summernote.style'),
+            config('js-map.admin.buttons.style'),
         );
         return view('Admin.pages.HomeSlide.homeslide', ['extraJs' => $extraJs, 'extraCs' => $extraCs]);
     }

@@ -18,8 +18,6 @@
     <link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">
     <link rel="shortcut icon" href="{{ asset('admin/images/favicon.png') }}" />
 
-    <!-- DataTables CSS -->
-
     {{-- Sweet Alert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     {{-- Sweet Alert --}}
@@ -28,6 +26,6 @@
     @isset($extraCs)
         @foreach ($extraCs as $css)
             {{-- <script src="{{ asset($cs) }}?v=0.3.1"></script> --}}
-           <link rel="stylesheet" href="{{ $css }}">
+            <link rel="stylesheet" href="{{ $css }}">
         @endforeach
     @endisset

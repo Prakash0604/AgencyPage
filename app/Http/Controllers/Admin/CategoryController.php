@@ -13,8 +13,28 @@ class CategoryController extends Controller
 {
     public function index(Request $request){
         if($request->ajax()){
-            $data=Category::orderBy('id','desc')->get();
-            return DataTables::of($data)
+            // $data=Category::orderBy('id','desc')->get();
+
+            $search=$request->input('search.value');
+            $columns=$request->input('columns');
+            $pageSize=$request->input('length');
+            $order=$request->input(['order'])[0];
+            $orderColumnIndex=$order['column'];
+            $orderBy=$order['dir'];
+            $start=$request->input('start');
+
+            $category=Category::query();
+            $totalCategory=$category->count();
+
+            $dataSearch=$category->when($search,function($query) use ($search){
+                $query->where('title','LIKE',"%$search%");
+            });
+
+            $countSearch=$dataSearch->count();
+            $categoryData=$dataSearch->orderBy($columns[$orderColumnIndex]['data'],$orderBy)
+            ->offset($start)
+            ->limit($pageSize);
+            return DataTables::of($categoryData)
             ->addIndexColumn()
             ->addColumn('action',function($data){
                 return view('Admin.Button.button',compact('data'));
@@ -25,6 +45,8 @@ class CategoryController extends Controller
                 <input class="form-check-input statusIdData mx-auto" type="checkbox" data-id="'.$status->id.'" role="switch" id="flexSwitchCheckChecked" '.$checked.'>
                 </div>';
             })
+            ->with('recordsTotal',$totalCategory)
+            ->with('recordsFiltered',$countSearch)
             ->rawColumns(['action','status'])
             ->make(true);
         }

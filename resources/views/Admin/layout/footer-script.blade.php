@@ -1,8 +1,7 @@
 <!-- plugins:js -->
 <script src="{{ asset('admin/vendors/js/vendor.bundle.base.js') }}"></script>
-{{-- Chart js --}}
 
-{{-- Chart js --}}
+
 <script src="{{ asset('admin/js/template.js') }}"></script>
 <!-- DataTables JS -->
 <!-- Summernote JS -->
@@ -10,10 +9,9 @@
 
 {{-- Select 2 --}}
 
- @isset($extraJs)
+@isset($extraJs)
     @foreach ($extraJs as $js)
         <script src="{{ $js }}"></script>
-
     @endforeach
 @endisset
 

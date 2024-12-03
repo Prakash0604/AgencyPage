@@ -16,15 +16,39 @@ class TestimonialController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Testimonial::orderBy('id', 'desc')->get();
-            return DataTables::of($data)
+            $search = $request->input('search.value');
+            $columns = $request->input('columns');
+            $pageSize = $request->input('length');
+            $order = $request->input(['order'])[0];
+            $orderColumnIndex = $order['column'];
+            $orderBy = $order['dir'];
+            $start = $request->input('start');
+
+            $testimonial = Testimonial::query();
+            $totalTestimonial = $testimonial->count();
+
+            $searchTestimonial = $testimonial->when($search, function ($query) use ($search) {
+                $query->where('name', 'LIKE', "%$search%")
+                    ->orWhere('address', 'LIKE', "%$search%")
+                    ->orWhere('designation', 'LIKE', "%$search%")
+                    ->orWhere('description', 'LIKE', "%$search%");
+            });
+
+            $searchCount = $searchTestimonial->count();
+            $response = $searchTestimonial->orderBy($columns[$orderColumnIndex]['data'], $orderBy)
+                ->offset($start)
+                ->limit($pageSize);
+            return DataTables::of($response)
                 ->addIndexColumn()
                 ->addColumn('action', function ($data) {
                     return view('Admin.Button.button', compact('data'));
                 })
                 ->addColumn('image', function ($item) {
                     $dataimage = asset('storage/' . $item->image);
-                    return ' <td class="py-1"><img src="' . $dataimage . '" width="50" height="50"/></td>';
+                    $defaultImage=asset('defaultImage/defaultimage.webp');
+                    return ' <td class="py-1">
+                    <img src="' . $dataimage . '" width="50" height="50" onerror="this.src=\''.$defaultImage.'\'"/>
+                    </td>';
                 })
                 ->addColumn('description', function ($item) {
                     return Str::limit(strip_tags($item->description), 20);
@@ -32,27 +56,28 @@ class TestimonialController extends Controller
                 ->addColumn('status', function ($status) {
                     $checked = $status->status == 'Active' ? 'checked' : '';
                     return '<div class="form-check form-switch">
-                    <input class="form-check-input statusIdData d-flex mx-auto" type="checkbox" data-id="'.$status->id.'" role="switch" id="flexSwitchCheckChecked" '.$checked.'>
+                    <input class="form-check-input statusIdData d-flex mx-auto" type="checkbox" data-id="' . $status->id . '" role="switch" id="flexSwitchCheckChecked" ' . $checked . '>
                     </div>';
                 })
+                ->with('recordsTotal', $totalTestimonial)
+                ->with('recordsFiltered', $searchCount)
 
-
-                ->rawColumns(['action', 'image','status'])
+                ->rawColumns(['action', 'image', 'status'])
                 ->make(true);
         }
+        
         $extraJs = array_merge(
             config('js-map.admin.datatable.script'),
             config('js-map.admin.summernote.script'),
+            config('js-map.admin.buttons.script')
         );
-
-
-
 
         $extraCs = array_merge(
             config('js-map.admin.datatable.style'),
             config('js-map.admin.summernote.style'),
+            config('js-map.admin.buttons.style')
         );
-        return view('Admin.pages.TestiMonial.testimonial',['extraJs'=>$extraJs,'extraCs'=>$extraCs]);
+        return view('Admin.pages.TestiMonial.testimonial', ['extraJs' => $extraJs, 'extraCs' => $extraCs]);
     }
 
     public function store(TestimonalRequest $request)
@@ -112,19 +137,20 @@ class TestimonialController extends Controller
         }
     }
 
-    public function statusToggle($id){
-        try{
-            $data=Testimonial::find($id);
+    public function statusToggle($id)
+    {
+        try {
+            $data = Testimonial::find($id);
 
-            if($data->status === 'Active'){
-                $data->status='Inactive';
-            }else{
-                $data->status='Active';
+            if ($data->status === 'Active') {
+                $data->status = 'Inactive';
+            } else {
+                $data->status = 'Active';
             }
             $data->save();
-            return response()->json(['success'=>true,'message'=>'Status Changes'],200);
-        }catch(\Exception $e){
-            return response()->json(['success'=>false,'message'=>$e->getMessage()]);
+            return response()->json(['success' => true, 'message' => 'Status Changes'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
     }
 

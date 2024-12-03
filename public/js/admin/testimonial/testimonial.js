@@ -7,12 +7,18 @@ $(document).ready(function () {
         processing: true,
         serverSide: true,
         ajax: "/admin/testimonial",
+        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+        order: [2, 'asc'],
         columns: [{
             data: "DT_RowIndex",
             name: "DT_RowIndex",
+            orderable: false,
+            searchable: false
         }, {
             data: "image",
-            name: "image"
+            name: "image",
+            orderable: false,
+            searchable: false
         }, {
             data: "name",
             name: "name"
@@ -29,12 +35,46 @@ $(document).ready(function () {
         {
             data: "status",
             name: "status",
+            orderable: false,
+            searchable: false
         }, {
             data: "action",
-            name: "action"
+            name: "action",
+            orderable: false,
+            searchable: false
         }
-        ]
-    })
+        ],
+        dom: 'Blfrtip',
+        buttons: [
+            {
+                extend: 'print',
+                // title:false,
+                exportOptions: {
+                    columns: [0, 2, 3, 4, 5],
+                },
+            }, {
+                extend: 'excel',
+                title: '',
+                exportOptions: {
+                    columns: [0, 2, 3, 4, 5]
+                }
+            }
+        ],
+        dom: '<"toolbar">lfrtip',
+    });
+
+    $("div.toolbar").html(`
+        <span id="btnPrint" class="btn btn-primary mdi mdi-printer mdi-icon"></span>
+        <span id="btnExport" class="btn btn-success mdi mdi-file-export mdi-icon"></span>
+    `);
+
+    $('#btnPrint').on('click', function () {
+        table.button(0).trigger();
+    });
+
+    $('#btnExport').on('click', function () {
+        table.button(1).trigger();
+    });
 
     function clearModal() {
         $("#testimonialImage").html("");
@@ -72,7 +112,7 @@ $(document).ready(function () {
                     table.draw();
                     $("#addForm")[0].reset();
                     $("#formModal").modal("hide");
-                }else{
+                } else {
                     Swal.fire({
                         icon: "warning",
                         title: "warning",
@@ -122,9 +162,21 @@ $(document).ready(function () {
                     .description);
                 if (response.message.image != null) {
                     $("#testimonialImage").html(
-                        `<img src="/storage/${response.message.image}" alt="User Image" width="100" height="100"> `
+                        `<img src="/storage/${response.message.image}" 
+                                  alt="User Image" 
+                                  width="100" 
+                                  height="100" 
+                                  onerror="this.onerror=404; this.src='/defaultimage/defaultimage.webp';">`
+                    );
+                } else {
+                    $("#testimonialImage").html(
+                        `<img src="/defaultimage/defaultimage.webp" 
+                                  alt="Default Image" 
+                                  width="100" 
+                                  height="100">`
                     );
                 }
+
 
             }
         });
@@ -140,7 +192,7 @@ $(document).ready(function () {
                 processData: false,
                 contentType: false,
                 success: function (response) {
-                    if(response.success == true){
+                    if (response.success == true) {
                         Swal.fire({
                             icon: "success",
                             title: "Success",
@@ -150,6 +202,12 @@ $(document).ready(function () {
                         });
                         table.draw();
                         $("#formModal").modal("hide");
+                    } else {
+                        Swal.fire({
+                            icon: "warning",
+                            title: "Something went wrong!",
+                            text: "Please try again!",
+                        });
                     }
                 },
                 error: function (xhr) {
@@ -173,15 +231,33 @@ $(document).ready(function () {
     $(document).on("change", ".statusIdData", function () {
         let id = $(this).data("id");
         // console.log(id);
-        $.ajax({
-            type: "get",
-            url: "/admin/testimonial/status/" + id,
-            success: function () {
-                // console.log(response);
-                table.draw();
-            },
-            error: function (xhr) {
-                console.log(xhr.responseJSON.message);
+        let checkbox = $(this);
+        checkbox.prop("disabled", true);
+        Swal.fire({
+            icon: "warning",
+            title: "Are you sure ?",
+            showCancelButton: true,
+            cancelButtonColor: "#d33",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "Yes, Change it !",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "get",
+                    url: "/admin/testimonial/status/" + id,
+                    success: function () {
+                        // console.log(response);
+                        checkbox.prop("disabled", false);
+                        table.draw();
+                    },
+                    error: function (xhr) {
+                        checkbox.prop("disabled", false);
+                        console.log(xhr.responseJSON.message);
+                    }
+                })
+            } else {
+                checkbox.prop("disabled", false);
+                checkbox.prop("checked", !checkbox.prop("checked"));
             }
         })
 
@@ -203,13 +279,21 @@ $(document).ready(function () {
                     type: "get",
                     url: "/admin/testimonial/delete/" + id,
                     success: function (response) {
-                        Swal.fire({
-                            icon: "success",
-                            title: "Testimonial Deleted Successfully",
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                        table.draw();
+                        if (response.success == true) {
+                            Swal.fire({
+                                icon: "success",
+                                title: "Testimonial Deleted Successfully",
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            table.draw();
+                        } else {
+                            Swal.fire({
+                                icon: "warning",
+                                title: "Something went wrong!",
+                                text: "Please try again!"
+                            });
+                        }
                     },
                     error: function (response) {
                         console.log(response);

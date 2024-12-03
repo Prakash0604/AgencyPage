@@ -66,6 +66,7 @@ $(document).ready(function () {
             searchable: false
         },
         ],
+        
     })
 
     function clearModal() {
@@ -124,17 +125,26 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
-                Swal.fire({
-                    icon: "success",
-                    title: "Success",
-                    text: "Post Added Successfully",
-                    showConfirmButton: false,
-                    timer: 1500,
-                });
-                table.draw();
-                $("#formModal").modal("hide");
-                $("#addForm")[0].reset();
-                $("#post_description").summernote("code", "");
+                if(response.success ==true){
+
+                    Swal.fire({
+                        icon: "success",
+                        title: "Success",
+                        text: "Post Added Successfully",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                    table.draw();
+                    $("#formModal").modal("hide");
+                    $("#addForm")[0].reset();
+                    $("#post_description").summernote("code", "");
+                }else{
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Something went wrong !",
+                        text: "Please try again !",
+                    });
+                }
             },
             error: function (xhr) {
                 if (xhr.status === 422) {
