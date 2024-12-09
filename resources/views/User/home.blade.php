@@ -137,16 +137,16 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <h4 class="card-title text-center mt-3 mb-3">{{ $notice->title ?? '-' }}</h4>
+                        <h4 class="card-title text-center mt-3 mb-3" id="noticeTitle">{{ $notice->title ?? '' }}</h4>
                         <div class="card text-start">
                             @if ($notice && $notice->image !== null)
                                 <img class="card-img-top" src="{{ asset('storage/' . $notice->image) }}" alt="image" />
-                            @else
+                            {{-- @else
                                 <img class="card-img-top" src="{{ asset('defaultImage/defaultimage.webp') }}"
-                                    alt="image" />
+                                    alt="image" /> --}}
                             @endif
                             <div class="card-body">
-                                <p class="card-text">{!!  $notice->description ?? '-'  !!}</p>
+                                <p class="card-text">{!!  $notice->description ?? ''  !!}</p>
                             </div>
                         </div>
                     </div>
@@ -160,7 +160,12 @@
 
     <script>
         $(document).ready(function() {
-            $("#formModal").modal('show');
+            let title=$("#noticeTitle").text();
+            if(title!=""){
+                $("#formModal").modal('show');
+            }else{
+                $("#formModal").modal('hide');
+            }
         })
     </script>
     {{-- Notice Modal --}}

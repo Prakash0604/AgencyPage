@@ -108,9 +108,8 @@ class NoticeController extends Controller
                 $store = $request->image->storeAs($path, $imageName, 'public');
                 $data['image'] = $store;
             }
-            // $data['status']='Active';
             $notice=Notice::create($data);
-            Notice::query()->update(['status'=>'Inactive']);
+            // Notice::query()->update(['status'=>'Inactive']);
             DB::commit();
             return response()->json(['success' => true, 'status' => 200]);
         } catch (\Exception $e) {
@@ -166,7 +165,11 @@ class NoticeController extends Controller
     public function destroy(string $id)
     {
         try {
-            Notice::find($id)->delete();
+            $notice=Notice::find($id);
+            if($notice->image!=null){
+                Storage::disk('public')->delete($notice->image);
+            }
+            $notice->delete();
             return response()->json(['success' => true, 'status' => 200]);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => $e->getMessage()]);

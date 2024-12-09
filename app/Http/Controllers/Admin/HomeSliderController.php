@@ -154,7 +154,7 @@ class HomeSliderController extends Controller
     {
         try {
             $data = HomeSlide::find($id);
-            if ($data->image) {
+            if ($data->image!=null) {
                 Storage::disk('public')->delete($data->image);
             }
             $data->delete();

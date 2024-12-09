@@ -17,6 +17,7 @@ $(document).ready(function () {
         serverSide: true,
         ajax: "/admin/notice/",
         order: [[1, "asc"]],
+        "lengthMenu":[[10,25,50,100,-1],[10,25,50,100,"All"]],
         columns: [
             {
                 data: "DT_RowIndex", name: "DT_RowIndex", orderable: false, searchable: false
