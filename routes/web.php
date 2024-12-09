@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\FrontendController as AdminFrontendController;
+use App\Http\Controllers\Admin\NoticeController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\AuthController;
@@ -109,6 +110,8 @@ Route::middleware('admin')->group(function () {
     Route::get('/admin/contact/get-data',[ContactController::class,'getContact'])->name('admin.contact.get-data');
     Route::get('/admin/contact/detail/{id}',[ContactController::class,'showDetail'])->name('admin.contact.detail');
     Route::get('/admin/contact/delete/{id}',[ContactController::class,'destroy'])->name('admin.contact.delete');
+    Route::resource('/admin/notice',NoticeController::class);
+    Route::get('/admin/notice/status/{id}',[NoticeController::class,'toggleStatus']);
 
 
     Route::get('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');

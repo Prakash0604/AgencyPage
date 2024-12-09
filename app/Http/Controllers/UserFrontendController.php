@@ -10,6 +10,7 @@ use App\Models\Comment;
 use App\Models\Contact;
 use App\Models\Post;
 use App\Models\HomeSlide;
+use App\Models\Notice;
 use App\Models\Setting;
 use App\Models\Testimonial;
 
@@ -21,7 +22,9 @@ class UserFrontendController extends Controller
         $homeslides=HomeSlide::where('status','Active')->get();
         // dd($homeslides);
         $testimonials=Testimonial::where('status','Active')->get();
-        return view('User.home',compact(['frontend','homeslides','testimonials']));
+        $notice=Notice::where('status','Active')->first();
+        // dd($notice);
+        return view('User.home',compact(['frontend','homeslides','testimonials','notice']));
     }
     public function aboutUs(){
         $users=User::where('role','Admin')->get();
