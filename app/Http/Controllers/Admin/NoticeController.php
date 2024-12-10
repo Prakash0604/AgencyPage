@@ -42,7 +42,7 @@ class NoticeController extends Controller
             return DataTables::of($response)
                 ->addIndexColumn()
                 ->addColumn('action', function ($action) {
-                    $btn = '<button class="btn btn-primary editNoticeBtn" data-id="' . $action->id . '" type="button" >Edit</button>';
+                    $btn = '<button class="btn btn-primary editNoticeBtn mr-4" data-id="' . $action->id . '" type="button" >Edit</button>';
                     $btn .= '<button class="btn btn-danger deleteNoticeBtn" data-id="' . $action->id . '" type="button" >Delete</button>';
                     return $btn;
                 })
@@ -79,19 +79,24 @@ class NoticeController extends Controller
     public function toggleStatus($id)
     {
         try {
-            Notice::query()->update(['status'=>'Inactive']);
             $notice = Notice::find($id);
-            // dd($notice);
-            if ($notice->status == 'Active') {
-                $notice->status = 'Inactive';
-            } else {
-                $notice->status = 'Active';
+            if ($notice) {
+                if (Notice::count() > 1) { 
+                    Notice::query()->update(['status' => 'Inactive']);
+                    $notice->status = $notice->status === 'Active' ? 'Inactive' : 'Active';
+                } else { 
+                    $notice->status = $notice->status === 'Active' ? 'Inactive' : 'Active';
+                }
+                $notice->save();
+        
+                return response()->json(['success' => true, 'status' => 200, 'message' => 'Status changed successfully']);
             }
-            $notice->save();
-            return response()->json(['success' => true, 'status' => 200]);
+        
+            return response()->json(['success' => false, 'status' => 404, 'message' => 'Notice not found']);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
+        
     }
 
     /**
@@ -108,7 +113,7 @@ class NoticeController extends Controller
                 $store = $request->image->storeAs($path, $imageName, 'public');
                 $data['image'] = $store;
             }
-            $notice=Notice::create($data);
+            $notice = Notice::create($data);
             // Notice::query()->update(['status'=>'Inactive']);
             DB::commit();
             return response()->json(['success' => true, 'status' => 200]);
@@ -165,8 +170,8 @@ class NoticeController extends Controller
     public function destroy(string $id)
     {
         try {
-            $notice=Notice::find($id);
-            if($notice->image!=null){
+            $notice = Notice::find($id);
+            if ($notice->image != null) {
                 Storage::disk('public')->delete($notice->image);
             }
             $notice->delete();

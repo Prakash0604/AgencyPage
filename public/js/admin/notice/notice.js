@@ -207,7 +207,7 @@ $(document).ready(function () {
         Swal.fire({
             icon: "warning",
             title: "Are you sure ?",
-            text: "You want't to delete it ?",
+            text: "You wan't to delete it ?",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             confirmButtonText: "Yes, Delete it !",
@@ -258,19 +258,16 @@ $(document).ready(function () {
         Swal.fire({
             icon: "warning",
             title: "Are you sure ?",
-            text: "You want to change it !",
+            text: "You wan't to change it !",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
-            confirmButtonText: "Yes, Delete it !",
+            confirmButtonText: "Yes, Change it !",
             cancelButtonColor: "#d33",
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
                     type: "get",
                     url: "/admin/notice/status/" + id,
-                    // headers:{
-                    //     "X-CSRF-TOKEN":$('meta[name="csrf-token"]').attr("content"),
-                    // },
                     success: function (response) {
                         if (response.status == 200) {
                             table.draw();
