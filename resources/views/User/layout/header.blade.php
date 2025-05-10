@@ -1,5 +1,5 @@
 <header id="header" class="header-one">
-    <div class="bg-white">
+    {{-- <div class="bg-white">
         <div class="container">
             <div class="logo-area">
                 <div class="row align-items-center">
@@ -49,18 +49,50 @@
 
             </div><!-- Row end -->
         </div><!-- Container end -->
-    </div>
+    </div> --}}
 
-    <div class="site-navigation">
+    <style>
+        .navbar-nav .nav-link {
+            color: #fff !important;
+            padding: 0.75rem 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link:focus {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 0.25rem;
+        }
+
+        .navbar-toggler {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,...");
+            /* Bootstrap default icon, or replace with your own */
+        }
+
+        .logo img {
+            max-height: 60px;
+        }
+    </style>
+
+    <div class="site-navigation sticky-top bg-dark shadow-sm">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg navbar-dark p-0">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target=".navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false"
-                            aria-label="Toggle navigation">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
+                            aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
+
+                        <div class="logo col-lg-3 text-center text-lg-left mb-3 mb-md-5 mb-lg-0">
+                            <a class="d-block" href="{{ route('first.index') }}">
+                                <img loading="lazy" src="{{ asset('storage/' . $logo) }}" alt="Constra">
+                            </a>
+                        </div>
 
                         <div id="navbar-collapse" class="collapse navbar-collapse">
                             <ul class="nav navbar-nav mr-auto">
@@ -70,13 +102,12 @@
                                 <li class="nav-item"><a class="nav-link" href="{{ route('contact-us') }}">Contact</a>
                                 </li>
                                 <li class="nav-item"><a class="nav-link" href="{{ route('post') }}">Posts</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('post') }}">Machine</a></li>
                             </ul>
                         </div>
                     </nav>
                 </div>
-                <!--/ Col end -->
             </div>
-            <!--/ Row end -->
 
             <div class="search-block" style="display: none;">
                 <label for="search-field" class="w-100 mb-0">
@@ -84,10 +115,9 @@
                         placeholder="Type what you want and enter">
                 </label>
                 <span class="search-close">&times;</span>
-            </div><!-- Site search end -->
+            </div>
         </div>
-        <!--/ Container end -->
-
     </div>
+
     <!--/ Navigation end -->
 </header>

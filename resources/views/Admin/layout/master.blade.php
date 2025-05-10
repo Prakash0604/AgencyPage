@@ -99,6 +99,12 @@
                             <span class="menu-title">Notice </span>
                         </a>
                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('machine.index') }}">
+                            <i class="mdi mdi-slot-machine menu-icon"></i>
+                            <span class="menu-title">Machine </span>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.logout') }}">
                             <i class="mdi mdi-logout  menu-icon"></i>

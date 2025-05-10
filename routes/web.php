@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\FrontendController as AdminFrontendController;
+use App\Http\Controllers\Admin\MachineController;
 use App\Http\Controllers\Admin\NoticeController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\SettingController;
@@ -113,6 +114,9 @@ Route::middleware('admin')->group(function () {
     Route::resource('/admin/notice',NoticeController::class);
     Route::get('/admin/notice/status/{id}',[NoticeController::class,'toggleStatus']);
 
+    Route::resource('/admin/machine',MachineController::class);
+    Route::get('/admin/machine/status/{id}',[MachineController::class,'toggleStatus']);
+
 
     Route::get('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
 });
@@ -124,6 +128,7 @@ Route::post('/contact-us', [UserFrontendController::class, 'storeContactUs'])->n
 Route::get('/about-us', [UserFrontendController::class, 'aboutUs'])->name('about-us');
 
 Route::get('/post', [UserFrontendController::class, 'post'])->name('post');
+Route::get('/machine', [UserFrontendController::class, 'machine'])->name('machine');
 Route::get('/post/{id}', [UserFrontendController::class, 'singlePost'])->name('single.post');
 
 // Comment

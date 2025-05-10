@@ -2,9 +2,9 @@
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <form id="formId" class="formNotice">
+            <form id="formId" class="formMachine">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="noticeTitle">Add Notice</h1>
+                    <h1 class="modal-title fs-5" id="machineTitle">Add Machine</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -23,10 +23,10 @@
                             <input type="file" name="image" id="image" class="form-control" placeholder=""
                                 aria-describedby="helpId" />
                                 <small id="image-error" class="text-danger errorMessage"></small>
-                            <div id="noticeImage"> </div>
+                            <div id="machineImage"> </div>
                         </div>
                         <div class="col-md-12 mt-4 mb-2">
-                            <label for="" class="form-label">Short Description</label>
+                            <label for="" class="form-label">Description</label>
                             <textarea class="form-control description" id="description" name="description" rows="4"></textarea>
                         </div>
 
@@ -34,9 +34,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success submitNoticeBtn" data-action="">Submit</button>
-                    <button type="submit" class="btn btn-success updateNoticeBtn" data-action="edit">Update
-                        Notice</button>
+                    <button type="submit" class="btn btn-success submitMachineBtn" data-action="">Submit</button>
+                    <button type="submit" class="btn btn-success updateMachineBtn" data-action="edit">Update
+                        Machine</button>
                 </div>
             </form>
         </div>

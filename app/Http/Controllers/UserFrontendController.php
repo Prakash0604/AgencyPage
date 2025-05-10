@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ContactRequest;
-use Illuminate\Http\Request;
-use App\Models\frontend;
+use App\Models\Post;
 use App\Models\User;
+use App\Models\Notice;
 use App\Models\Comment;
 use App\Models\Contact;
-use App\Models\Post;
-use App\Models\HomeSlide;
-use App\Models\Notice;
+use App\Models\Machine;
 use App\Models\Setting;
+use App\Models\frontend;
+use App\Models\HomeSlide;
 use App\Models\Testimonial;
+use Illuminate\Http\Request;
+use App\Http\Requests\ContactRequest;
 
 class UserFrontendController extends Controller
 {
@@ -51,6 +52,13 @@ class UserFrontendController extends Controller
         $posts = Post::with(['createdBy', 'category','postImages'])->where('status', 'Active')->orderBy('id','desc')->paginate(5);
         // dd($posts);
         return view('User.Post.post', compact('posts'));
+    }
+
+    public function machine()
+    {
+        $machines = Machine::where('status', 'Active')->orderBy('id','desc')->paginate(5);
+        // dd($posts);
+        return view('User.Machine.machine', compact('machines'));
     }
 
     public function singlePost($id)

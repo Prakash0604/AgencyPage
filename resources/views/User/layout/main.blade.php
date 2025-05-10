@@ -6,6 +6,7 @@
     <!-- Basic Page Needs
 ================================================== -->
     <meta charset="utf-8">
+    {{-- <title>Constra - Delightful LifeStyle</title> --}}
     <title>Constra - Delightful LifeStyle</title>
 
     <!-- Mobile Specific Metas
