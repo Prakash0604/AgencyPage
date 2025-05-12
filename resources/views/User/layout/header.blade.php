@@ -1,123 +1,45 @@
-<header id="header" class="header-one">
-    {{-- <div class="bg-white">
-        <div class="container">
-            <div class="logo-area">
-                <div class="row align-items-center">
-                    <div class="logo col-lg-3 text-center text-lg-left mb-3 mb-md-5 mb-lg-0">
-                        <a class="d-block" href="{{ route('first.index') }}">
-                            <img loading="lazy" src="{{ asset('storage/'.$logo) }}" alt="Constra">
-                        </a>
-                    </div><!-- logo end -->
-
-                    <div class="col-lg-9 header-right">
-                        <ul class="top-info-box">
-                            <li>
-                                <div class="info-box">
-                                    <div class="info-box-content">
-                                        <p class="info-box-title">Call Us</p>
-                                        <p class="info-box-subtitle">{{ $contact }}</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="info-box">
-                                    <div class="info-box-content">
-                                        <p class="info-box-title">Email Us</p>
-                                        <p class="info-box-subtitle">{{ $email }}com</p>
-                                    </div>
-                                </div>
-                            </li>
-
-                            @if (auth()->user() && auth()->user()->role == 'Admin')
-                                <li class="header-get-a-quote">
-                                    <a class="btn btn-primary" href="{{ route('admin.logout') }}">Logout</a>
-                                </li>
-                            @elseif (auth()->user() && auth()->user()->role == 'User')
-                                <li class="header-get-a-quote">
-                                    <a class="btn btn-primary" href="{{ route('user.logout') }}">Logout</a>
-                                </li>
-                            @else
-                                <li class="header-get-a-quote">
-                                    <a class="btn btn-primary" href="{{ route('register') }}">Register</a>
-                                    <a class="btn btn-primary" href="{{ route('login') }}">Login</a>
-                                </li>
-                            @endif
-                        </ul><!-- Ul end -->
-                    </div>
-                    <!-- header right end -->
-                </div><!-- logo area end -->
-
-            </div><!-- Row end -->
-        </div><!-- Container end -->
-    </div> --}}
-
-    <style>
-        .navbar-nav .nav-link {
-            color: #fff !important;
-            padding: 0.75rem 1rem;
-            transition: background-color 0.3s ease;
-        }
-
-        .navbar-nav .nav-link:hover,
-        .navbar-nav .nav-link:focus {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 0.25rem;
-        }
-
-        .navbar-toggler {
-            border-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml,...");
-            /* Bootstrap default icon, or replace with your own */
-        }
-
-        .logo img {
-            max-height: 60px;
-        }
-    </style>
-
-    <div class="site-navigation sticky-top bg-dark shadow-sm">
+<header id="header" class="header-two">
+    <div class="site-navigation">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <nav class="navbar navbar-expand-lg navbar-dark p-0">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
-                            aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <nav class="navbar navbar-expand-lg navbar-light p-0">
+
+                        <div class="logo">
+                            <a class="d-block" href="{{url('/')}}">
+                                <img loading="lazy" src="{{ asset('storage/' . $logo) }}" alt="Constra">
+                            </a>
+                        </div><!-- logo end -->
+
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target=".navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false"
+                            aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
 
-                        <div class="logo col-lg-3 text-center text-lg-left mb-3 mb-md-5 mb-lg-0">
-                            <a class="d-block" href="{{ route('first.index') }}">
-                                <img loading="lazy" src="{{ asset('storage/' . $logo) }}" alt="Constra">
-                            </a>
-                        </div>
-
                         <div id="navbar-collapse" class="collapse navbar-collapse">
-                            <ul class="nav navbar-nav mr-auto">
-                                <li class="nav-item"><a class="nav-link" href="{{ route('first.index') }}">Home</a></li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('about-us') }}">About Us</a>
+                            <ul class="nav navbar-nav ml-auto align-items-center">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="{{ url('/') }}">Home <span
+                                            class="sr-only">(current)</span></a>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('contact-us') }}">Contact</a>
-                                </li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('post') }}">Posts</a></li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('post') }}">Machine</a></li>
+
+                                <li class="nav-item"><a class="nav-link" href="{{ route('about-us') }}">About Us</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('contact-us') }}">Contact</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('post') }}">Post</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('machine') }}">Machine</a></li>
+
                             </ul>
                         </div>
+
                     </nav>
                 </div>
+                <!--/ Col end -->
             </div>
-
-            <div class="search-block" style="display: none;">
-                <label for="search-field" class="w-100 mb-0">
-                    <input type="text" class="form-control" id="search-field"
-                        placeholder="Type what you want and enter">
-                </label>
-                <span class="search-close">&times;</span>
-            </div>
+            <!--/ Row end -->
         </div>
-    </div>
+        <!--/ Container end -->
 
+    </div>
     <!--/ Navigation end -->
 </header>

@@ -2,12 +2,15 @@ $(document).ready(function () {
     $(".description").summernote({
         height: 300,
     });
-   
+    $(".about_us_description").summernote({
+        height: 300,
+    });
+
     $('#multiple-days').select2({
         placeholder: "Please Select the days",
         allowClear: true
     });
-   
+
      var table=$("#fetch-working-details").DataTable({
         processing:true,
         serverSide:true,
@@ -60,7 +63,7 @@ $(document).ready(function () {
         });
     }
 
-   
+
 
     $(".fetch-multiple-columns").on("click", ".removeColumnBtn", function () {
         const $row = $(this).closest(".fetchExtraColumn");
@@ -93,8 +96,8 @@ $(document).ready(function () {
         // Update the dropdown options
         updateDropdownOptions();
     });
-    
-    // Create Working 
+
+    // Create Working
     $(document).on("submit","#addWorkingForm",function(event){
         event.preventDefault();
         let formdata=new FormData(this);
@@ -125,7 +128,7 @@ $(document).ready(function () {
         })
     })
 
-   
+
     $(document).on("click",".deleteWorkingBtn",function(){
         let id=$(this).attr("data-id");
         Swal.fire({

@@ -7,11 +7,11 @@
                 <div class="col-lg-6">
                     <div class="ts-intro">
                         <h2 class="into-title">About Us</h2>
-                        <h3 class="into-sub-title">{{ $frontend->title ?? '' }}</h3>
-                        <p>{!! $frontend->description ?? '' !!}</p>
+                        <h3 class="into-sub-title">{{ $frontend->title }}</h3>
+                        <p>{!! Str::limit($frontend->description, 1250, '...') !!}</p>
                     </div><!-- Intro box end -->
-                    <div class="gap-20"></div>
 
+                    <div class="gap-20"></div>
 
                     <div class="row">
                         <div class="col-md-6">
@@ -63,60 +63,90 @@
                 </div><!-- Col end -->
 
                 <div class="col-lg-6 mt-4 mt-lg-0">
-                    <h3 class="into-sub-title">{{ $frontend->title ?? '' }}</h3>
-                    <p>{!!  $frontend->description ?? '' !!}</p>
+                    <h3 class="into-sub-title">Our Values</h3>
+                    <p>we believe in the power of personalized expression through high-quality digital and printed
+                        media. Whether it's custom apparel, published books, or branded merchandise, our mission is
+                        to bring creativity to life with precision, care, and sustainability at every step</p>
 
+                    <div class="accordion accordion-group" id="our-values-accordion">
+                        <div class="card">
+                            <div class="card-header p-0 bg-transparent" id="headingOne">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-block text-left" type="button" data-toggle="collapse"
+                                        data-target="#collapseOne" aria-expanded="true"
+                                        aria-controls="collapseOne">
+                                        CREATIVITY & CUSTOMIZATION
+                                    </button>
+                                </h2>
+                            </div>
 
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                data-parent="#our-values-accordion">
+                                <div class="card-body">
+                                    We empower our clients with tools and services that support unique, personalized
+                                    designs—whether it's a printed t-shirt or a custom book cover.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header p-0 bg-transparent" id="headingTwo">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-block text-left collapsed" type="button"
+                                        data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                                        aria-controls="collapseTwo">
+                                        QUALITY CRAFTSMANSHIP
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                data-parent="#our-values-accordion">
+                                <div class="card-body">
+                                    Every item we produce—digital or physical—is reviewed with attention to detail,
+                                    using high-quality materials and techniques.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header p-0 bg-transparent" id="headingThree">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-block text-left collapsed" type="button"
+                                        data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
+                                        aria-controls="collapseThree">
+                                        SUSTAINABILITY
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                data-parent="#our-values-accordion">
+                                <div class="card-body">
+                                    We use eco-friendly inks, materials, and practices to reduce waste and support a
+                                    more sustainable production environment.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!--/ Accordion end -->
 
                 </div><!-- Col end -->
             </div><!-- Row end -->
         </div><!-- Container end -->
-    </section><!-- Feature are end -->
+    </section>
+
     <section id="facts" class="facts-area dark-bg">
         <div class="container">
             <div class="facts-wrapper">
                 <div class="row">
+                    @foreach ($achievements as $achievement)
                     <div class="col-md-3 col-sm-6 ts-facts">
                         <div class="ts-facts-img">
-                            <img loading="lazy" src="{{ asset('front/images/icon-image/fact1.png') }}" alt="facts-img">
+                            <img loading="lazy" src="{{ asset('storage/' . $achievement->icon) }}" alt="facts-img">
                         </div>
                         <div class="ts-facts-content">
-                            <h2 class="ts-facts-num"><span class="counterUp" data-count="1789">0</span></h2>
-                            <h3 class="ts-facts-title">Total Projects</h3>
+                            <h2 class="ts-facts-num"><span class="counterUp" data-count="{{ $achievement->number }}">{{ $achievement->number }}</span></h2>
+                            <h3 class="ts-facts-title">{{ $achievement->title }}</h3>
                         </div>
-                    </div><!-- Col end -->
-
-                    <div class="col-md-3 col-sm-6 ts-facts mt-5 mt-sm-0">
-                        <div class="ts-facts-img">
-                            <img loading="lazy" src="{{ asset('front/images/icon-image/fact2.png') }}" alt="facts-img">
-                        </div>
-                        <div class="ts-facts-content">
-                            <h2 class="ts-facts-num"><span class="counterUp" data-count="647">0</span></h2>
-                            <h3 class="ts-facts-title">Staff Members</h3>
-                        </div>
-                    </div><!-- Col end -->
-
-                    <div class="col-md-3 col-sm-6 ts-facts mt-5 mt-md-0">
-                        <div class="ts-facts-img">
-                            <img loading="lazy" src="{{ asset('front/images/icon-image/fact3.png') }}" alt="facts-img">
-                        </div>
-                        <div class="ts-facts-content">
-                            <h2 class="ts-facts-num"><span class="counterUp" data-count="4000">0</span></h2>
-                            <h3 class="ts-facts-title">Hours of Work</h3>
-                        </div>
-                    </div><!-- Col end -->
-
-                    <div class="col-md-3 col-sm-6 ts-facts mt-5 mt-md-0">
-                        <div class="ts-facts-img">
-                            <img loading="lazy" src="{{ asset('front/images/icon-image/fact4.png') }}" alt="facts-img">
-                        </div>
-                        <div class="ts-facts-content">
-                            <h2 class="ts-facts-num"><span class="counterUp" data-count="44">0</span></h2>
-                            <h3 class="ts-facts-title">Countries Experience</h3>
-                        </div>
-                    </div><!-- Col end -->
-
+                    </div>
+                    @endforeach
                 </div> <!-- Facts end -->
             </div>
             <!--/ Content row end -->

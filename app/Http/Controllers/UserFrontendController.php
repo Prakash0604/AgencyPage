@@ -14,6 +14,7 @@ use App\Models\HomeSlide;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use App\Http\Requests\ContactRequest;
+use App\Models\Achievement;
 
 class UserFrontendController extends Controller
 {
@@ -24,13 +25,16 @@ class UserFrontendController extends Controller
         // dd($homeslides);
         $testimonials=Testimonial::where('status','Active')->get();
         $notice=Notice::where('status','Active')->first();
+        $achievements=Achievement::where('status','Active')->get();
         // dd($notice);
-        return view('User.home',compact(['frontend','homeslides','testimonials','notice']));
+        // return view('User.home',compact(['frontend','homeslides','testimonials','notice']));
+        return view('User.home',compact(['frontend','homeslides','testimonials','notice','achievements']));
     }
     public function aboutUs(){
         $users=User::where('role','Admin')->get();
         $frontend=Setting::first();
-        return view('User.about',compact('users','frontend'));
+        $achievements=Achievement::where('status','Active')->get();
+        return view('User.about',compact('users','frontend','achievements'));
     }
 
     public function contactUs(){

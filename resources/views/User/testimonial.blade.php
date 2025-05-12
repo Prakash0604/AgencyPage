@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-4 mb-4">
     <div class="row">
         <div class="col-lg-12 mt-3">
             <h3 class="column-title text-center mt-4">Testimonials</h3>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AchevementController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\HomeSliderController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserFrontendController;
+use App\Models\Achievement;
 
 /*
 |--------------------------------------------------------------------------
@@ -116,6 +118,9 @@ Route::middleware('admin')->group(function () {
 
     Route::resource('/admin/machine',MachineController::class);
     Route::get('/admin/machine/status/{id}',[MachineController::class,'toggleStatus']);
+
+    Route::resource('/admin/achievement',AchevementController::class);
+    Route::get('/admin/achievement/status/{id}',[AchevementController::class,'toggleStatus']);
 
 
     Route::get('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');

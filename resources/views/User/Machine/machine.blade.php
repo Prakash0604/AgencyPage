@@ -3,18 +3,18 @@
     <!--/ Header end -->
     <style>
         .ts-service-image-wrapper {
-    width: 100%;
-    height: 250px; /* or any desired height */
-    overflow: hidden;
-    position: relative;
-}
+            width: 100%;
+            height: 250px;
+            /* or any desired height */
+            overflow: hidden;
+            position: relative;
+        }
 
-.ts-service-image-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
+        .ts-service-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     </style>
     <div id="banner-area" class="banner-area" style="background-image:url({{ asset('front/images/banner/banner1.jpg') }})">
         <div class="banner-text">
@@ -38,26 +38,29 @@
 
     <section id="main-container" class="main-container pb-2">
         <div class="container">
-          <div class="row">
+            <h1 class="text-center">Machines</h1>
+            <div class="row">
 
-            @foreach ($machines as $machine)
-            <div class="col-lg-4 col-md-6 mb-5">
-              <div class="ts-service-box">
-                  <div class="ts-service-image-wrapper">
-                    <img loading="lazy" class="w-100" src="{{ asset('storage/' . $machine->image) }}" alt="service-image">
-                  </div>
-                  <div class="d-flex">
-                    <div class="ts-service-info">
-                        <h3 class="service-box-title"><a href="service-single.html">{{ $machine->title }}</a></h3>
-                        <p>{{ $machine->description }}</p>
-                        <a class="learn-more d-inline-block" href="service-single.html" aria-label="service-details"><i class="fa fa-caret-right"></i> Learn more</a>
-                    </div>
-                  </div>
-              </div><!-- Service1 end -->
-            </div><!-- Col 1 end -->
-            @endforeach
+                @foreach ($machines as $machine)
+                    <div class="col-lg-4 col-md-6 mb-5">
+                        <div class="ts-service-box">
+                            <div class="ts-service-image-wrapper">
+                                <img loading="lazy" class="w-100" src="{{ asset('storage/' . $machine->image) }}"
+                                    alt="service-image">
+                            </div>
+                            <div class="d-flex">
+                                <div class="ts-service-info">
+                                    <h3 class="service-box-title"><a href="service-single.html">{{ $machine->title }}</a>
+                                    </h3>
+                                    <p>{{ $machine->description }}</p>
+                                    <a class="learn-more d-inline-block" href="service-single.html" aria-label="service-details"><i class="fa fa-caret-right"></i> Learn more</a>
+                                </div>
+                            </div>
+                        </div><!-- Service1 end -->
+                    </div><!-- Col 1 end -->
+                @endforeach
 
-          </div><!-- Main row end -->
+            </div><!-- Main row end -->
         </div><!-- Conatiner end -->
-      </section><!-- Main container end -->
+    </section><!-- Main container end -->
 @endsection

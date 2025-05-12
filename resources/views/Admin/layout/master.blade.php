@@ -106,6 +106,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('achievement.index') }}">
+                            <i class="mdi mdi-bullseye-arrow menu-icon"></i>
+                            <span class="menu-title">Achievement </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.logout') }}">
                             <i class="mdi mdi-logout  menu-icon"></i>
                             <span class="menu-title">Logout</span>

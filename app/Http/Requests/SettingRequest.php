@@ -36,6 +36,8 @@ class SettingRequest extends FormRequest
             'starting_time'=>'nullable|date_format:H:i',
             'ending_time'=>'nullable|date_format:H:i',
             'days'=>'nullable|in:Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday|array',
+            'about_us_description'=>'nullable|string',
+            'footer_description'=>'nullable|string|max:255'
         ];
     }
 
@@ -48,7 +50,7 @@ class SettingRequest extends FormRequest
             'logo.mimes'=>'Logo Must be of PNG,JPG,WEBP,JPEG',
             'contact.numeric'=>'Contact number must be a type of number',
             'contact.min'=>'Contact Number Must be at least 7 digits',
-            'email.email'=>'Invalid Email Format'
+            'email.email'=>'Invalid Email Format',
         ];
     }
 }

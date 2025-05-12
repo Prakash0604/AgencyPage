@@ -114,8 +114,19 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="" class="form-label">Description</label>
+                            <label for="" class="form-label">Home Page Description</label>
                             <textarea class="form-control description" name="description" id="" rows="3">{!! $setting->description ?? '' !!}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">About Us Description</label>
+                            <textarea class="form-control about_us_description" name="about_us_description" id="" rows="3">{!! $setting->about_us_description ?? '' !!}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Footer Description</label>
+                            <input type="text" class="form-control footer_description" placeholder="Enter the footer description content" name="footer_description" value="{!! $setting->footer_description ?? '' !!}">
+                            @error('footer_description')
+                            <small id="helpId" class="text-danger">{{ $message }}</small>
+                        @enderror
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Work Description</label>
@@ -172,7 +183,7 @@
                     <div class="row">
                         <div class="col-md-3">
                             <label for="" class="form-label">Days<span class="text-danger">*</span></label>
-                            <select multiple class="form-select p-4 form-select-lg multiple-days-select" 
+                            <select multiple class="form-select p-4 form-select-lg multiple-days-select"
                                 name="days[]" id="multiple-days">
                                 <option value="Sunday">Sunday</option>
                                 <option value="Monday">Monday</option>

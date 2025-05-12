@@ -68,7 +68,7 @@
             <h4>Call Us</h4>
             <p>{{ $contact }}</p>
           </div>
-          
+
         </div>
       </div><!-- Col 3 end -->
 
@@ -76,7 +76,10 @@
 
     <div class="gap-60"></div>
 
-    <div class="gap-40"></div>
+    <div class="google-map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m11!1m3!1d8887.279550817737!2d85.3420701644582!3d27.69142136550371!2m2!1f0!2f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19921f6d004b%3A0x5a017eef8b2df616!2sShantinagar%2C%20Kathmandu%2044600!5e1!3m2!1sen!2snp!4v1747063509479!5m2!1sen!2snp" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
 
     <div class="row">
       <div class="col-md-12">
